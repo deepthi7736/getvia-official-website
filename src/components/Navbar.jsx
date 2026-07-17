@@ -1,58 +1,109 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const navigationLinks = [
+  { label: "Product", href: "#product" },
+  { label: "For Customers", href: "#customers" },
+  { label: "For Business", href: "#business" },
+  { label: "Professionals", href: "#professionals" },
+  { label: "About", href: "#about" },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <motion.nav 
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 glass-panel border-t-0 border-x-0 mx-auto max-w-7xl backdrop-blur-md"
+    <header
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-[#DDE5DF] bg-white/90 py-3 shadow-sm backdrop-blur-xl"
+          : "bg-white/80 py-4 backdrop-blur-xl"
+      }`}
     >
-      <a href="#home" className="flex items-center">
-  <img
-    src="/getvia-logo.png"
-    alt="Getvia"
-    className="h-10 w-auto object-contain"
-  />
-</a>
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        <a href="#home" aria-label="Getvia home">
+          <img
+            src="/getvia-logo.png"
+            alt="Getvia"
+            className="h-10 w-auto max-w-[160px] object-contain"
+          />
+        </a>
 
-        <div className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-400">
-          <a href="#product" className="hover:text-white transition-colors">Product</a>
-          <a href="#solutions" className="hover:text-white transition-colors">Solutions</a>
-          <a href="#business" className="hover:text-white transition-colors">For Business</a>
-          <a href="#about" className="hover:text-white transition-colors">About</a>
+        <nav className="hidden items-center gap-8 lg:flex">
+          {navigationLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-sm font-semibold text-[#667069] transition hover:text-[#176B49]"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-5 lg:flex">
+          <a
+            href="#contact"
+            className="text-sm font-bold text-[#17201C]"
+          >
+            Contact
+          </a>
+
+          <a
+            href="https://getvia.in"
+            className="inline-flex items-center gap-2 rounded-full bg-[#176B49] px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#0F5132]"
+          >
+            Explore Getvia
+            <ArrowUpRight size={17} />
+          </a>
         </div>
 
-        <div className="hidden md:flex items-center gap-5">
-          <button className="text-sm font-sans font-medium text-white hover:opacity-80 transition-opacity">Log In</button>
-          <button className="flex items-center gap-1 bg-white text-[#0A0F0D] font-sans font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#E2FF44] transition-all duration-300 shadow-lg">
-            Explore Getvia <ArrowUpRight className="w-4 h-4" />
-          </button>
-        </div>
-
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <button
+          type="button"
+          onClick={() => setMenuOpen((current) => !current)}
+          className="grid h-11 w-11 place-items-center rounded-full border border-[#DDE5DF] bg-white text-[#17201C] lg:hidden"
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
       </div>
 
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-20 left-0 w-full bg-[#0A0F0D] border-b border-white/10 flex flex-col p-6 gap-6 font-sans text-base"
-        >
-          <a href="#product" onClick={() => setIsOpen(false)}>Product</a>
-          <a href="#solutions" onClick={() => setIsOpen(false)}>Solutions</a>
-          <a href="#business" onClick={() => setIsOpen(false)}>For Business</a>
-          <hr className="border-white/10" />
-          <button className="text-left w-full text-gray-400">Log In</button>
-          <button className="w-full text-center bg-[#E2FF44] text-[#0A0F0D] py-3 rounded-full font-semibold">Explore Getvia</button>
-        </motion.div>
+      {menuOpen && (
+        <nav className="mx-auto mt-3 w-[calc(100%-28px)] max-w-7xl rounded-3xl border border-[#DDE5DF] bg-white p-5 shadow-xl lg:hidden">
+          <div className="flex flex-col gap-2">
+            {navigationLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-3 py-3 font-semibold text-[#667069] hover:bg-[#F7F8F3] hover:text-[#176B49]"
+              >
+                {link.label}
+              </a>
+            ))}
+
+            <a
+              href="https://getvia.in"
+              className="mt-3 rounded-full bg-[#176B49] px-6 py-3 text-center font-bold text-white"
+            >
+              Explore Getvia
+            </a>
+          </div>
+        </nav>
       )}
-    </motion.nav>
+    </header>
   );
 }
