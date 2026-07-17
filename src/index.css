@@ -12,7 +12,7 @@
   }
 
   body {
-    @apply bg-getvia-50 text-ink font-sans antialiased overflow-x-hidden;
+    @apply bg-white text-ink font-sans antialiased overflow-x-hidden;
   }
 
   h1,
@@ -22,29 +22,19 @@
     font-family: "Fraunces", serif;
   }
 
-  button,
-  a {
-    -webkit-tap-highlight-color: transparent;
-  }
-
   ::selection {
-    background: #dff3e5;
-    color: #0f5132;
+    background: #8ce72a;
+    color: #161616;
   }
 }
 
 @layer components {
   .container-custom {
-    @apply w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
   }
 
   .section-spacing {
     @apply py-20 md:py-28 lg:py-32;
-  }
-
-  .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-extrabold
-    uppercase tracking-[0.16em] text-getvia-700;
   }
 
   .primary-button {
@@ -63,7 +53,8 @@
     @apply rounded-4xl border border-border bg-white shadow-card;
   }
 
-  .glass-panel {
-    @apply border border-white/60 bg-white/75 backdrop-blur-xl;
+  .eyebrow {
+    @apply text-xs font-extrabold uppercase tracking-[0.16em]
+    text-getvia-700;
   }
 }
