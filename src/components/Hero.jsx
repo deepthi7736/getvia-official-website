@@ -1,95 +1,149 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BadgeCheck,
+  MapPin,
+  MessageCircle,
+  Search,
+  Star,
+} from "lucide-react";
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
-  };
-
-  const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-  };
-
   return (
-    <section className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center px-6 max-w-7xl mx-auto z-10">
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-      >
-        <div className="lg:col-span-7 flex flex-col gap-6">
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 self-start backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-[#E2FF44]" />
-            <span className="font-sans text-xs tracking-wide text-gray-300 font-medium">Reimagining Discovery Ecosystems</span>
-          </motion.div>
+    <section
+      id="home"
+      className="relative overflow-hidden bg-[#F7F8F3] pb-20 pt-36 md:pb-28 md:pt-44"
+    >
+      <div className="absolute -right-32 top-16 h-[420px] w-[420px] rounded-full bg-[#DFF3E5] blur-3xl" />
 
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] font-light text-white">
-            Discover Better <br />
-            <span className="italic font-normal text-[#E2FF44]">Businesses.</span>
-          </motion.h1>
+      <div className="absolute -bottom-52 -left-36 h-[420px] w-[420px] rounded-full bg-[#B8DFC5]/40 blur-3xl" />
 
-          <motion.p variants={itemVariants} className="font-sans text-lg md:text-xl text-gray-400 font-light max-w-xl leading-relaxed">
-            Getvia is a premium technology ecosystem uniting discerning customers with authenticated institutions and top-tier professionals. No noise. Just absolute trust.
-          </motion.p>
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75 }}
+        >
+          <span className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#176B49]">
+            Better local discovery starts here
+          </span>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-            <button className="flex items-center justify-center gap-2 bg-[#E2FF44] text-[#0A0F0D] font-sans font-semibold px-8 py-4 rounded-full hover:bg-white transition-all duration-300 group shadow-xl">
-              Explore the Platform <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="flex items-center justify-center gap-2 border border-white/20 text-white font-sans font-medium px-8 py-4 rounded-full hover:bg-white/5 transition-colors">
-              For Premium Entities
-            </button>
-          </motion.div>
-        </div>
+          <h1 className="mt-6 max-w-3xl font-serif text-5xl leading-[0.98] tracking-[-0.045em] text-[#17201C] sm:text-6xl lg:text-7xl">
+            Discover better businesses.
 
-        <div className="lg:col-span-5 relative flex justify-center items-center">
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="w-full aspect-square max-w-[440px] glass-panel rounded-[2.5rem] p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+            <span className="mt-2 block text-[#176B49]">
+              Build stronger connections.
+            </span>
+          </h1>
 
-            <div className="flex items-center justify-between z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-[#E2FF44]">
-                  <ShieldCheck className="w-5 h-5" />
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#667069]">
+            Getvia helps people discover trusted businesses and
+            professionals while helping local brands create a clearer,
+            stronger digital presence.
+          </p>
+
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="https://getvia.in"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#176B49] px-7 py-4 font-bold text-white transition hover:-translate-y-1 hover:bg-[#0F5132]"
+            >
+              Explore Getvia
+              <ArrowRight size={18} />
+            </a>
+
+            <a
+              href="#business"
+              className="inline-flex items-center justify-center rounded-full border border-[#DDE5DF] bg-white px-7 py-4 font-bold text-[#17201C] transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              Getvia for Business
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.15 }}
+          className="relative"
+        >
+          <div className="rounded-[32px] border border-[#DDE5DF] bg-white p-5 shadow-[0_25px_70px_rgba(15,81,50,0.12)] md:p-8">
+            <div className="rounded-3xl bg-[#176B49] p-6 text-white">
+              <div className="flex items-center gap-4">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white/15">
+                  <Search size={21} />
                 </div>
+
                 <div>
-                  <h4 className="text-sm font-sans font-semibold tracking-wide">Studio Architectural Ltd.</h4>
-                  <p className="text-xs font-sans text-gray-400">Verified Professional Tier</p>
+                  <p className="text-xs text-white/65">
+                    Discover around you
+                  </p>
+
+                  <p className="font-bold">
+                    Find businesses and professionals
+                  </p>
                 </div>
               </div>
-              <span className="bg-[#E2FF44]/10 text-[#E2FF44] text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded border border-[#E2FF44]/20">Active</span>
             </div>
 
-            <div className="my-auto py-6 z-10">
-              <p className="text-xs font-mono text-gray-500 mb-2">// CAPABILITIES METRIC</p>
-              <div className="flex flex-wrap gap-2">
-                {['Spatial Strategy', 'Eco Design', 'Consultancy'].map((tag) => (
-                  <span key={tag} className="text-xs font-sans bg-white/5 border border-white/10 px-3 py-1 rounded-full">{tag}</span>
-                ))}
-              </div>
-            </div>
+            <div className="mt-5 rounded-3xl border border-[#DDE5DF] bg-[#F7F8F3] p-5">
+              <div className="flex items-start justify-between gap-5">
+                <div className="flex gap-4">
+                  <div className="grid h-14 w-14 place-items-center rounded-2xl bg-[#DFF3E5] font-bold text-[#0F5132]">
+                    G
+                  </div>
 
-            <div className="border-t border-white/10 pt-4 flex items-center justify-between z-10">
-              <div className="flex items-center gap-1.5 text-xs text-gray-400 font-sans">
-                <Zap className="w-3.5 h-3.5 text-[#E2FF44]" /> Response Index: <span className="text-white font-medium">&lt; 9 mins</span>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-extrabold text-[#17201C]">
+                        Example Business
+                      </h3>
+
+                      <BadgeCheck
+                        size={18}
+                        className="text-[#176B49]"
+                      />
+                    </div>
+
+                    <p className="text-sm text-[#667069]">
+                      Local services · Kerala
+                    </p>
+                  </div>
+                </div>
+
+                <span className="rounded-full bg-[#DFF3E5] px-3 py-1 text-xs font-bold text-[#0F5132]">
+                  Open
+                </span>
               </div>
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-6 h-6 rounded-full border border-[#0A0F0D] bg-zinc-800" />
-                ))}
+
+              <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#667069]">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2">
+                  <Star
+                    size={16}
+                    className="fill-[#176B49] text-[#176B49]"
+                  />
+                  4.8 rating
+                </span>
+
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2">
+                  <MapPin size={16} />
+                  Nearby
+                </span>
+
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2">
+                  <MessageCircle size={16} />
+                  Direct contact
+                </span>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                <div className="h-24 rounded-2xl bg-[#DFF3E5]" />
+                <div className="h-24 rounded-2xl bg-[#EAF4ED]" />
+                <div className="h-24 rounded-2xl bg-[#B8DFC5]" />
               </div>
             </div>
-          </motion.div>
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
