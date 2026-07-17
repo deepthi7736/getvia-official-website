@@ -12,13 +12,13 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-0 left-0 right-0 z-50 glass-panel border-t-0 border-x-0 mx-auto max-w-7xl backdrop-blur-md"
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-6 h-6 rounded-sm bg-[#E2FF44] flex items-center justify-center font-bold text-[#0A0F0D] text-xs">V</div>
-          <span className="font-sans font-bold text-xl tracking-tight text-white group-hover:opacity-80 transition-opacity">
-            getvia<span className="text-[#E2FF44]">.</span>
-          </span>
-        </div>
+      <a href="#home" className="flex items-center">
+  <img
+    src="/getvia-logo.png"
+    alt="Getvia"
+    className="h-10 w-auto object-contain"
+  />
+</a>
 
         <div className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-400">
           <a href="#product" className="hover:text-white transition-colors">Product</a>
