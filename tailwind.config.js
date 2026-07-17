@@ -9,21 +9,22 @@ export default {
     extend: {
       colors: {
         getvia: {
-          50: "#F7F8F3",
-          100: "#EAF4ED",
-          200: "#DFF3E5",
-          300: "#B8DFC5",
-          400: "#70B78A",
-          500: "#2E8B5E",
-          600: "#176B49",
-          700: "#0F5132",
-          800: "#0B4028",
-          900: "#072E1D",
+          50: "#F4FBF5",
+          100: "#EAF8EC",
+          200: "#CDEFD2",
+          300: "#9FE1A8",
+          400: "#69C978",
+          500: "#25A43A",
+          600: "#00851B",
+          700: "#006E12",
+          800: "#00530D",
+          900: "#003A08",
         },
 
-        ink: "#17201C",
-        muted: "#667069",
-        border: "#DDE5DF",
+        accent: "#8CE72A",
+        ink: "#161616",
+        muted: "#6B6B6B",
+        border: "#DDDDDD",
       },
 
       fontFamily: {
@@ -32,8 +33,8 @@ export default {
       },
 
       boxShadow: {
-        soft: "0 20px 60px rgba(15, 81, 50, 0.10)",
-        card: "0 12px 40px rgba(23, 32, 28, 0.08)",
+        soft: "0 20px 60px rgba(0, 110, 18, 0.10)",
+        card: "0 12px 40px rgba(22, 22, 22, 0.08)",
       },
 
       borderRadius: {
