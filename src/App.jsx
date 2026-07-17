@@ -4,10 +4,12 @@ import About from "./components/About";
 import Ecosystem from "./components/Ecosystem";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
+import ScrollProgress from "./components/ScrollProgress";
 
 function App() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
 
       <main>
