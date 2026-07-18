@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import logo from "../assets/getvia-logo.png";
+import logo from "../assets/getvia-full-Logo.png";
 
 const LINKS = [
   { href: "#about", label: "About" },
