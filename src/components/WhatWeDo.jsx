@@ -1,67 +1,187 @@
-import { Search, Store, Building2 } from "lucide-react";
-import ArtTile from "./ArtTile";
+import {
+  ArrowRight,
+  Building2,
+  CheckCircle2,
+  Search,
+  Store,
+  Users,
+} from "lucide-react";
 
 const AUDIENCES = [
   {
     tag: "For customers",
-    title: "Find a business you can actually trust",
-    body: "Search by need, not just category. Every result is verified, every review is confirmed, and every profile shows exactly what you need to decide — hours, pricing signals, real photos, direct contact.",
+    title: "Discover businesses with more confidence",
+    body: "Getvia makes it easier to explore businesses, professionals, services, products, offers, locations, and contact details through one clear discovery platform.",
     icon: Search,
-    variant: "fresh",
+    points: [
+      "Search businesses and professionals",
+      "View services, products, and offers",
+      "Check location and contact details",
+    ],
   },
   {
     tag: "For businesses",
-    title: "Get found by people ready to choose you",
-    body: "Build a profile that actually converts, appear where local searches happen, and reach customers who are already looking — not cold traffic. Verification builds the trust; Getvia brings the visibility.",
+    title: "Build a stronger digital presence",
+    body: "Businesses can create complete profiles, showcase what they offer, share contact information, improve visibility, and make it easier for customers to connect.",
     icon: Store,
-    variant: "warm",
+    points: [
+      "Professional business profile",
+      "Services, products, gallery, and offers",
+      "Better visibility and customer access",
+    ],
   },
   {
     tag: "For communities",
-    title: "Grow local economies from the ground up",
-    body: "When trusted businesses are easier to find, they grow — and so does everything around them. Getvia is built to make local commerce healthier, city by city.",
+    title: "Support stronger local connections",
+    body: "By helping genuine businesses become easier to discover, Getvia supports better customer decisions and stronger local business communities.",
     icon: Building2,
-    variant: "deep",
+    points: [
+      "Improved local business discovery",
+      "Better access to nearby services",
+      "Stronger customer-business connections",
+    ],
   },
 ];
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="bg-[#F5F7F4] py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="max-w-2xl">
-          <span className="font-mono text-xs uppercase tracking-widest text-[#1E5631]">
-            What we do
-          </span>
-          <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-[#14361F] lg:text-5xl">
-            One platform. Three groups of people it's built for.
-          </h2>
+    <section
+      id="what-we-do"
+      className="relative overflow-hidden bg-white py-24 lg:py-32"
+    >
+      {/* Decorative background */}
+      <div className="pointer-events-none absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#E8F7EA]/80 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-[#B7F27D]/15 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
+        {/* Heading */}
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#CFE5D3] bg-[#F3FBF4] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[#007A1F]">
+              <Users size={14} />
+              What we do
+            </span>
+
+            <h2 className="mt-6 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] sm:text-5xl lg:text-6xl">
+              One platform built for
+              <span className="text-[#007A1F]"> discovery and growth.</span>
+            </h2>
+          </div>
+
+          <p className="max-w-2xl font-body text-lg leading-8 text-[#646464] lg:justify-self-end">
+            Getvia brings customers, businesses, professionals, and local
+            communities together through a simpler and more useful digital
+            experience.
+          </p>
         </div>
 
-        <div className="mt-16 space-y-20">
-          {AUDIENCES.map((a, i) => (
-            <div
-              key={a.tag}
-              className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
-                i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <div className="overflow-hidden rounded-2xl">
-                <ArtTile icon={a.icon} variant={a.variant} className="h-80 w-full" />
-              </div>
-              <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[#8BC63F]">
-                  {a.tag}
-                </span>
-                <h3 className="mt-3 font-display text-3xl text-[#14361F]">
-                  {a.title}
-                </h3>
-                <p className="mt-4 max-w-md font-body text-base leading-relaxed text-[#6B7280]">
-                  {a.body}
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* Audience sections */}
+        <div className="mt-20 space-y-12">
+          {AUDIENCES.map((audience, index) => {
+            const Icon = audience.icon;
+
+            return (
+              <article
+                key={audience.tag}
+                className={`grid overflow-hidden rounded-[32px] border border-[#DDE5DE] bg-[#F8FCF8] shadow-[0_20px_60px_rgba(0,80,20,0.06)] lg:grid-cols-2 ${
+                  index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
+              >
+                {/* Visual panel */}
+                <div className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-gradient-to-br from-[#E8F7EA] via-[#F8FCF8] to-white p-8 sm:p-12">
+                  <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#7CE629]/20 blur-3xl" />
+                  <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#007A1F]/10 blur-3xl" />
+
+                  <div className="relative w-full max-w-md rounded-[28px] border border-white/80 bg-white p-7 shadow-[0_22px_60px_rgba(0,90,25,0.12)]">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#007A1F] text-white">
+                        <Icon size={27} strokeWidth={1.9} />
+                      </div>
+
+                      <div>
+                        <p className="font-mono text-[11px] font-medium uppercase tracking-[0.17em] text-[#007A1F]">
+                          Getvia platform
+                        </p>
+
+                        <p className="mt-1 font-display text-xl font-semibold text-[#141414]">
+                          {audience.tag}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-7 space-y-3">
+                      {audience.points.map((point) => (
+                        <div
+                          key={point}
+                          className="flex items-center gap-3 rounded-2xl border border-[#E4EAE4] bg-[#FAFCFA] px-4 py-3"
+                        >
+                          <CheckCircle2
+                            size={18}
+                            className="shrink-0 text-[#007A1F]"
+                          />
+
+                          <span className="font-body text-sm text-[#555B55]">
+                            {point}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Text panel */}
+                <div className="flex flex-col justify-center bg-white p-8 sm:p-12 lg:p-14">
+                  <span className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
+                    {audience.tag}
+                  </span>
+
+                  <h3 className="mt-4 max-w-xl font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-[#141414] sm:text-4xl">
+                    {audience.title}
+                  </h3>
+
+                  <p className="mt-6 max-w-xl font-body text-base leading-8 text-[#646464]">
+                    {audience.body}
+                  </p>
+
+                  <a
+                    href={index === 0 ? "https://getvia.in" : "#contact"}
+                    target={index === 0 ? "_blank" : undefined}
+                    rel={index === 0 ? "noreferrer" : undefined}
+                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3 font-body text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-lg"
+                  >
+                    {index === 0
+                      ? "Explore Getvia"
+                      : index === 1
+                        ? "List your business"
+                        : "Learn more"}
+
+                    <ArrowRight size={17} />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 flex flex-col items-start justify-between gap-8 rounded-[32px] bg-[#007A1F] px-8 py-10 shadow-[0_25px_65px_rgba(0,100,30,0.18)] sm:px-10 lg:flex-row lg:items-center">
+          <div>
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-white/65">
+              Better local discovery
+            </p>
+
+            <h3 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
+              Discover better. Present better. Connect faster.
+            </h3>
+          </div>
+
+          <a
+            href="#contact"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3 font-body text-sm font-semibold text-[#007A1F] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F3FBF4]"
+          >
+            Get started
+            <ArrowRight size={17} />
+          </a>
         </div>
       </div>
     </section>
