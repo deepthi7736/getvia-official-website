@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen overflow-x-hidden bg-white text-[#141414]">
       <ScrollProgress />
       <Navbar />
 
@@ -28,13 +28,13 @@ function App() {
         <Ecosystem />
         <PlatformBusiness />
         <Stats />
-        <Testimonials />
         <Technology />
+        <Testimonials />
         <Contact />
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
