@@ -1,22 +1,16 @@
 import { useEffect, useState } from "react";
 
-/**
- * The signature element: a vertical "route" down the left edge of the page.
- * Waypoint dots mark each section; the amber line fills in as the visitor
- * scrolls, like a route being traced on a map — Get + Via.
- * Desktop only (hidden below lg breakpoint).
- */
 export const ROUTE_WAYPOINTS = [
-  { id: "hero", label: "Start" },
-  { id: "about", label: "Who we are" },
-  { id: "mission", label: "Why" },
+  { id: "hero", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "mission", label: "Mission" },
   { id: "what-we-do", label: "What we do" },
-  { id: "why-choose", label: "How it works" },
-  { id: "industries", label: "Who it's for" },
-  { id: "platform", label: "For businesses" },
-  { id: "stats", label: "Proof" },
-  { id: "technology", label: "Tech" },
-  { id: "contact", label: "Get there" },
+  { id: "why-choose", label: "Features" },
+  { id: "industries", label: "Ecosystem" },
+  { id: "platform", label: "For business" },
+  { id: "stats", label: "Overview" },
+  { id: "technology", label: "Technology" },
+  { id: "contact", label: "Contact" },
 ];
 
 export default function ScrollProgress() {
@@ -24,61 +18,125 @@ export default function ScrollProgress() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const doc = document.documentElement;
-      const scrollTop = doc.scrollTop || document.body.scrollTop;
-      const height = doc.scrollHeight - doc.clientHeight;
-      setProgress(height > 0 ? Math.min(1, scrollTop / height) : 0);
+    let animationFrame = null;
 
-      let current = 0;
-      ROUTE_WAYPOINTS.forEach((wp, i) => {
-        const el = document.getElementById(wp.id);
-        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.5) {
-          current = i;
+    const updateProgress = () => {
+      const documentElement = document.documentElement;
+      const scrollTop =
+        window.scrollY ||
+        documentElement.scrollTop ||
+        document.body.scrollTop;
+
+      const scrollableHeight =
+        documentElement.scrollHeight - window.innerHeight;
+
+      const nextProgress =
+        scrollableHeight > 0
+          ? Math.min(1, Math.max(0, scrollTop / scrollableHeight))
+          : 0;
+
+      let currentIndex = 0;
+
+      ROUTE_WAYPOINTS.forEach((waypoint, index) => {
+        const section = document.getElementById(waypoint.id);
+
+        if (
+          section &&
+          section.getBoundingClientRect().top <= window.innerHeight * 0.45
+        ) {
+          currentIndex = index;
         }
       });
-      setActiveIndex(current);
+
+      setProgress(nextProgress);
+      setActiveIndex(currentIndex);
+      animationFrame = null;
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const handleScroll = () => {
+      if (animationFrame !== null) return;
+
+      animationFrame = window.requestAnimationFrame(updateProgress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    updateProgress();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+    };
   }, []);
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
-    <div
-      aria-hidden="true"
-      className="fixed left-6 top-0 z-40 hidden h-screen w-8 lg:flex flex-col items-center justify-center"
+    <nav
+      aria-label="Page section navigation"
+      className="fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 lg:block xl:left-7"
     >
-      <div className="relative h-[70vh] w-px bg-[#1B1F27]/10">
-        <div
-          className="absolute left-0 top-0 w-px bg-[#8BC63F] transition-all duration-150 ease-out motion-reduce:transition-none"
-          style={{ height: `${progress * 100}%` }}
-        />
-        {ROUTE_WAYPOINTS.map((wp, i) => (
-          <button
-            key={wp.id}
-            aria-label={`Jump to ${wp.label}`}
-            onClick={() =>
-              document
-                .getElementById(wp.id)
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="group absolute -left-[5px] flex items-center"
-            style={{ top: `${(i / (ROUTE_WAYPOINTS.length - 1)) * 100}%` }}
-          >
-            <span
-              className={`block h-[11px] w-[11px] rounded-full border transition-colors ${
-                i <= activeIndex
-                  ? "border-[#8BC63F] bg-[#8BC63F]"
-                  : "border-[#1B1F27]/25 bg-[#F5F7F4]"
-              }`}
-            />
-            <span className="pointer-events-none absolute left-4 whitespace-nowrap rounded bg-[#14361F] px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-[#F5F7F4] opacity-0 transition-opacity group-hover:opacity-100">
-              {wp.label}
-            </span>
-          </button>
-        ))}
+      <div className="rounded-full border border-[#DDE5DE] bg-white/90 px-3 py-5 shadow-[0_16px_45px_rgba(0,80,20,0.10)] backdrop-blur-xl">
+        <div className="relative h-[62vh] min-h-[430px] max-h-[620px] w-px bg-[#DDE5DE]">
+          {/* Progress line */}
+          <div
+            className="absolute left-0 top-0 w-px rounded-full bg-[#007A1F] transition-[height] duration-150 ease-out motion-reduce:transition-none"
+            style={{ height: `${progress * 100}%` }}
+          />
+
+          {/* Waypoints */}
+          {ROUTE_WAYPOINTS.map((waypoint, index) => {
+            const isActive = index === activeIndex;
+            const isCompleted = index <= activeIndex;
+
+            return (
+              <button
+                key={waypoint.id}
+                type="button"
+                aria-label={`Go to ${waypoint.label}`}
+                aria-current={isActive ? "location" : undefined}
+                onClick={() => scrollToSection(waypoint.id)}
+                className="group absolute -left-[6px] flex -translate-y-1/2 items-center focus:outline-none"
+                style={{
+                  top: `${
+                    (index / (ROUTE_WAYPOINTS.length - 1)) * 100
+                  }%`,
+                }}
+              >
+                <span
+                  className={`relative block rounded-full border transition-all duration-300 ${
+                    isActive
+                      ? "h-[14px] w-[14px] border-[#007A1F] bg-white shadow-[0_0_0_4px_rgba(0,122,31,0.14)]"
+                      : isCompleted
+                        ? "h-[12px] w-[12px] border-[#007A1F] bg-[#007A1F]"
+                        : "h-[12px] w-[12px] border-[#BFCBBF] bg-white"
+                  }`}
+                >
+                  {isActive && (
+                    <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#007A1F]" />
+                  )}
+                </span>
+
+                <span className="pointer-events-none absolute left-6 translate-x-1 whitespace-nowrap rounded-lg border border-[#DDE5DE] bg-white px-3 py-2 font-body text-xs font-semibold text-[#141414] opacity-0 shadow-[0_12px_30px_rgba(0,60,15,0.12)] transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100">
+                  {waypoint.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
