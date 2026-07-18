@@ -11,42 +11,124 @@ import {
 } from "lucide-react";
 
 const FEATURES = [
-  { icon: BadgeCheck, title: "Verified listings", body: "Every business is confirmed real before it ever appears in search." },
-  { icon: Search, title: "Smart search", body: "Search by need and intent, not just keyword and category." },
-  { icon: MapPin, title: "Location discovery", body: "Find what's actually near you, ranked by relevance and distance." },
-  { icon: UserSquare2, title: "Rich business profiles", body: "Photos, hours, services, and reviews in one trustworthy page." },
-  { icon: Sparkles, title: "Premium visibility", body: "Earned placement based on quality signals, never pay-to-win rank." },
-  { icon: Phone, title: "Direct contact", body: "Call, message, or book without leaving the platform." },
-  { icon: Map, title: "Maps integration", body: "Turn-by-turn directions and neighborhood context, built in." },
-  { icon: Zap, title: "Fast discovery", body: "Sub-second search across every verified business on the platform." },
-  { icon: TrendingUp, title: "Business growth tools", body: "Insights and visibility features that turn views into visits." },
+  {
+    icon: BadgeCheck,
+    title: "Verified Business Profiles",
+    body: "Discover businesses with complete profiles, trusted information, and a professional digital presence.",
+  },
+  {
+    icon: Search,
+    title: "Smart Business Search",
+    body: "Quickly find businesses, professionals, products, and services using intelligent search.",
+  },
+  {
+    icon: MapPin,
+    title: "Nearby Discovery",
+    body: "Explore businesses around your current location with integrated location awareness.",
+  },
+  {
+    icon: UserSquare2,
+    title: "Professional Business Pages",
+    body: "View galleries, contact information, services, timings, offers, and much more in one place.",
+  },
+  {
+    icon: Sparkles,
+    title: "Featured Businesses",
+    body: "Highlight premium businesses and help customers discover quality local services faster.",
+  },
+  {
+    icon: Phone,
+    title: "Direct Communication",
+    body: "Connect instantly through calls, WhatsApp, directions, websites, and social media links.",
+  },
+  {
+    icon: Map,
+    title: "Integrated Maps",
+    body: "Navigate easily with accurate business locations and turn-by-turn directions.",
+  },
+  {
+    icon: Zap,
+    title: "Fast Experience",
+    body: "Built with speed and simplicity to help users discover businesses without delays.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Business Growth",
+    body: "Help businesses increase visibility, improve credibility, and reach more customers.",
+  },
 ];
 
 export default function Features() {
   return (
-    <section id="why-choose" className="bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="max-w-2xl">
-          <span className="font-mono text-xs uppercase tracking-widest text-[#1E5631]">
-            Why choose getvia
+    <section
+      id="why-choose"
+      className="relative overflow-hidden bg-white py-24 lg:py-32"
+    >
+      {/* Background Decoration */}
+
+      <div className="absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#E8F7EA] blur-3xl opacity-70" />
+
+      <div className="absolute -right-32 bottom-20 h-80 w-80 rounded-full bg-[#B7F27D]/20 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
+        {/* Heading */}
+
+        <div className="max-w-3xl">
+          <span className="inline-flex items-center rounded-full border border-[#DDE5DE] bg-[#F3FBF4] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[#007A1F]">
+            Why Choose Getvia
           </span>
-          <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-[#14361F] lg:text-5xl">
-            Everything a local search should have had from the start.
+
+          <h2 className="mt-6 font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] lg:text-5xl">
+            Everything you need to discover
+            <span className="text-[#007A1F]"> trusted businesses.</span>
           </h2>
+
+          <p className="mt-6 max-w-2xl font-body text-lg leading-8 text-[#646464]">
+            Getvia combines business discovery, detailed profiles,
+            smart search, location services, and growth tools into one
+            modern platform built for customers and businesses alike.
+          </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-[#14361F]/10 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Feature Cards */}
+
+        <div className="mt-16 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map(({ icon: Icon, title, body }) => (
-            <div key={title} className="bg-white p-8 transition-colors hover:bg-[#F5F7F4]">
-              <Icon className="text-[#1E5631]" size={26} strokeWidth={1.75} />
-              <h3 className="mt-5 font-display text-lg text-[#14361F]">
+            <div
+              key={title}
+              className="group rounded-3xl border border-[#E1E5E1] bg-white p-8 shadow-[0_15px_40px_rgba(0,80,20,0.05)] transition-all duration-300 hover:-translate-y-2 hover:border-[#B7DDBF] hover:shadow-[0_25px_60px_rgba(0,120,31,0.12)]"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8F7EA] transition-colors duration-300 group-hover:bg-[#007A1F]">
+                <Icon
+                  size={26}
+                  strokeWidth={1.9}
+                  className="text-[#007A1F] transition-colors duration-300 group-hover:text-white"
+                />
+              </div>
+
+              <h3 className="mt-6 font-display text-2xl font-semibold text-[#141414]">
                 {title}
               </h3>
-              <p className="mt-2 font-body text-sm leading-relaxed text-[#6B7280]">
+
+              <p className="mt-4 font-body text-[15px] leading-7 text-[#646464]">
                 {body}
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Bottom Highlight */}
+
+        <div className="mt-20 rounded-[32px] bg-gradient-to-r from-[#007A1F] to-[#25A43A] px-10 py-10 text-center shadow-[0_25px_60px_rgba(0,120,31,0.20)]">
+          <h3 className="font-display text-3xl font-semibold text-white">
+            Built for people. Designed for businesses.
+          </h3>
+
+          <p className="mx-auto mt-4 max-w-3xl font-body text-lg leading-8 text-white/85">
+            Getvia helps customers make better local decisions while giving
+            businesses a stronger digital presence that builds trust,
+            improves visibility, and supports long-term growth.
+          </p>
         </div>
       </div>
     </section>
