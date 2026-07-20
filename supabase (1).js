@@ -5,8 +5,8 @@ import { createClient } from "@supabase/supabase-js";
 // Both are safe to expose in the browser — the anon/publishable key is
 // designed for client-side use, and your data is protected separately
 // by the Row Level Security policies in sql/schema.sql.
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_URL = "https://your-project-ref.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_-hO-aknr8Jv9NSDhfTOvvQ_6mEcACtm";
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.error(
