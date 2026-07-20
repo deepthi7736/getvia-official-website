@@ -12,23 +12,23 @@ import {
 const STORY_STEPS = [
   {
     year: "2022",
-    title: "The idea took shape",
-    body: "Getvia began with a simple problem: people were struggling to find reliable local businesses, while many genuine businesses had no strong digital visibility.",
+    title: "The idea began",
+    body: "Getvia started with one clear goal: make it easier for people to find reliable local businesses.",
   },
   {
     year: "2023",
-    title: "Trust became the foundation",
-    body: "The platform evolved around better business information, stronger profiles, direct contact options, and a clearer way for people to discover local services.",
+    title: "Trust came first",
+    body: "We focused on clear business information, stronger profiles, and simple ways for customers to connect.",
   },
   {
     year: "2024",
-    title: "Built for customers and businesses",
-    body: "Getvia expanded into a two-sided platform that helps customers discover with confidence and helps businesses improve visibility, credibility, and customer reach.",
+    title: "Built for both sides",
+    body: "Getvia grew into a platform for customers, professionals, and businesses across different industries.",
   },
   {
     year: "Today",
-    title: "Growing with local communities",
-    body: "Getvia continues to build a more dependable discovery experience for businesses, professionals, customers, and communities across multiple industries.",
+    title: "Growing with communities",
+    body: "We continue improving the experience with better information, useful tools, and stronger local connections.",
   },
 ];
 
@@ -36,22 +36,22 @@ const VALUES = [
   {
     icon: ShieldCheck,
     title: "Trust",
-    body: "We aim to make local discovery more dependable through clear business information and credible profiles.",
+    body: "We provide clear information that helps people make better choices.",
   },
   {
     icon: Lightbulb,
-    title: "Innovation",
-    body: "We simplify the way people discover businesses and the way businesses build their digital presence.",
+    title: "Simplicity",
+    body: "We make business search and profile management easy to understand.",
   },
   {
     icon: HeartHandshake,
-    title: "Customer first",
-    body: "Every platform decision should create real value for both customers and business owners.",
+    title: "People first",
+    body: "We build useful experiences for customers, professionals, and business owners.",
   },
   {
     icon: Target,
-    title: "Growth",
-    body: "We help businesses improve reach, strengthen visibility, and connect with more potential customers.",
+    title: "Progress",
+    body: "We help businesses improve their reach and connect with more customers.",
   },
 ];
 
@@ -61,7 +61,6 @@ export default function About() {
       id="about"
       className="relative overflow-hidden bg-[#F3FBF4] py-24 lg:py-32"
     >
-      {/* Soft decorative elements */}
       <div className="pointer-events-none absolute -left-28 top-20 h-72 w-72 rounded-full bg-[#DDF3E1]/70 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 bottom-20 h-80 w-80 rounded-full bg-[#B7F27D]/15 blur-3xl" />
 
@@ -71,23 +70,23 @@ export default function About() {
           <div className="lg:col-span-5">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#CFE5D3] bg-white px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[#007A1F]">
               <Sparkles size={14} />
-              Who we are
+              About Getvia
             </span>
 
             <h2 className="mt-6 font-display text-4xl font-semibold leading-tight tracking-[-0.025em] text-[#141414] sm:text-5xl lg:text-6xl">
-              Helping people discover businesses worth knowing.
+              Making local business information easier to find.
             </h2>
 
             <p className="mt-6 max-w-xl font-body text-lg leading-8 text-[#646464]">
-              Getvia is a technology-driven business discovery company built to
-              make local search clearer, more useful, and more trustworthy.
+              Getvia brings useful business details into one clear place so
+              people can compare options and contact the right business.
             </p>
 
             <a
               href="#what-we-do"
               className="mt-8 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#007A1F] transition-colors hover:text-[#006619]"
             >
-              Explore what Getvia does
+              See how Getvia works
               <ArrowUpRight size={17} />
             </a>
           </div>
@@ -96,28 +95,20 @@ export default function About() {
             <div className="rounded-[30px] border border-[#DDE5DE] bg-white p-7 shadow-[0_24px_70px_rgba(0,100,30,0.08)] sm:p-9">
               <div className="space-y-6 font-body text-base leading-8 text-[#545954]">
                 <p>
-                  Getvia helps people discover trusted local businesses,
-                  professionals, services, and useful business information in
-                  one easy-to-use platform.
+                  Finding the right local business should not be difficult.
+                  Getvia brings services, products, location, and contact
+                  details together in one place.
                 </p>
 
                 <p>
-                  At the same time, it gives businesses a professional digital
-                  presence where they can showcase their services, products,
-                  galleries, offers, contact details, and business story.
+                  Customers can understand their options more easily and reach
+                  businesses without searching across several platforms.
                 </p>
 
                 <p>
-                  Our purpose is to reduce the gap between local businesses and
-                  the people actively searching for them. We believe that
-                  genuine businesses should be easier to discover, easier to
-                  understand, and easier to contact.
-                </p>
-
-                <p>
-                  The long-term vision is to make Getvia a trusted destination
-                  for business discovery while helping local businesses grow
-                  through better visibility, credibility, and customer access.
+                  Businesses get a professional space to present what they
+                  offer, share updates, and make it easier for customers to
+                  contact them.
                 </p>
               </div>
 
@@ -125,21 +116,21 @@ export default function About() {
                 <div className="rounded-2xl bg-[#F8FCF8] p-4">
                   <BadgeCheck className="text-[#007A1F]" size={22} />
                   <p className="mt-3 text-sm font-semibold text-[#141414]">
-                    Trusted discovery
+                    Clear information
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-[#F8FCF8] p-4">
                   <Building2 className="text-[#007A1F]" size={22} />
                   <p className="mt-3 text-sm font-semibold text-[#141414]">
-                    Business visibility
+                    Better profiles
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-[#F8FCF8] p-4">
                   <HeartHandshake className="text-[#007A1F]" size={22} />
                   <p className="mt-3 text-sm font-semibold text-[#141414]">
-                    Better connections
+                    Easier contact
                   </p>
                 </div>
               </div>
@@ -155,7 +146,7 @@ export default function About() {
             </span>
 
             <h3 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#141414] sm:text-4xl lg:text-5xl">
-              Built around trust, usefulness, and long-term value.
+              Clear values behind every decision.
             </h3>
           </div>
 
@@ -190,15 +181,13 @@ export default function About() {
               </span>
 
               <h3 className="mt-4 max-w-xl font-display text-3xl font-semibold tracking-[-0.02em] text-[#141414] sm:text-4xl lg:text-5xl">
-                From a local problem to a platform for better discovery.
+                Built step by step around a real local need.
               </h3>
             </div>
 
             <p className="max-w-2xl font-body text-base leading-8 text-[#646464] lg:justify-self-end">
-              Getvia continues to grow by focusing on what matters most:
-              clearer information, stronger business profiles, dependable
-              discovery, and meaningful connections between businesses and
-              customers.
+              Getvia continues to improve by listening to customers and
+              businesses and building features that solve practical problems.
             </p>
           </div>
 
