@@ -1,50 +1,65 @@
 import {
   ArrowRight,
+  Database,
   Gauge,
   Layers3,
-  LockKeyhole,
+  MapPin,
   MonitorSmartphone,
   RefreshCw,
-  ShieldCheck,
+  Search,
 } from "lucide-react";
 
 const PILLARS = [
   {
-    icon: ShieldCheck,
-    title: "Reliable platform experience",
+    icon: Database,
+    title: "Structured information",
     body:
-      "Getvia is designed to provide a stable and dependable experience for customers, businesses, and professionals.",
+      "Business details are organised into clear sections such as services, products, timings, contact information, locations, galleries, and offers.",
   },
   {
-    icon: Gauge,
-    title: "Performance-focused",
+    icon: Search,
+    title: "Search-led navigation",
     body:
-      "Pages, profiles, and discovery experiences are structured to remain clear, responsive, and easy to use across devices.",
+      "The platform helps users move from a search or category to relevant business profiles without unnecessary steps.",
   },
   {
-    icon: Layers3,
-    title: "Built for expansion",
+    icon: MapPin,
+    title: "Location-aware discovery",
     body:
-      "The platform is designed to support additional categories, locations, businesses, services, and digital features over time.",
+      "Business locations and map details help users understand what is available nearby and how to reach it.",
   },
   {
     icon: MonitorSmartphone,
-    title: "Responsive by design",
+    title: "Responsive experience",
     body:
-      "Getvia is built to provide a consistent experience across mobile phones, tablets, laptops, and desktop screens.",
+      "Pages are designed to remain clear and usable across mobile phones, tablets, laptops, and desktop screens.",
+  },
+  {
+    icon: Gauge,
+    title: "Focused performance",
+    body:
+      "The experience is designed around lightweight navigation, readable information, and faster movement between key actions.",
   },
   {
     icon: RefreshCw,
-    title: "Continuously improving",
+    title: "Designed to evolve",
     body:
-      "The platform continues to evolve through product improvements, feedback, and changing business and customer needs.",
+      "The platform can expand with additional categories, locations, profile tools, and customer-facing features over time.",
   },
-  {
-    icon: LockKeyhole,
-    title: "Responsible data handling",
-    body:
-      "Platform information and account access are managed through structured systems designed to support secure digital interactions.",
-  },
+];
+
+const CAPABILITIES = [
+  "Business profile management",
+  "Category-based browsing",
+  "Search and filtering",
+  "Location and map information",
+];
+
+const FOUNDATION_ITEMS = [
+  "Structured business content",
+  "Mobile-friendly interfaces",
+  "Search and category navigation",
+  "Direct contact pathways",
 ];
 
 export default function Technology() {
@@ -64,23 +79,26 @@ export default function Technology() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#CFE5D3] bg-[#F3FBF4] px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[#007A1F]">
               <Layers3 size={14} />
-              Technology
+              Platform Foundation
             </span>
 
             <h2 className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] sm:text-5xl lg:text-6xl">
-              Technology designed to make local discovery
-              <span className="text-[#007A1F]"> simpler and smarter.</span>
+              The systems that make business information
+              <span className="text-[#007A1F]">
+                {" "}
+                easier to use.
+              </span>
             </h2>
           </div>
 
           <p className="max-w-2xl font-body text-lg leading-8 text-[#646464] lg:justify-self-end">
-            Getvia combines structured business information, responsive
-            interfaces, search, location-based discovery, and communication
-            tools to create a practical digital experience.
+            Getvia organises profile content, search, categories, location
+            details, and contact actions into one connected platform
+            experience.
           </p>
         </div>
 
-        {/* Technology overview */}
+        {/* Platform overview */}
         <div className="mt-16 overflow-hidden rounded-[34px] border border-[#DDE5DE] bg-[#F3FBF4] shadow-[0_24px_75px_rgba(0,100,30,0.08)]">
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
             {/* Visual */}
@@ -97,37 +115,40 @@ export default function Technology() {
                     </p>
 
                     <p className="mt-1 font-body text-xs text-[#747A74]">
-                      Connected digital infrastructure
+                      Core product capabilities
                     </p>
                   </div>
 
                   <span className="rounded-full bg-[#E8F7EA] px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-[#007A1F]">
-                    Online
+                    Connected
                   </span>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   <div className="rounded-2xl border border-[#E3E9E3] bg-[#FAFCFA] p-4">
-                    <Gauge size={20} className="text-[#007A1F]" />
+                    <MonitorSmartphone
+                      size={20}
+                      className="text-[#007A1F]"
+                    />
 
                     <p className="mt-4 font-display text-xl font-semibold text-[#141414]">
                       Responsive
                     </p>
 
                     <p className="mt-1 font-body text-xs leading-5 text-[#747A74]">
-                      Smooth digital experience
+                      Designed for different screen sizes
                     </p>
                   </div>
 
                   <div className="rounded-2xl border border-[#E3E9E3] bg-[#FAFCFA] p-4">
-                    <ShieldCheck size={20} className="text-[#007A1F]" />
+                    <Database size={20} className="text-[#007A1F]" />
 
                     <p className="mt-4 font-display text-xl font-semibold text-[#141414]">
-                      Reliable
+                      Structured
                     </p>
 
                     <p className="mt-1 font-body text-xs leading-5 text-[#747A74]">
-                      Structured platform systems
+                      Clear and organised profile content
                     </p>
                   </div>
                 </div>
@@ -142,12 +163,7 @@ export default function Technology() {
                   </div>
 
                   <div className="mt-5 space-y-3">
-                    {[
-                      "Business profiles",
-                      "Category discovery",
-                      "Location information",
-                      "Customer connections",
-                    ].map((item) => (
+                    {CAPABILITIES.map((item) => (
                       <div
                         key={item}
                         className="flex items-center justify-between rounded-xl bg-white px-4 py-3"
@@ -167,32 +183,27 @@ export default function Technology() {
             {/* Content */}
             <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-14">
               <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
-                Built around real needs
+                Built around useful actions
               </p>
 
               <h3 className="mt-5 font-display text-3xl font-semibold leading-tight tracking-[-0.02em] text-[#141414] sm:text-4xl lg:text-5xl">
-                A modern foundation for customers and growing businesses.
+                A practical foundation for browsing, comparing, and contacting.
               </h3>
 
               <p className="mt-6 font-body text-base leading-8 text-[#646464]">
-                Every part of the Getvia platform is designed to make business
-                information easier to organise, discover, understand, and act
-                upon.
+                The platform is organised around the actions people take most:
+                finding a relevant business, reviewing its information,
+                checking its location, and making contact.
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  "Structured business data",
-                  "Mobile-friendly design",
-                  "Location-based discovery",
-                  "Direct contact options",
-                ].map((item) => (
+                {FOUNDATION_ITEMS.map((item) => (
                   <div
                     key={item}
                     className="flex items-center gap-3 rounded-2xl border border-[#DDE5DE] bg-white px-4 py-4"
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E8F7EA] text-[#007A1F]">
-                      <ShieldCheck size={16} />
+                      <Layers3 size={16} />
                     </span>
 
                     <span className="font-body text-sm font-semibold text-[#303530]">
@@ -203,25 +214,27 @@ export default function Technology() {
               </div>
 
               <a
-                href="#contact"
+                href="https://getvia.in"
+                target="_blank"
+                rel="noreferrer"
                 className="mt-9 inline-flex w-fit items-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3.5 font-body text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-[0_14px_35px_rgba(0,100,30,0.20)]"
               >
-                Learn more about Getvia
+                Explore the platform
                 <ArrowRight size={17} />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Technology pillars */}
+        {/* Platform principles */}
         <div className="mt-20">
           <div className="max-w-3xl">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
-              Platform principles
+              Product principles
             </p>
 
             <h3 className="mt-4 font-display text-4xl font-semibold leading-tight text-[#141414]">
-              The principles behind the Getvia digital experience.
+              How the Getvia experience is organised.
             </h3>
           </div>
 
@@ -233,7 +246,7 @@ export default function Technology() {
               >
                 <div className="pointer-events-none absolute -right-14 -top-14 h-36 w-36 rounded-full bg-[#E8F7EA] transition-transform duration-500 group-hover:scale-125" />
 
-                <div className="relative flex h-13 w-13 h-[52px] items-center justify-center rounded-2xl bg-[#E8F7EA] text-[#007A1F] transition-colors duration-300 group-hover:bg-[#007A1F] group-hover:text-white">
+                <div className="relative flex h-[52px] w-[52px] items-center justify-center rounded-2xl bg-[#E8F7EA] text-[#007A1F] transition-colors duration-300 group-hover:bg-[#007A1F] group-hover:text-white">
                   <Icon size={23} strokeWidth={1.8} />
                 </div>
 
