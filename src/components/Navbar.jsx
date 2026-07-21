@@ -2,10 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
-
-// type: "anchor" scrolls within the homepage; "route" navigates to a
-// real page. Mixed intentionally — most content still lives on the
-// homepage, but About/FAQ/Contact now have dedicated pages.
 const LINKS = [
   { type: "anchor", href: "#what-we-do", label: "What we do" },
   { type: "anchor", href: "#industries", label: "Industries" },
