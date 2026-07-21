@@ -1,6 +1,5 @@
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import ScrollProgress from "./components/ScrollProgress";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -25,11 +24,32 @@ function RouteFallback() {
 function App() {
   return (
     <>
+      import { Suspense, lazy } from "react";
+import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/layout/ScrollToTop";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+
+const ListBusinessPage = lazy(() => import("./pages/ListBusinessPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
+const BookDemoPage = lazy(() => import("./pages/BookDemoPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center">
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#DDE5DE] border-t-[#007A1F]" />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
       <ScrollToTop />
-      {/* ScrollProgress kept in place — no confirmation it was actually
-          removed; see chat note. Delete this line + the import above if
-          you do want it gone. */}
-      <ScrollProgress />
       <Navbar />
 
       <Suspense fallback={<RouteFallback />}>
@@ -50,3 +70,4 @@ function App() {
 }
 
 export default App;
+      
