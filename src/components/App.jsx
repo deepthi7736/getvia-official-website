@@ -1,15 +1,15 @@
+import Navbar from "./Navbar";
+import Hero from "./Hero";
+import About from "./About";
+import WhatWeDo from "./WhatWeDo";
+import Ecosystem from "./Ecosystem";
+import Features from "./Features";
+import Technology from "./Technology";
+import Stats from "./Stats";
+import Testimonials from "./Testimonials";
+import Contact from "./Contact";
+import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import WhatWeDo from "./components/WhatWeDo";
-import Features from "./components/Features";
-import Ecosystem from "./components/Ecosystem";
-import PlatformBusiness from "./components/PlatformBusiness";
-import Technology from "./components/Technology";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 
 function App() {
   return (
