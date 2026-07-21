@@ -19,7 +19,6 @@ function RouteFallback() {
 function App() {
   return (
     <>
-      <ScrollProgress />
       <Navbar />
 
       <Suspense fallback={<RouteFallback />}>
