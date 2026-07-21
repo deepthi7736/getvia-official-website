@@ -1,12 +1,10 @@
-// Replace every value below with Getvia's real, official contact details.
-// Until then, the Contact page shows a "coming soon" state instead of
-// fake information — see ContactPage.jsx.
+
 export const COMPANY_CONTACT = {
-  email: "REPLACE_WITH_OFFICIAL_EMAIL",
-  phone: "REPLACE_WITH_OFFICIAL_PHONE",
-  whatsapp: "REPLACE_WITH_OFFICIAL_WHATSAPP",
-  location: "REPLACE_WITH_OFFICIAL_LOCATION",
-  hours: "REPLACE_WITH_OFFICIAL_HOURS",
+  email: "getviaofficial@gmail.com",
+  phone: "7994466024",
+  whatsapp: "7994466024",
+  location: "Wisemove consultancy, 15/972, Nedumkulangara Rd, Athani, Kakkanad, Kerala 682030",
+  hours: "",
 };
 
 export const isContactInfoConfigured = () =>
