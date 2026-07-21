@@ -23,8 +23,8 @@ function App() {
         <WhatWeDo />
         <Features />
         <Ecosystem />
-        <PlatformBusiness />
         <Technology />
+        <Stats />
         <Testimonials />
         <Contact />
       </main>
