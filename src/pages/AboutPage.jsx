@@ -36,13 +36,6 @@ export default function AboutPage() {
             placement — just a directory people can rely on, and a growth
             channel businesses can trust.
           </p>
-
-          <div className="mt-6 rounded-2xl border border-dashed border-[#CDD5CE] bg-[#F3FBF4] p-5 text-sm text-[#646464]">
-            <strong className="text-[#141414]">Note for the Getvia team:</strong>{" "}
-            company registration details, founding date, team size, and
-            leadership names are placeholders until confirmed — replace
-            before this page goes live with anything not yet verified.
-          </div>
         </div>
       </section>
 
