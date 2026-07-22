@@ -1,10 +1,12 @@
 import { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+
+/* Main platform pages */
 
 const ListBusinessPage = lazy(() =>
   import("./pages/ListBusinessPage")
@@ -46,6 +48,8 @@ const IndustriesPage = lazy(() =>
   import("./pages/IndustriesPage")
 );
 
+/* Audience pages */
+
 const ForBusinessesPage = lazy(() =>
   import("./pages/ForBusinessesPage")
 );
@@ -62,6 +66,8 @@ const VerificationPage = lazy(() =>
   import("./pages/VerificationPage")
 );
 
+/* Blog pages */
+
 const BlogPage = lazy(() =>
   import("./pages/BlogPage")
 );
@@ -70,7 +76,7 @@ const BlogArticlePage = lazy(() =>
   import("./pages/BlogArticlePage")
 );
 
-/* New resource and support pages */
+/* Resources and support pages */
 
 const ResourcesPage = lazy(() =>
   import("./pages/ResourcesPage")
@@ -84,7 +90,7 @@ const SupportPage = lazy(() =>
   import("./pages/SupportPage")
 );
 
-/* New case study pages */
+/* Case study pages */
 
 const CaseStudiesPage = lazy(() =>
   import("./pages/CaseStudiesPage")
@@ -94,7 +100,7 @@ const CaseStudyPage = lazy(() =>
   import("./pages/CaseStudyPage")
 );
 
-/* New company pages */
+/* Company pages */
 
 const CareersPage = lazy(() =>
   import("./pages/CareersPage")
@@ -107,6 +113,14 @@ const PartnersPage = lazy(() =>
 const PressPage = lazy(() =>
   import("./pages/PressPage")
 );
+
+/* Legal pages */
+
+const PrivacyPolicyPage = lazy(() =>
+  import("./pages/PrivacyPolicyPage")
+);
+
+/* Not found page */
 
 const NotFoundPage = lazy(() =>
   import("./pages/NotFoundPage")
@@ -133,14 +147,14 @@ function App() {
 
       <Suspense fallback={<RouteFallback />}>
         <Routes>
-          {/* Main page */}
+          {/* Home */}
 
           <Route
             path="/"
             element={<Home />}
           />
 
-          {/* Product and company information */}
+          {/* Platform and product */}
 
           <Route
             path="/about"
@@ -172,7 +186,7 @@ function App() {
             element={<IndustriesPage />}
           />
 
-          {/* Audience pages */}
+          {/* Audience */}
 
           <Route
             path="/for-businesses"
@@ -235,7 +249,7 @@ function App() {
             element={<CaseStudyPage />}
           />
 
-          {/* Careers, partners, and press */}
+          {/* Company */}
 
           <Route
             path="/careers"
@@ -274,7 +288,14 @@ function App() {
             element={<ListBusinessPage />}
           />
 
-          {/* Not found page */}
+          {/* Legal */}
+
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicyPage />}
+          />
+
+          {/* Page not found */}
 
           <Route
             path="*"
