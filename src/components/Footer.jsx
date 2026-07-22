@@ -1,37 +1,131 @@
 import { useState } from "react";
-import { Facebook, Instagram, Linkedin, Twitter, ArrowUp, Check, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  ArrowUp,
+  Check,
+  X,
+} from "lucide-react";
+
 import logo from "../assets/logo.png";
 import { supabase } from "../lib/supabase";
 
 const COLUMNS = [
   {
     title: "Products",
-    links: ["Business discovery", "Business profiles", "Verified badge", "Getvia for maps"],
+    links: [
+      {
+        label: "Business discovery",
+        href: "/platform",
+      },
+      {
+        label: "Business profiles",
+        href: "/features",
+      },
+      {
+        label: "Verified badge",
+        href: "/verification",
+      },
+      {
+        label: "Getvia for maps",
+        href: "/technology",
+      },
+    ],
   },
   {
     title: "Solutions",
-    links: ["For restaurants", "For healthcare", "For retail", "For services"],
+    links: [
+      {
+        label: "For restaurants",
+        href: "/industries",
+      },
+      {
+        label: "For healthcare",
+        href: "/industries",
+      },
+      {
+        label: "For retail",
+        href: "/industries",
+      },
+      {
+        label: "For services",
+        href: "/industries",
+      },
+    ],
   },
   {
     title: "Resources",
-    links: ["Help center", "Verification guide", "Blog", "API docs"],
+    links: [
+      {
+        label: "Resources",
+        href: "/resources",
+      },
+      {
+        label: "Help center",
+        href: "/help-center",
+      },
+      {
+        label: "Case studies",
+        href: "/case-studies",
+      },
+      {
+        label: "Blog",
+        href: "/blog",
+      },
+      {
+        label: "Support",
+        href: "/support",
+      },
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Our story", "Careers", "Press"],
+    links: [
+      {
+        label: "About",
+        href: "/about",
+      },
+      {
+        label: "Careers",
+        href: "/careers",
+      },
+      {
+        label: "Partners",
+        href: "/partners",
+      },
+      {
+        label: "Press",
+        href: "/press",
+      },
+      {
+        label: "Contact",
+        href: "/contact",
+      },
+    ],
   },
 ];
 
+const focusRing =
+  "rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2";
+
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | submitting | success | duplicate | error
+  const [status, setStatus] = useState("idle");
 
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (status === "submitting") return;
+  const handleSubscribe = async (event) => {
+    event.preventDefault();
 
-    const trimmed = email.trim();
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+    if (status === "submitting") {
+      return;
+    }
+
+    const trimmedEmail = email.trim();
+    const isValidEmail =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
+
     if (!isValidEmail) {
       setStatus("error");
       return;
@@ -39,21 +133,21 @@ export default function Footer() {
 
     setStatus("submitting");
 
-    // No email-confirmation flow is wired up yet (that's a later stage with
-    // Resend), so subscribers go straight to "active" rather than sitting
-    // in "pending" forever with no way to confirm.
     const { error } = await supabase
       .from("newsletter_subscribers")
-      .insert({ email: trimmed, status: "active" });
+      .insert({
+        email: trimmedEmail,
+        status: "active",
+      });
 
     if (error) {
-      // Postgres unique-violation code — this email is already subscribed.
       if (error.code === "23505") {
         setStatus("duplicate");
       } else {
         console.error("Newsletter signup failed:", error);
         setStatus("error");
       }
+
       return;
     }
 
@@ -61,21 +155,37 @@ export default function Footer() {
     setEmail("");
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="border-t border-[#DCE5DD] bg-[#F3FBF4] pt-20 text-[#141414]">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid grid-cols-2 gap-10 border-b border-[#DDE5DE] pb-16 sm:grid-cols-3 lg:grid-cols-6">
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <img src={logo} alt="Getvia" className="h-8 w-8" />
-              <p className="font-display text-2xl font-semibold text-[#141414]">
+            <Link
+              to="/"
+              className={`inline-flex items-center gap-2.5 ${focusRing}`}
+            >
+              <img
+                src={logo}
+                alt="Getvia"
+                className="h-8 w-8 object-contain"
+              />
+
+              <span className="font-display text-2xl font-semibold text-[#141414]">
                 Getvia
-              </p>
-            </div>
+              </span>
+            </Link>
+
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#646464]">
-              The route to every trusted business near you. Verified
-              listings, honest search, and growth tools for local business
-              owners.
+              The route to every trusted business near you.
+              Verified listings, honest search, and growth tools
+              for local business owners.
             </p>
 
             <form
@@ -83,69 +193,115 @@ export default function Footer() {
               onSubmit={handleSubscribe}
               noValidate
             >
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
+
               <input
+                id="newsletter-email"
                 type="email"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (status !== "idle" && status !== "submitting") setStatus("idle");
+                onChange={(event) => {
+                  setEmail(event.target.value);
+
+                  if (
+                    status !== "idle" &&
+                    status !== "submitting"
+                  ) {
+                    setStatus("idle");
+                  }
                 }}
                 placeholder="you@email.com"
                 className="w-full rounded-full bg-transparent px-3 py-2 font-body text-sm text-[#141414] placeholder:text-[#858585] outline-none"
               />
+
               <button
                 type="submit"
                 disabled={status === "submitting"}
                 className="shrink-0 rounded-full bg-[#007A1F] px-4 py-2 font-body text-sm font-medium text-white transition-colors hover:bg-[#006619] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === "submitting" ? "…" : "Join"}
+                {status === "submitting" ? "Joining..." : "Join"}
               </button>
             </form>
 
             {status === "success" && (
               <p className="mt-2 flex items-center gap-1 text-xs text-[#007A1F]">
-                <Check size={13} /> You're subscribed. Welcome aboard.
+                <Check size={13} />
+                You&apos;re subscribed. Welcome aboard.
               </p>
             )}
+
             {status === "duplicate" && (
               <p className="mt-2 text-xs text-[#646464]">
                 That email is already subscribed.
               </p>
             )}
+
             {status === "error" && (
               <p className="mt-2 flex items-center gap-1 text-xs text-red-600">
-                <X size={13} /> Please enter a valid email address.
+                <X size={13} />
+                Please enter a valid email address.
               </p>
             )}
 
             <div className="mt-6 flex gap-4">
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
-                  className="text-[#858585] transition-colors hover:text-[#007A1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2 rounded"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Getvia on Facebook"
+                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              >
+                <Facebook size={18} />
+              </a>
+
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Getvia on Instagram"
+                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              >
+                <Instagram size={18} />
+              </a>
+
+              <a
+                href="https://twitter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Getvia on Twitter"
+                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              >
+                <Twitter size={18} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Getvia on LinkedIn"
+                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              >
+                <Linkedin size={18} />
+              </a>
             </div>
           </div>
 
-          {COLUMNS.map((col) => (
-            <div key={col.title}>
+          {COLUMNS.map((column) => (
+            <div key={column.title}>
               <p className="font-mono text-xs uppercase tracking-wider text-[#858585]">
-                {col.title}
+                {column.title}
               </p>
+
               <ul className="mt-4 space-y-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-[#646464] transition-colors hover:text-[#007A1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2 rounded"
+                {column.links.map((item) => (
+                  <li key={`${column.title}-${item.label}`}>
+                    <Link
+                      to={item.href}
+                      className={`text-sm text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
                     >
-                      {link}
-                    </a>
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -153,24 +309,35 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
-          <p className="text-xs text-[#858585]">
-            © {new Date().getFullYear()} Getvia, Inc. All rights reserved.
+        <div className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-center text-xs text-[#858585] sm:text-left">
+            © {new Date().getFullYear()} Getvia. All rights
+            reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <a href="/privacy-policy" className="text-xs text-[#858585] hover:text-[#007A1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2 rounded">
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:justify-end">
+            <Link
+              to="/privacy-policy"
+              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+            >
               Privacy Policy
-            </a>
-            <a href="/terms-and-conditions" className="text-xs text-[#858585] hover:text-[#007A1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2 rounded">
+            </Link>
+
+            <span
+              className="cursor-not-allowed text-xs text-[#A0A7A1]"
+              title="Coming soon"
+            >
               Terms of Service
-            </a>
-            <a
-              href="#hero"
+            </span>
+
+            <button
+              type="button"
+              onClick={scrollToTop}
               aria-label="Back to top"
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#646464] transition-colors hover:border-[#007A1F] hover:text-[#007A1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2 rounded"
+              className={`flex h-8 w-8 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#646464] transition-colors hover:border-[#007A1F] hover:text-[#007A1F] ${focusRing}`}
             >
               <ArrowUp size={14} />
-            </a>
+            </button>
           </div>
         </div>
       </div>
