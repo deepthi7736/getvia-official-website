@@ -176,7 +176,6 @@ export default function Footer() {
                 alt="Getvia"
                 className="h-8 w-8 object-contain"
               />
-
               <Link
   to="/"
   className={`inline-flex items-center gap-2.5 ${focusRing}`}
@@ -191,7 +190,6 @@ export default function Footer() {
     Getvia
   </span>
 </Link>
-            </Link>
 
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#646464]">
               The route to every trusted business near you.
