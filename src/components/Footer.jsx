@@ -176,20 +176,11 @@ export default function Footer() {
                 alt="Getvia"
                 className="h-8 w-8 object-contain"
               />
-              <Link
-  to="/"
-  className={`inline-flex items-center gap-2.5 ${focusRing}`}
->
-  <img
-    src={logo}
-    alt="Getvia"
-    className="h-8 w-8 object-contain"
-  />
 
-  <span className="font-display text-2xl font-semibold text-[#141414]">
-    Getvia
-  </span>
-</Link>
+              <span className="font-display text-2xl font-semibold text-[#141414]">
+                Getvia
+              </span>
+            </Link>
 
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#646464]">
               The route to every trusted business near you.
@@ -333,11 +324,12 @@ export default function Footer() {
             </Link>
 
             <Link
-  to="/terms-of-service"
-  className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
->
-  Terms of Service
-</Link>
+              to="/terms-of-service"
+              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+            >
+              Terms of Service
+            </Link>
+
             <button
               type="button"
               onClick={scrollToTop}
