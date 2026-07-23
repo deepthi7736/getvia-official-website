@@ -177,9 +177,12 @@ export default function Footer() {
                 className="h-8 w-8 object-contain"
               />
 
-              <span className="font-display text-2xl font-semibold text-[#141414]">
-                Getvia
-              </span>
+              <Link
+  to="/terms-of-service"
+  className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+>
+  Terms of Service
+</Link>
             </Link>
 
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#646464]">
