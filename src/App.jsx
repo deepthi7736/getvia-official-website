@@ -130,6 +130,14 @@ const NotFoundPage = lazy(() =>
   import("./pages/NotFoundPage")
 );
 
+const CookiePolicyPage = lazy(() =>
+  import("./pages/CookiePolicyPage")
+);
+
+const RefundPolicyPage = lazy(() =>
+  import("./pages/RefundPolicyPage")
+);
+
 function RouteFallback() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
@@ -310,6 +318,16 @@ function App() {
             path="*"
             element={<NotFoundPage />}
           />
+
+          <Route
+  path="/cookie-policy"
+  element={<CookiePolicyPage />}
+/>
+
+<Route
+  path="/refund-policy"
+  element={<RefundPolicyPage />}
+/>
         </Routes>
       </Suspense>
 
