@@ -120,6 +120,10 @@ const PrivacyPolicyPage = lazy(() =>
   import("./pages/PrivacyPolicyPage")
 );
 
+const TermsOfServicePage = lazy(() =>
+  import("./pages/TermsOfServicePage")
+);
+
 /* Not found page */
 
 const NotFoundPage = lazy(() =>
@@ -293,6 +297,11 @@ function App() {
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicyPage />}
+          />
+
+          <Route
+            path="/terms-of-service"
+            element={<TermsOfServicePage />}
           />
 
           {/* Page not found */}
