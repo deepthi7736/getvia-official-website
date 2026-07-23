@@ -332,13 +332,12 @@ export default function Footer() {
               Privacy Policy
             </Link>
 
-            <span
-              className="cursor-not-allowed text-xs text-[#A0A7A1]"
-              title="Coming soon"
-            >
-              Terms of Service
-            </span>
-
+            <Link
+  to="/terms-of-service"
+  className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+>
+  Terms of Service
+</Link>
             <button
               type="button"
               onClick={scrollToTop}
