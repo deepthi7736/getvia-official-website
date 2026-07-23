@@ -44,12 +44,11 @@ export default {
       },
 
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        serif: ["Fraunces", "serif"],
-
-        display: ["Fraunces", "serif"],
-        body: ["Inter", "sans-serif"],
-        mono: ["IBM Plex Mono", "monospace"],
+        sans: ["Manrope", "sans-serif"],
+        serif: ["Manrope", "sans-serif"],
+        display: ["Manrope", "sans-serif"],
+        body: ["Manrope", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
 
       boxShadow: {
@@ -77,6 +76,7 @@ export default {
       backgroundImage: {
         "getvia-gradient":
           "linear-gradient(135deg, #F3FBF4 0%, #FFFFFF 55%, #E8F7EA 100%)",
+
         "getvia-green-gradient":
           "linear-gradient(135deg, #007A1F 0%, #006619 100%)",
       },
