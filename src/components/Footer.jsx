@@ -123,6 +123,7 @@ export default function Footer() {
     }
 
     const trimmedEmail = email.trim();
+
     const isValidEmail =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
 
@@ -328,6 +329,20 @@ export default function Footer() {
               className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
             >
               Terms of Service
+            </Link>
+
+            <Link
+              to="/cookie-policy"
+              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+            >
+              Cookie Policy
+            </Link>
+
+            <Link
+              to="/refund-policy"
+              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+            >
+              Refund Policy
             </Link>
 
             <button
