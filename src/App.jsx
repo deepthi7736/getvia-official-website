@@ -8,135 +8,81 @@ import Home from "./pages/Home";
 
 /* Main platform pages */
 
-const ListBusinessPage = lazy(() =>
-  import("./pages/ListBusinessPage")
-);
+const ListBusinessPage = lazy(() => import("./pages/ListBusinessPage"));
 
-const AboutPage = lazy(() =>
-  import("./pages/AboutPage")
-);
+const AboutPage = lazy(() => import("./pages/AboutPage"));
 
-const ContactPage = lazy(() =>
-  import("./pages/ContactPage")
-);
+const ContactPage = lazy(() => import("./pages/ContactPage"));
 
-const FAQPage = lazy(() =>
-  import("./pages/FAQPage")
-);
+const FAQPage = lazy(() => import("./pages/FAQPage"));
 
-const BookDemoPage = lazy(() =>
-  import("./pages/BookDemoPage")
-);
+const BookDemoPage = lazy(() => import("./pages/BookDemo"));
 
-const PlatformPage = lazy(() =>
-  import("./pages/PlatformPage")
-);
+const PlatformPage = lazy(() => import("./pages/PlatformPage"));
 
-const HowItWorksPage = lazy(() =>
-  import("./pages/HowItWorksPage")
-);
+const HowItWorksPage = lazy(() => import("./pages/HowItWorksPage"));
 
-const FeaturesPage = lazy(() =>
-  import("./pages/FeaturesPage")
-);
+const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
 
-const TechnologyPage = lazy(() =>
-  import("./pages/TechnologyPage")
-);
+const TechnologyPage = lazy(() => import("./pages/TechnologyPage"));
 
-const IndustriesPage = lazy(() =>
-  import("./pages/IndustriesPage")
-);
+const IndustriesPage = lazy(() => import("./pages/IndustriesPage"));
 
 /* Audience pages */
 
-const ForBusinessesPage = lazy(() =>
-  import("./pages/ForBusinessesPage")
-);
+const ForBusinessesPage = lazy(() => import("./pages/ForBusinessesPage"));
 
 const ForProfessionalsPage = lazy(() =>
-  import("./pages/ForProfessionalsPage")
+  import("./pages/ForProfessionalsPage"),
 );
 
-const CustomersPage = lazy(() =>
-  import("./pages/CustomersPage")
-);
+const CustomersPage = lazy(() => import("./pages/CustomersPage"));
 
-const VerificationPage = lazy(() =>
-  import("./pages/VerificationPage")
-);
+const VerificationPage = lazy(() => import("./pages/VerificationPage"));
 
 /* Blog pages */
 
-const BlogPage = lazy(() =>
-  import("./pages/BlogPage")
-);
+const BlogPage = lazy(() => import("./pages/BlogPage"));
 
-const BlogArticlePage = lazy(() =>
-  import("./pages/BlogArticlePage")
-);
+const BlogArticlePage = lazy(() => import("./pages/BlogArticlePage"));
 
 /* Resources and support pages */
 
-const ResourcesPage = lazy(() =>
-  import("./pages/ResourcesPage")
-);
+const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 
-const HelpCenterPage = lazy(() =>
-  import("./pages/HelpCenterPage")
-);
+const HelpCenterPage = lazy(() => import("./pages/HelpCenterPage"));
 
-const SupportPage = lazy(() =>
-  import("./pages/SupportPage")
-);
+const SupportPage = lazy(() => import("./pages/SupportPage"));
 
 /* Case study pages */
 
-const CaseStudiesPage = lazy(() =>
-  import("./pages/CaseStudiesPage")
-);
+const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
 
-const CaseStudyPage = lazy(() =>
-  import("./pages/CaseStudyPage")
-);
+const CaseStudyPage = lazy(() => import("./pages/CaseStudyPage"));
 
 /* Company pages */
 
-const CareersPage = lazy(() =>
-  import("./pages/CareersPage")
-);
+const CareersPage = lazy(() => import("./pages/CareersPage"));
 
-const PartnersPage = lazy(() =>
-  import("./pages/PartnersPage")
-);
+const PartnersPage = lazy(() => import("./pages/PartnersPage"));
 
-const PressPage = lazy(() =>
-  import("./pages/PressPage")
-);
+const PressPage = lazy(() => import("./pages/PressPage"));
 
 /* Legal pages */
 
-const PrivacyPolicyPage = lazy(() =>
-  import("./pages/PrivacyPolicyPage")
-);
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 
 const TermsOfServicePage = lazy(() =>
-  import("./pages/TermsOfServicePage")
+  import("./pages/TermsOfServicePage"),
 );
+
+const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
+
+const RefundPolicyPage = lazy(() => import("./pages/RefundPolicyPage"));
 
 /* Not found page */
 
-const NotFoundPage = lazy(() =>
-  import("./pages/NotFoundPage")
-);
-
-const CookiePolicyPage = lazy(() =>
-  import("./pages/CookiePolicyPage")
-);
-
-const RefundPolicyPage = lazy(() =>
-  import("./pages/RefundPolicyPage")
-);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function RouteFallback() {
   return (
@@ -161,42 +107,21 @@ function App() {
         <Routes>
           {/* Home */}
 
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
 
           {/* Platform and product */}
 
-          <Route
-            path="/about"
-            element={<AboutPage />}
-          />
+          <Route path="/about" element={<AboutPage />} />
 
-          <Route
-            path="/platform"
-            element={<PlatformPage />}
-          />
+          <Route path="/platform" element={<PlatformPage />} />
 
-          <Route
-            path="/how-it-works"
-            element={<HowItWorksPage />}
-          />
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
 
-          <Route
-            path="/features"
-            element={<FeaturesPage />}
-          />
+          <Route path="/features" element={<FeaturesPage />} />
 
-          <Route
-            path="/technology"
-            element={<TechnologyPage />}
-          />
+          <Route path="/technology" element={<TechnologyPage />} />
 
-          <Route
-            path="/industries"
-            element={<IndustriesPage />}
-          />
+          <Route path="/industries" element={<IndustriesPage />} />
 
           {/* Audience */}
 
@@ -210,10 +135,7 @@ function App() {
             element={<ForProfessionalsPage />}
           />
 
-          <Route
-            path="/customers"
-            element={<CustomersPage />}
-          />
+          <Route path="/customers" element={<CustomersPage />} />
 
           <Route
             path="/verification"
@@ -222,32 +144,20 @@ function App() {
 
           {/* Blog */}
 
-          <Route
-            path="/blog"
-            element={<BlogPage />}
-          />
+          <Route path="/blog" element={<BlogPage />} />
 
-          <Route
-            path="/blog/:slug"
-            element={<BlogArticlePage />}
-          />
+          <Route path="/blog/:slug" element={<BlogArticlePage />} />
 
           {/* Resources and support */}
 
-          <Route
-            path="/resources"
-            element={<ResourcesPage />}
-          />
+          <Route path="/resources" element={<ResourcesPage />} />
 
           <Route
             path="/help-center"
             element={<HelpCenterPage />}
           />
 
-          <Route
-            path="/support"
-            element={<SupportPage />}
-          />
+          <Route path="/support" element={<SupportPage />} />
 
           {/* Case studies */}
 
@@ -263,32 +173,17 @@ function App() {
 
           {/* Company */}
 
-          <Route
-            path="/careers"
-            element={<CareersPage />}
-          />
+          <Route path="/careers" element={<CareersPage />} />
 
-          <Route
-            path="/partners"
-            element={<PartnersPage />}
-          />
+          <Route path="/partners" element={<PartnersPage />} />
 
-          <Route
-            path="/press"
-            element={<PressPage />}
-          />
+          <Route path="/press" element={<PressPage />} />
 
           {/* Contact and actions */}
 
-          <Route
-            path="/contact"
-            element={<ContactPage />}
-          />
+          <Route path="/contact" element={<ContactPage />} />
 
-          <Route
-            path="/faq"
-            element={<FAQPage />}
-          />
+          <Route path="/faq" element={<FAQPage />} />
 
           <Route
             path="/book-demo"
@@ -312,22 +207,19 @@ function App() {
             element={<TermsOfServicePage />}
           />
 
-          {/* Page not found */}
-
           <Route
-            path="*"
-            element={<NotFoundPage />}
+            path="/cookie-policy"
+            element={<CookiePolicyPage />}
           />
 
           <Route
-  path="/cookie-policy"
-  element={<CookiePolicyPage />}
-/>
+            path="/refund-policy"
+            element={<RefundPolicyPage />}
+          />
 
-<Route
-  path="/refund-policy"
-  element={<RefundPolicyPage />}
-/>
+          {/* Page not found — always keep this last */}
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
 
