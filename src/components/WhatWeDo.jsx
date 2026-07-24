@@ -26,21 +26,25 @@ const STEPS = [
 
 export default function WhatWeDo() {
   return (
-    <section id="what-we-do" className="bg-[#F3FBF4] py-24 lg:py-32">
+    <section
+      id="what-we-do"
+      className="bg-[#F3FBF4] py-12 md:py-14 lg:py-16"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="max-w-2xl">
           <span className="inline-flex rounded-full bg-white px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
             How it works
           </span>
+
           <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-[#141414] lg:text-5xl">
             Three steps. No guesswork.
           </h2>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {STEPS.map((step, i) => (
             <div key={step.title} className="relative">
-              <div className="rounded-3xl border border-[#DDE5DE] bg-white p-8 shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,122,31,0.10)]">
+              <div className="rounded-3xl border border-[#DDE5DE] bg-white p-6 shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,122,31,0.10)] md:p-8">
                 <div className="overflow-hidden rounded-2xl">
                   <img
                     src={step.img}
@@ -53,12 +57,14 @@ export default function WhatWeDo() {
                   />
                 </div>
 
-                <span className="mt-6 block font-mono text-xs tracking-wider text-[#858585]">
+                <span className="mt-5 block font-mono text-xs tracking-wider text-[#858585]">
                   STEP {step.number}
                 </span>
+
                 <h3 className="mt-2 font-display text-2xl text-[#141414]">
                   {step.title}
                 </h3>
+
                 <p className="mt-3 text-sm leading-relaxed text-[#646464]">
                   {step.body}
                 </p>
