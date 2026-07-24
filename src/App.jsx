@@ -22,17 +22,17 @@ const IndustriesPage = lazy(() => import("./pages/IndustriesPage"));
 /* Audience pages */
 
 const ForBusinessesPage = lazy(() =>
-  import("./pages/ForBusinessesPage"),
+  import("./pages/ForBusinessesPage")
 );
 
 const ForProfessionalsPage = lazy(() =>
-  import("./pages/ForProfessionalsPage"),
+  import("./pages/ForProfessionalsPage")
 );
 
 const CustomersPage = lazy(() => import("./pages/CustomersPage"));
 
 const VerificationPage = lazy(() =>
-  import("./pages/VerificationPage"),
+  import("./pages/VerificationPage")
 );
 
 /* Blog pages */
@@ -40,56 +40,70 @@ const VerificationPage = lazy(() =>
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 
 const BlogArticlePage = lazy(() =>
-  import("./pages/BlogArticlePage"),
+  import("./pages/BlogArticlePage")
 );
 
-/* Resources and support pages */
+/* Resources */
 
-const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
+const ResourcesPage = lazy(() =>
+  import("./pages/ResourcesPage")
+);
 
 const HelpCenterPage = lazy(() =>
-  import("./pages/HelpCenterPage"),
+  import("./pages/HelpCenterPage")
 );
 
-const SupportPage = lazy(() => import("./pages/SupportPage"));
+const SupportPage = lazy(() =>
+  import("./pages/SupportPage")
+);
 
-/* Case study pages */
+/* Case studies */
 
 const CaseStudiesPage = lazy(() =>
-  import("./pages/CaseStudiesPage"),
+  import("./pages/CaseStudiesPage")
 );
 
 const CaseStudyPage = lazy(() =>
-  import("./pages/CaseStudyPage"),
+  import("./pages/CaseStudyPage")
 );
 
-/* Company pages */
+/* Company */
 
-const CareersPage = lazy(() => import("./pages/CareersPage"));
-const PartnersPage = lazy(() => import("./pages/PartnersPage"));
-const PressPage = lazy(() => import("./pages/PressPage"));
+const CareersPage = lazy(() =>
+  import("./pages/CareersPage")
+);
 
-/* Legal pages */
+const PartnersPage = lazy(() =>
+  import("./pages/PartnersPage")
+);
+
+const PressPage = lazy(() =>
+  import("./pages/PressPage")
+);
+
+/* Legal */
 
 const PrivacyPolicyPage = lazy(() =>
-  import("./pages/PrivacyPolicyPage"),
+  import("./pages/PrivacyPolicyPage")
 );
 
 const TermsOfServicePage = lazy(() =>
-  import("./pages/TermsOfServicePage"),
+  import("./pages/TermsOfServicePage")
 );
 
 const CookiePolicyPage = lazy(() =>
-  import("./pages/CookiePolicyPage"),
+  import("./pages/CookiePolicyPage")
 );
 
 const RefundPolicyPage = lazy(() =>
-  import("./pages/RefundPolicyPage"),
+  import("./pages/RefundPolicyPage")
 );
 
-/* Not-found page */
+/* 404 */
 
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const NotFoundPage = lazy(() =>
+  import("./pages/NotFoundPage")
+);
 
 function RouteFallback() {
   return (
@@ -103,16 +117,12 @@ function RouteFallback() {
   );
 }
 
-function App() {
+export default function App() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
 
-  const openDemoModal = () => {
-    setIsDemoOpen(true);
-  };
+  const openDemoModal = () => setIsDemoOpen(true);
 
-  const closeDemoModal = () => {
-    setIsDemoOpen(false);
-  };
+  const closeDemoModal = () => setIsDemoOpen(false);
 
   return (
     <>
@@ -123,126 +133,91 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           {/* Home */}
+          <Route
+            path="/"
+            element={<Home onBookDemo={openDemoModal} />}
+          />
 
-          <Route path="/" element={<Home />} />
-
-          {/* Platform and product */}
-
+          {/* Platform */}
           <Route path="/about" element={<AboutPage />} />
-
           <Route path="/platform" element={<PlatformPage />} />
-
-          <Route
-            path="/how-it-works"
-            element={<HowItWorksPage />}
-          />
-
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/features" element={<FeaturesPage />} />
-
-          <Route
-            path="/technology"
-            element={<TechnologyPage />}
-          />
-
-          <Route
-            path="/industries"
-            element={<IndustriesPage />}
-          />
+          <Route path="/technology" element={<TechnologyPage />} />
+          <Route path="/industries" element={<IndustriesPage />} />
 
           {/* Audience */}
-
           <Route
             path="/for-businesses"
             element={<ForBusinessesPage />}
           />
-
           <Route
             path="/for-professionals"
             element={<ForProfessionalsPage />}
           />
-
           <Route path="/customers" element={<CustomersPage />} />
-
           <Route
             path="/verification"
             element={<VerificationPage />}
           />
 
           {/* Blog */}
-
           <Route path="/blog" element={<BlogPage />} />
-
           <Route
             path="/blog/:slug"
             element={<BlogArticlePage />}
           />
 
-          {/* Resources and support */}
-
+          {/* Resources */}
           <Route path="/resources" element={<ResourcesPage />} />
-
           <Route
             path="/help-center"
             element={<HelpCenterPage />}
           />
-
           <Route path="/support" element={<SupportPage />} />
 
-          {/* Case studies */}
-
+          {/* Case Studies */}
           <Route
             path="/case-studies"
             element={<CaseStudiesPage />}
           />
-
           <Route
             path="/case-studies/:slug"
             element={<CaseStudyPage />}
           />
 
           {/* Company */}
-
           <Route path="/careers" element={<CareersPage />} />
-
           <Route path="/partners" element={<PartnersPage />} />
-
           <Route path="/press" element={<PressPage />} />
 
-          {/* Contact and actions */}
-
+          {/* Contact */}
           <Route path="/contact" element={<ContactPage />} />
-
           <Route path="/faq" element={<FAQPage />} />
-
           <Route
             path="/list-your-business"
             element={<ListBusinessPage />}
           />
 
           {/* Legal */}
-
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicyPage />}
           />
-
           <Route
             path="/terms-of-service"
             element={<TermsOfServicePage />}
           />
-
           <Route
             path="/cookie-policy"
             element={<CookiePolicyPage />}
           />
-
           <Route
             path="/refund-policy"
             element={<RefundPolicyPage />}
           />
 
-          {/* Keep this last */}
-
+          {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
@@ -256,5 +231,3 @@ function App() {
     </>
   );
 }
-
-export default App;
