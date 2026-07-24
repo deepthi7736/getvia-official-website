@@ -4,32 +4,26 @@ import { Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import BookDemoModal from "./components/BookDemoModal";
 import Home from "./pages/Home";
+import BookDemoModal from "./pages/BookDemo";
 
 /* Main platform pages */
 
 const ListBusinessPage = lazy(() => import("./pages/ListBusinessPage"));
-
 const AboutPage = lazy(() => import("./pages/AboutPage"));
-
 const ContactPage = lazy(() => import("./pages/ContactPage"));
-
 const FAQPage = lazy(() => import("./pages/FAQPage"));
-
 const PlatformPage = lazy(() => import("./pages/PlatformPage"));
-
 const HowItWorksPage = lazy(() => import("./pages/HowItWorksPage"));
-
 const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
-
 const TechnologyPage = lazy(() => import("./pages/TechnologyPage"));
-
 const IndustriesPage = lazy(() => import("./pages/IndustriesPage"));
 
 /* Audience pages */
 
-const ForBusinessesPage = lazy(() => import("./pages/ForBusinessesPage"));
+const ForBusinessesPage = lazy(() =>
+  import("./pages/ForBusinessesPage"),
+);
 
 const ForProfessionalsPage = lazy(() =>
   import("./pages/ForProfessionalsPage"),
@@ -37,49 +31,63 @@ const ForProfessionalsPage = lazy(() =>
 
 const CustomersPage = lazy(() => import("./pages/CustomersPage"));
 
-const VerificationPage = lazy(() => import("./pages/VerificationPage"));
+const VerificationPage = lazy(() =>
+  import("./pages/VerificationPage"),
+);
 
 /* Blog pages */
 
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 
-const BlogArticlePage = lazy(() => import("./pages/BlogArticlePage"));
+const BlogArticlePage = lazy(() =>
+  import("./pages/BlogArticlePage"),
+);
 
 /* Resources and support pages */
 
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 
-const HelpCenterPage = lazy(() => import("./pages/HelpCenterPage"));
+const HelpCenterPage = lazy(() =>
+  import("./pages/HelpCenterPage"),
+);
 
 const SupportPage = lazy(() => import("./pages/SupportPage"));
 
 /* Case study pages */
 
-const CaseStudiesPage = lazy(() => import("./pages/CaseStudiesPage"));
+const CaseStudiesPage = lazy(() =>
+  import("./pages/CaseStudiesPage"),
+);
 
-const CaseStudyPage = lazy(() => import("./pages/CaseStudyPage"));
+const CaseStudyPage = lazy(() =>
+  import("./pages/CaseStudyPage"),
+);
 
 /* Company pages */
 
 const CareersPage = lazy(() => import("./pages/CareersPage"));
-
 const PartnersPage = lazy(() => import("./pages/PartnersPage"));
-
 const PressPage = lazy(() => import("./pages/PressPage"));
 
 /* Legal pages */
 
-const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const PrivacyPolicyPage = lazy(() =>
+  import("./pages/PrivacyPolicyPage"),
+);
 
 const TermsOfServicePage = lazy(() =>
   import("./pages/TermsOfServicePage"),
 );
 
-const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
+const CookiePolicyPage = lazy(() =>
+  import("./pages/CookiePolicyPage"),
+);
 
-const RefundPolicyPage = lazy(() => import("./pages/RefundPolicyPage"));
+const RefundPolicyPage = lazy(() =>
+  import("./pages/RefundPolicyPage"),
+);
 
-/* Not found page */
+/* Not-found page */
 
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
@@ -124,13 +132,22 @@ function App() {
 
           <Route path="/platform" element={<PlatformPage />} />
 
-          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route
+            path="/how-it-works"
+            element={<HowItWorksPage />}
+          />
 
           <Route path="/features" element={<FeaturesPage />} />
 
-          <Route path="/technology" element={<TechnologyPage />} />
+          <Route
+            path="/technology"
+            element={<TechnologyPage />}
+          />
 
-          <Route path="/industries" element={<IndustriesPage />} />
+          <Route
+            path="/industries"
+            element={<IndustriesPage />}
+          />
 
           {/* Audience */}
 
@@ -155,7 +172,10 @@ function App() {
 
           <Route path="/blog" element={<BlogPage />} />
 
-          <Route path="/blog/:slug" element={<BlogArticlePage />} />
+          <Route
+            path="/blog/:slug"
+            element={<BlogArticlePage />}
+          />
 
           {/* Resources and support */}
 
@@ -221,7 +241,7 @@ function App() {
             element={<RefundPolicyPage />}
           />
 
-          {/* Page not found — keep last */}
+          {/* Keep this last */}
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
