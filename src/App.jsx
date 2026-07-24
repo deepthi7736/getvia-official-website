@@ -1,9 +1,10 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BookDemoModal from "./components/BookDemoModal";
 import Home from "./pages/Home";
 
 /* Main platform pages */
@@ -15,8 +16,6 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 
 const FAQPage = lazy(() => import("./pages/FAQPage"));
-
-const BookDemoPage = lazy(() => import("./pages/BookDemo"));
 
 const PlatformPage = lazy(() => import("./pages/PlatformPage"));
 
@@ -97,11 +96,21 @@ function RouteFallback() {
 }
 
 function App() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+
+  const openDemoModal = () => {
+    setIsDemoOpen(true);
+  };
+
+  const closeDemoModal = () => {
+    setIsDemoOpen(false);
+  };
+
   return (
     <>
       <ScrollToTop />
 
-      <Navbar />
+      <Navbar onBookDemo={openDemoModal} />
 
       <Suspense fallback={<RouteFallback />}>
         <Routes>
@@ -186,11 +195,6 @@ function App() {
           <Route path="/faq" element={<FAQPage />} />
 
           <Route
-            path="/book-demo"
-            element={<BookDemoPage />}
-          />
-
-          <Route
             path="/list-your-business"
             element={<ListBusinessPage />}
           />
@@ -217,13 +221,18 @@ function App() {
             element={<RefundPolicyPage />}
           />
 
-          {/* Page not found — always keep this last */}
+          {/* Page not found — keep last */}
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
 
       <Footer />
+
+      <BookDemoModal
+        isOpen={isDemoOpen}
+        onClose={closeDemoModal}
+      />
     </>
   );
 }
