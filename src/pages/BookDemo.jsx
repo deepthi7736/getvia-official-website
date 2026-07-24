@@ -1,12 +1,9 @@
-
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import {
   AlertCircle,
   Calendar,
   CheckCircle2,
   Users,
-  X,
   Zap,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
@@ -54,15 +51,21 @@ const EMPTY_FORM = {
 const BENEFITS = [
   {
     icon: Calendar,
-    text: "30-minute personalised walkthrough",
+    title: "A focused walkthrough",
+    description:
+      "A 30-minute session arranged at a time that works for you.",
   },
   {
     icon: Users,
-    text: "Tailored to your business and team",
+    title: "Built around your business",
+    description:
+      "The demo is tailored to your business category and team size.",
   },
   {
     icon: Zap,
-    text: "See how your profile can look live",
+    title: "See the platform live",
+    description:
+      "Understand how your business profile and discovery experience can work.",
   },
 ];
 
@@ -72,12 +75,10 @@ const inputClass =
 const labelClass =
   "font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#646464]";
 
-export default function BookDemoModal({ isOpen, onClose }) {
+export default function BookDemo() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const firstInputRef = useRef(null);
 
   const update = (field) => (event) => {
     const value =
@@ -93,47 +94,6 @@ export default function BookDemoModal({ isOpen, onClose }) {
       setErrorMessage("");
     }
   };
-
-  const resetModal = () => {
-    setForm(EMPTY_FORM);
-    setStatus("idle");
-    setErrorMessage("");
-  };
-
-  const handleClose = () => {
-    if (status === "submitting") return;
-
-    onClose();
-
-    window.setTimeout(() => {
-      resetModal();
-    }, 250);
-  };
-
-  useEffect(() => {
-    if (!isOpen) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const focusTimer = window.setTimeout(() => {
-      firstInputRef.current?.focus();
-    }, 250);
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.clearTimeout(focusTimer);
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -192,7 +152,6 @@ export default function BookDemoModal({ isOpen, onClose }) {
       setErrorMessage(
         "Something went wrong while submitting your request. Please try again.",
       );
-
       return;
     }
 
@@ -200,457 +159,403 @@ export default function BookDemoModal({ isOpen, onClose }) {
     setForm(EMPTY_FORM);
   };
 
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-6 sm:px-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          {/* Overlay */}
-          <motion.button
-            type="button"
-            aria-label="Close demo booking modal"
-            className="absolute inset-0 cursor-default bg-[#071109]/70 backdrop-blur-sm"
-            onClick={handleClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          />
+  if (status === "success") {
+    return (
+      <main className="min-h-screen bg-[#F3FBF4] px-5 pb-20 pt-28 sm:px-8 lg:px-12">
+        <section className="mx-auto flex min-h-[65vh] max-w-5xl items-center justify-center">
+          <div className="w-full max-w-xl rounded-[32px] border border-[#DDE5DE] bg-white px-7 py-12 text-center shadow-[0_28px_80px_rgba(0,80,20,0.12)] sm:px-12">
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#E8F7EA] text-[#007A1F]">
+              <CheckCircle2 size={40} strokeWidth={1.7} />
+            </div>
 
-          {/* Modal */}
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="book-demo-title"
-            className="relative z-10 max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[30px] border border-white/50 bg-white shadow-[0_35px_100px_rgba(0,40,12,0.35)]"
-            initial={{
-              opacity: 0,
-              y: 28,
-              scale: 0.97,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              y: 20,
-              scale: 0.97,
-            }}
-            transition={{
-              duration: 0.28,
-              ease: "easeOut",
-            }}
-            onClick={(event) => event.stopPropagation()}
-          >
+            <p className="mt-7 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[#007A1F]">
+              Request received
+            </p>
+
+            <h1 className="mt-3 font-display text-3xl font-semibold tracking-[-0.025em] text-[#141414] sm:text-4xl">
+              Your demo request has been received.
+            </h1>
+
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#646464]">
+              Thank you for contacting Getvia. Our team will reach out within
+              1–2 business days to confirm a suitable time.
+            </p>
+
             <button
               type="button"
-              onClick={handleClose}
-              disabled={status === "submitting"}
-              aria-label="Close modal"
-              className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#555B55] shadow-sm transition hover:border-[#B7DDBF] hover:bg-[#F3FBF4] hover:text-[#007A1F] disabled:cursor-not-allowed disabled:opacity-50 sm:right-6 sm:top-6"
+              onClick={() => setStatus("idle")}
+              className="mt-8 rounded-xl bg-[#007A1F] px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-lg"
             >
-              <X size={19} />
+              Submit another request
             </button>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
-            {status === "success" ? (
-              <div className="flex min-h-[460px] items-center justify-center px-6 py-16">
-                <div className="max-w-md text-center">
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#E8F7EA] text-[#007A1F]">
-                    <CheckCircle2 size={40} strokeWidth={1.7} />
+  return (
+    <main className="bg-white">
+      <section className="relative overflow-hidden bg-[#F3FBF4] px-5 pb-14 pt-32 sm:px-8 lg:px-12 lg:pb-16 lg:pt-36">
+        <div className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-[#B7F27D]/20 blur-3xl" />
+
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[#007A1F]/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-6xl">
+          <span className="inline-flex rounded-full border border-[#CFE5D3] bg-white px-4 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-[#007A1F] shadow-sm">
+            Book a demo
+          </span>
+
+          <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+            <div>
+              <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-[#141414] sm:text-5xl lg:text-[60px]">
+                See how Getvia can support{" "}
+                <span className="text-[#007A1F]">your business.</span>
+              </h1>
+            </div>
+
+            <p className="max-w-xl text-base leading-8 text-[#646464] lg:justify-self-end">
+              Tell us a little about your business and we will arrange a
+              personalised walkthrough of the Getvia platform.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-14 sm:px-8 lg:px-12 lg:py-16">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12">
+          <aside>
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#007A1F]">
+              What to expect
+            </p>
+
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.025em] text-[#141414]">
+              A clear, practical product walkthrough.
+            </h2>
+
+            <p className="mt-4 text-sm leading-7 text-[#646464]">
+              We will show you how Getvia helps businesses present useful
+              information, improve visibility, and make customer contact easier.
+            </p>
+
+            <div className="mt-8 space-y-4">
+              {BENEFITS.map(({ icon: Icon, title, description }) => (
+                <article
+                  key={title}
+                  className="flex items-start gap-4 rounded-2xl border border-[#E1E7E1] bg-[#F8FCF8] p-4"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-[#007A1F] shadow-sm">
+                    <Icon size={19} strokeWidth={1.7} />
                   </div>
 
-                  <p className="mt-7 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[#007A1F]">
-                    Request received
-                  </p>
-
-                  <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.025em] text-[#141414] sm:text-4xl">
-                    Your demo is on its way.
-                  </h2>
-
-                  <p className="mt-4 text-sm leading-7 text-[#646464]">
-                    Thank you for contacting Getvia. Our team will reach out
-                    within 1–2 business days to confirm a suitable time.
-                  </p>
-
-                  <button
-                    type="button"
-                    onClick={handleClose}
-                    className="mt-8 rounded-xl bg-[#007A1F] px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-lg"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="grid lg:grid-cols-[0.72fr_1.28fr]">
-                {/* Left information panel */}
-                <aside className="relative overflow-hidden bg-[#F3FBF4] px-6 py-10 sm:px-9 lg:px-10 lg:py-12">
-                  <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[#B7F27D]/25 blur-3xl" />
-
-                  <div className="relative">
-                    <span className="inline-flex rounded-full border border-[#CFE5D3] bg-white px-3.5 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-[#007A1F]">
-                      Book a demo
-                    </span>
-
-                    <h2
-                      id="book-demo-title"
-                      className="mt-5 font-display text-3xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] sm:text-4xl"
-                    >
-                      See how Getvia can support your business.
-                    </h2>
-
-                    <p className="mt-4 text-sm leading-7 text-[#646464]">
-                      Tell us a little about your business and we will arrange a
-                      personalised walkthrough of the platform.
-                    </p>
-
-                    <ul className="mt-8 space-y-5">
-                      {BENEFITS.map(({ icon: Icon, text }) => (
-                        <li key={text} className="flex items-start gap-3">
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#007A1F] shadow-sm">
-                            <Icon size={18} strokeWidth={1.7} />
-                          </div>
-
-                          <p className="pt-1.5 text-sm leading-6 text-[#555B55]">
-                            {text}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-9 rounded-2xl border border-[#D8E8DA] bg-white/80 p-4">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#007A1F]">
-                        Response time
-                      </p>
-
-                      <p className="mt-2 text-sm leading-6 text-[#646464]">
-                        We normally respond within 1–2 business days.
-                      </p>
-                    </div>
-                  </div>
-                </aside>
-
-                {/* Form panel */}
-                <div className="px-6 py-10 sm:px-9 lg:px-10 lg:py-12">
-                  <div className="pr-10">
-                    <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-[#007A1F]">
-                      Demo request
-                    </p>
-
-                    <h3 className="mt-2 font-display text-2xl font-semibold text-[#141414]">
-                      Tell us about your business
+                  <div>
+                    <h3 className="text-sm font-semibold text-[#141414]">
+                      {title}
                     </h3>
 
-                    <p className="mt-2 text-sm leading-6 text-[#747A74]">
-                      Required fields are marked with an asterisk.
+                    <p className="mt-1 text-sm leading-6 text-[#747A74]">
+                      {description}
                     </p>
                   </div>
+                </article>
+              ))}
+            </div>
 
-                  <form
-                    onSubmit={handleSubmit}
-                    noValidate
-                    className="mt-7 space-y-4"
-                  >
-                    {/* Honeypot */}
-                    <div className="hidden" aria-hidden="true">
-                      <label htmlFor="demo-company-website">
-                        Leave this field empty
-                      </label>
+            <div className="mt-6 rounded-2xl border border-[#D8E8DA] bg-[#F3FBF4] p-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#007A1F]">
+                Response time
+              </p>
 
-                      <input
-                        id="demo-company-website"
-                        type="text"
-                        tabIndex={-1}
-                        autoComplete="off"
-                        value={form.company_website}
-                        onChange={update("company_website")}
-                      />
-                    </div>
+              <p className="mt-2 text-sm leading-6 text-[#646464]">
+                We normally respond within 1–2 business days to confirm your
+                preferred demo time.
+              </p>
+            </div>
+          </aside>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor="demo-full-name"
-                          className={labelClass}
-                        >
-                          Full name *
-                        </label>
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className="rounded-[30px] border border-[#DDE5DE] bg-[#F8FCF8] p-6 shadow-[0_24px_70px_rgba(0,80,20,0.08)] sm:p-8 lg:p-10"
+          >
+            <div>
+              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-[#007A1F]">
+                Demo request
+              </p>
 
-                        <input
-                          ref={firstInputRef}
-                          id="demo-full-name"
-                          required
-                          autoComplete="name"
-                          value={form.full_name}
-                          onChange={update("full_name")}
-                          className={inputClass}
-                          placeholder="Your full name"
-                        />
-                      </div>
+              <h2 className="mt-2 font-display text-2xl font-semibold text-[#141414] sm:text-3xl">
+                Tell us about your business
+              </h2>
 
-                      <div>
-                        <label
-                          htmlFor="demo-business-email"
-                          className={labelClass}
-                        >
-                          Business email *
-                        </label>
+              <p className="mt-2 text-sm leading-6 text-[#747A74]">
+                Required fields are marked with an asterisk.
+              </p>
+            </div>
 
-                        <input
-                          id="demo-business-email"
-                          required
-                          type="email"
-                          autoComplete="email"
-                          value={form.business_email}
-                          onChange={update("business_email")}
-                          className={inputClass}
-                          placeholder="name@company.com"
-                        />
-                      </div>
-                    </div>
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="demo-company-website">
+                Leave this field empty
+              </label>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="demo-phone" className={labelClass}>
-                          Phone number *
-                        </label>
+              <input
+                id="demo-company-website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.company_website}
+                onChange={update("company_website")}
+              />
+            </div>
 
-                        <input
-                          id="demo-phone"
-                          required
-                          type="tel"
-                          autoComplete="tel"
-                          value={form.phone}
-                          onChange={update("phone")}
-                          className={inputClass}
-                          placeholder="+91"
-                        />
-                      </div>
+            <div className="mt-7 grid gap-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="demo-full-name" className={labelClass}>
+                  Full name *
+                </label>
 
-                      <div>
-                        <label
-                          htmlFor="demo-company-name"
-                          className={labelClass}
-                        >
-                          Business name *
-                        </label>
+                <input
+                  id="demo-full-name"
+                  required
+                  autoComplete="name"
+                  value={form.full_name}
+                  onChange={update("full_name")}
+                  className={inputClass}
+                  placeholder="Your full name"
+                />
+              </div>
 
-                        <input
-                          id="demo-company-name"
-                          required
-                          autoComplete="organization"
-                          value={form.company_name}
-                          onChange={update("company_name")}
-                          className={inputClass}
-                          placeholder="Your business name"
-                        />
-                      </div>
-                    </div>
+              <div>
+                <label htmlFor="demo-business-email" className={labelClass}>
+                  Business email *
+                </label>
 
-                    <div className="grid gap-4 sm:grid-cols-3">
-                      <div>
-                        <label htmlFor="demo-category" className={labelClass}>
-                          Category
-                        </label>
+                <input
+                  id="demo-business-email"
+                  required
+                  type="email"
+                  autoComplete="email"
+                  value={form.business_email}
+                  onChange={update("business_email")}
+                  className={inputClass}
+                  placeholder="name@company.com"
+                />
+              </div>
+            </div>
 
-                        <select
-                          id="demo-category"
-                          value={form.category}
-                          onChange={update("category")}
-                          className={inputClass}
-                        >
-                          <option value="">Select</option>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="demo-phone" className={labelClass}>
+                  Phone number *
+                </label>
 
-                          {CATEGORIES.map((category) => (
-                            <option key={category} value={category}>
-                              {category}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                <input
+                  id="demo-phone"
+                  required
+                  type="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={update("phone")}
+                  className={inputClass}
+                  placeholder="+91"
+                />
+              </div>
 
-                      <div>
-                        <label htmlFor="demo-location" className={labelClass}>
-                          Location
-                        </label>
+              <div>
+                <label htmlFor="demo-company-name" className={labelClass}>
+                  Business name *
+                </label>
 
-                        <input
-                          id="demo-location"
-                          value={form.location}
-                          onChange={update("location")}
-                          className={inputClass}
-                          placeholder="City or area"
-                        />
-                      </div>
+                <input
+                  id="demo-company-name"
+                  required
+                  autoComplete="organization"
+                  value={form.company_name}
+                  onChange={update("company_name")}
+                  className={inputClass}
+                  placeholder="Your business name"
+                />
+              </div>
+            </div>
 
-                      <div>
-                        <label htmlFor="demo-team-size" className={labelClass}>
-                          Team size
-                        </label>
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              <div>
+                <label htmlFor="demo-category" className={labelClass}>
+                  Category
+                </label>
 
-                        <select
-                          id="demo-team-size"
-                          value={form.team_size}
-                          onChange={update("team_size")}
-                          className={inputClass}
-                        >
-                          <option value="">Select</option>
+                <select
+                  id="demo-category"
+                  value={form.category}
+                  onChange={update("category")}
+                  className={inputClass}
+                >
+                  <option value="">Select</option>
 
-                          {TEAM_SIZES.map((teamSize) => (
-                            <option key={teamSize} value={teamSize}>
-                              {teamSize}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
+                  {CATEGORIES.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                    <div>
-                      <label
-                        htmlFor="demo-website"
-                        className={labelClass}
-                      >
-                        Website or social page
-                        <span className="ml-1 normal-case tracking-normal text-[#929792]">
-                          (optional)
-                        </span>
-                      </label>
+              <div>
+                <label htmlFor="demo-location" className={labelClass}>
+                  Location
+                </label>
 
-                      <input
-                        id="demo-website"
-                        type="url"
-                        value={form.website_or_social}
-                        onChange={update("website_or_social")}
-                        className={inputClass}
-                        placeholder="https://"
-                      />
-                    </div>
+                <input
+                  id="demo-location"
+                  value={form.location}
+                  onChange={update("location")}
+                  className={inputClass}
+                  placeholder="City or area"
+                />
+              </div>
 
-                    <div className="grid gap-4 sm:grid-cols-3">
-                      <div>
-                        <label
-                          htmlFor="demo-preferred-date"
-                          className={labelClass}
-                        >
-                          Preferred date
-                        </label>
+              <div>
+                <label htmlFor="demo-team-size" className={labelClass}>
+                  Team size
+                </label>
 
-                        <input
-                          id="demo-preferred-date"
-                          type="date"
-                          value={form.preferred_date}
-                          onChange={update("preferred_date")}
-                          className={inputClass}
-                        />
-                      </div>
+                <select
+                  id="demo-team-size"
+                  value={form.team_size}
+                  onChange={update("team_size")}
+                  className={inputClass}
+                >
+                  <option value="">Select</option>
 
-                      <div>
-                        <label
-                          htmlFor="demo-preferred-time"
-                          className={labelClass}
-                        >
-                          Preferred time
-                        </label>
+                  {TEAM_SIZES.map((teamSize) => (
+                    <option key={teamSize} value={teamSize}>
+                      {teamSize}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-                        <input
-                          id="demo-preferred-time"
-                          type="time"
-                          value={form.preferred_time}
-                          onChange={update("preferred_time")}
-                          className={inputClass}
-                        />
-                      </div>
+            <div className="mt-4">
+              <label htmlFor="demo-website" className={labelClass}>
+                Website or social page
+                <span className="ml-1 normal-case tracking-normal text-[#929792]">
+                  (optional)
+                </span>
+              </label>
 
-                      <div>
-                        <label
-                          htmlFor="demo-contact-method"
-                          className={labelClass}
-                        >
-                          Contact method
-                        </label>
+              <input
+                id="demo-website"
+                type="url"
+                value={form.website_or_social}
+                onChange={update("website_or_social")}
+                className={inputClass}
+                placeholder="https://"
+              />
+            </div>
 
-                        <select
-                          id="demo-contact-method"
-                          value={form.preferred_contact_method}
-                          onChange={update("preferred_contact_method")}
-                          className={inputClass}
-                        >
-                          {CONTACT_METHODS.map((method) => (
-                            <option key={method} value={method}>
-                              {method}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              <div>
+                <label htmlFor="demo-preferred-date" className={labelClass}>
+                  Preferred date
+                </label>
 
-                    <div>
-                      <label htmlFor="demo-message" className={labelClass}>
-                        What would you like us to cover?
-                        <span className="ml-1 normal-case tracking-normal text-[#929792]">
-                          (optional)
-                        </span>
-                      </label>
+                <input
+                  id="demo-preferred-date"
+                  type="date"
+                  value={form.preferred_date}
+                  onChange={update("preferred_date")}
+                  className={inputClass}
+                />
+              </div>
 
-                      <textarea
-                        id="demo-message"
-                        rows={3}
-                        value={form.message}
-                        onChange={update("message")}
-                        className={`${inputClass} resize-none`}
-                        placeholder="Tell us what you would like to learn about Getvia."
-                      />
-                    </div>
+              <div>
+                <label htmlFor="demo-preferred-time" className={labelClass}>
+                  Preferred time
+                </label>
 
-                    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-[#E4E9E4] bg-[#FAFCFA] p-4 text-xs leading-5 text-[#646464]">
-                      <input
-                        type="checkbox"
-                        checked={form.consent}
-                        onChange={update("consent")}
-                        className="mt-0.5 h-4 w-4 shrink-0 rounded border-[#CDD5CE] text-[#007A1F] focus:ring-[#007A1F]/30"
-                      />
+                <input
+                  id="demo-preferred-time"
+                  type="time"
+                  value={form.preferred_time}
+                  onChange={update("preferred_time")}
+                  className={inputClass}
+                />
+              </div>
 
-                      <span>
-                        I agree to be contacted by Getvia regarding this demo
-                        request.
-                      </span>
-                    </label>
+              <div>
+                <label htmlFor="demo-contact-method" className={labelClass}>
+                  Contact method
+                </label>
 
-                    {status === "error" && (
-                      <div
-                        role="alert"
-                        className="flex items-start gap-2 rounded-xl border border-red-100 bg-red-50 p-3 text-sm text-red-700"
-                      >
-                        <AlertCircle
-                          size={18}
-                          className="mt-0.5 shrink-0"
-                        />
+                <select
+                  id="demo-contact-method"
+                  value={form.preferred_contact_method}
+                  onChange={update("preferred_contact_method")}
+                  className={inputClass}
+                >
+                  {CONTACT_METHODS.map((method) => (
+                    <option key={method} value={method}>
+                      {method}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-                        <span>{errorMessage}</span>
-                      </div>
-                    )}
+            <div className="mt-4">
+              <label htmlFor="demo-message" className={labelClass}>
+                What would you like us to cover?
+                <span className="ml-1 normal-case tracking-normal text-[#929792]">
+                  (optional)
+                </span>
+              </label>
 
-                    <button
-                      type="submit"
-                      disabled={status === "submitting"}
-                      className="w-full rounded-xl bg-[#007A1F] px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-[0_14px_30px_rgba(0,100,30,0.22)] disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {status === "submitting"
-                        ? "Submitting request…"
-                        : "Book a demo"}
-                    </button>
-                  </form>
-                </div>
+              <textarea
+                id="demo-message"
+                rows={4}
+                value={form.message}
+                onChange={update("message")}
+                className={`${inputClass} resize-none`}
+                placeholder="Tell us what you would like to learn about Getvia."
+              />
+            </div>
+
+            <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-xl border border-[#E4E9E4] bg-white p-4 text-xs leading-5 text-[#646464]">
+              <input
+                type="checkbox"
+                checked={form.consent}
+                onChange={update("consent")}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-[#CDD5CE] text-[#007A1F] focus:ring-[#007A1F]/30"
+              />
+
+              <span>
+                I agree to be contacted by Getvia regarding this demo request.
+              </span>
+            </label>
+
+            {status === "error" && (
+              <div
+                role="alert"
+                className="mt-4 flex items-start gap-2 rounded-xl border border-red-100 bg-red-50 p-3 text-sm text-red-700"
+              >
+                <AlertCircle size={18} className="mt-0.5 shrink-0" />
+
+                <span>{errorMessage}</span>
               </div>
             )}
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="mt-5 w-full rounded-xl bg-[#007A1F] px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-[0_14px_30px_rgba(0,100,30,0.22)] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {status === "submitting"
+                ? "Submitting request…"
+                : "Book a demo"}
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
   );
 }
