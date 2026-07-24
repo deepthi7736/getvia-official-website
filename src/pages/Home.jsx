@@ -9,10 +9,10 @@ import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 import Contact from "../components/Contact";
 
-export default function Home() {
+export default function Home({ onBookDemo }) {
   return (
     <main>
-      <Hero />
+      <Hero onBookDemo={onBookDemo} />
       <About />
       <WhatWeDo />
       <Features />
