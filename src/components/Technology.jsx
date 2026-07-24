@@ -20,38 +20,49 @@ const PILLARS = [
 
 export default function Technology() {
   return (
-    <section id="technology" className="bg-[#F3FBF4] py-24 lg:py-32">
+    <section
+      id="technology"
+      className="bg-[#F3FBF4] py-12 md:py-14 lg:py-16"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          {/* Left Content */}
           <div className="lg:col-span-5">
             <span className="inline-flex rounded-full bg-white px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
               Built to be fast and safe
             </span>
+
             <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-[#141414] lg:text-5xl">
               No spinners. No guessing.
             </h2>
-            <p className="mt-6 max-w-md text-lg leading-8 text-[#646464]">
-              A search that answers instantly, and a platform that keeps
-              your information safe while it does.
+
+            <p className="mt-5 max-w-md text-lg leading-8 text-[#646464]">
+              A search that answers instantly, and a platform that keeps your
+              information safe while it does.
             </p>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-6 space-y-5">
               {PILLARS.map(({ icon: Icon, title, body }) => (
                 <div key={title} className="flex items-start gap-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#E8F7EA] text-[#007A1F]">
                     <Icon size={20} strokeWidth={1.75} />
                   </div>
+
                   <div>
-                    <h3 className="font-display text-base text-[#141414]">
+                    <h3 className="font-display text-base font-semibold text-[#141414]">
                       {title}
                     </h3>
-                    <p className="mt-1 text-sm text-[#646464]">{body}</p>
+
+                    <p className="mt-1 text-sm leading-relaxed text-[#646464]">
+                      {body}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Right Image */}
           <div className="lg:col-span-6 lg:col-start-7">
             <div className="overflow-hidden rounded-3xl border border-[#DDE5DE] bg-white shadow-[0_30px_90px_rgba(0,122,31,0.12)]">
               <img
@@ -61,7 +72,7 @@ export default function Technology() {
                 decoding="async"
                 width={900}
                 height={768}
-                className="h-96 w-full object-cover"
+                className="h-80 md:h-96 w-full object-cover"
               />
             </div>
           </div>
