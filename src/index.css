@@ -1,5 +1,5 @@
 @import url(
-  "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+  "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
 );
 
 @tailwind base;
@@ -7,6 +7,12 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body,
+  #root {
+    font-family: "Manrope", sans-serif;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -15,7 +21,6 @@
     margin: 0;
     background: #ffffff;
     color: #161616;
-    font-family: "Manrope", sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
@@ -25,9 +30,28 @@
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  p,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label {
     font-family: "Manrope", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     letter-spacing: -0.025em;
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
   }
 
   ::selection {
