@@ -10,6 +10,7 @@ import {
   Newspaper,
   ShieldCheck,
 } from "lucide-react";
+
 import {
   companyFacts,
   companyOverview,
@@ -55,6 +56,7 @@ const resourceIcons = {
 export default function PressPage() {
   return (
     <main className="overflow-hidden bg-white">
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#E8EEE9] bg-[#F7FAF7] pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-44">
         <div className="absolute -right-20 top-12 h-80 w-80 rounded-full bg-[#DDF5E1] blur-3xl" />
         <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#F2F7D9] blur-3xl" />
@@ -76,7 +78,7 @@ export default function PressPage() {
 
             <motion.h1
               variants={fadeUp}
-              className="font-['Fraunces'] text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
+              className="font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
             >
               News, media resources, and company information
             </motion.h1>
@@ -85,13 +87,14 @@ export default function PressPage() {
               variants={fadeUp}
               className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#59635B] sm:text-lg"
             >
-              Find company information, media resources, brand
-              guidelines, and press contact details for Getvia.
+              Find company information, media resources, brand guidelines,
+              and press contact details for Getvia.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
+      {/* Company overview */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-12">
           <motion.div
@@ -104,7 +107,7 @@ export default function PressPage() {
               Company overview
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               {companyOverview.title}
             </h2>
           </motion.div>
@@ -131,6 +134,7 @@ export default function PressPage() {
         </div>
       </section>
 
+      {/* Media resources */}
       <section className="bg-[#F7FAF7] py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
@@ -138,7 +142,7 @@ export default function PressPage() {
               Media resources
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               Resources for journalists and media teams
             </h2>
           </div>
@@ -151,8 +155,7 @@ export default function PressPage() {
             className="mt-12 grid gap-6 md:grid-cols-2"
           >
             {mediaResources.map((resource) => {
-              const Icon =
-                resourceIcons[resource.title] || FileText;
+              const Icon = resourceIcons[resource.title] || FileText;
               const isAvailable = resource.status === "Available";
 
               return (
@@ -177,7 +180,7 @@ export default function PressPage() {
                     </span>
                   </div>
 
-                  <h3 className="mt-5 font-['Fraunces'] text-2xl font-semibold text-[#172019]">
+                  <h3 className="mt-5 font-display text-2xl font-semibold text-[#172019]">
                     {resource.title}
                   </h3>
 
@@ -206,6 +209,7 @@ export default function PressPage() {
         </div>
       </section>
 
+      {/* Company facts */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
@@ -213,14 +217,13 @@ export default function PressPage() {
               Company facts
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               Verified information will appear here
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#667068]">
               This section intentionally avoids publishing unverified
-              statistics, leadership information, locations, or company
-              claims.
+              statistics, leadership information, locations, or company claims.
             </p>
           </div>
 
@@ -250,6 +253,7 @@ export default function PressPage() {
         </div>
       </section>
 
+      {/* Press releases */}
       <section className="bg-[#F7FAF7] py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -258,7 +262,7 @@ export default function PressPage() {
                 Press releases
               </p>
 
-              <h2 className="mt-3 font-['Fraunces'] text-3xl font-semibold text-[#172019] sm:text-4xl">
+              <h2 className="mt-3 font-display text-3xl font-semibold text-[#172019] sm:text-4xl">
                 Official announcements
               </h2>
             </div>
@@ -283,19 +287,20 @@ export default function PressPage() {
                 <Newspaper size={24} />
               </div>
 
-              <h3 className="mt-6 font-['Fraunces'] text-2xl font-semibold text-[#172019]">
+              <h3 className="mt-6 font-display text-2xl font-semibold text-[#172019]">
                 No press releases published
               </h3>
 
               <p className="mx-auto mt-3 max-w-md leading-7 text-[#69736B]">
-                Official announcements will be added here when verified
-                and approved for publication.
+                Official announcements will be added here when verified and
+                approved for publication.
               </p>
             </div>
           )}
         </div>
       </section>
 
+      {/* Logo usage and media contact */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
           <div className="rounded-[28px] border border-[#E1E8E2] bg-white p-7 sm:p-8">
@@ -303,7 +308,7 @@ export default function PressPage() {
               <ShieldCheck size={22} />
             </div>
 
-            <h2 className="mt-5 font-['Fraunces'] text-3xl font-semibold text-[#172019]">
+            <h2 className="mt-5 font-display text-3xl font-semibold text-[#172019]">
               Logo usage guidelines
             </h2>
 
@@ -328,13 +333,13 @@ export default function PressPage() {
               <Mail size={22} />
             </div>
 
-            <h2 className="mt-5 font-['Fraunces'] text-3xl font-semibold">
+            <h2 className="mt-5 font-display text-3xl font-semibold">
               Media contact
             </h2>
 
             <p className="mt-4 leading-8 text-[#D1DDD3]">
-              Contact the Getvia media team for press enquiries,
-              interviews, and approved company information.
+              Contact the Getvia media team for press enquiries, interviews,
+              and approved company information.
             </p>
 
             <div className="mt-7 space-y-3 text-sm text-[#D4DFD6]">
@@ -361,6 +366,7 @@ export default function PressPage() {
         </div>
       </section>
 
+      {/* Press FAQ */}
       <section className="bg-[#F7FAF7] py-20 sm:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
           <div>
@@ -368,7 +374,7 @@ export default function PressPage() {
               Press FAQ
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               Common media questions
             </h2>
           </div>
@@ -392,10 +398,11 @@ export default function PressPage() {
         </div>
       </section>
 
+      {/* Publication notes */}
       <section className="bg-[#FFF9E8] py-12">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="rounded-[24px] border border-[#F0DFA7] p-6">
-            <h2 className="font-['Fraunces'] text-2xl font-semibold text-[#5D4910]">
+            <h2 className="font-display text-2xl font-semibold text-[#5D4910]">
               Publication notes
             </h2>
 
