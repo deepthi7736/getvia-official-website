@@ -1,58 +1,36 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+  ArrowUp,
+  Check,
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
-  ArrowUp,
-  Check,
   X,
 } from "lucide-react";
 
 import logo from "../assets/logo.png";
 import { supabase } from "../lib/supabase";
 
-const COLUMNS = [
+const FOOTER_COLUMNS = [
   {
-    title: "Products",
+    title: "Platform",
     links: [
       {
-        label: "Business discovery",
+        label: "Business Discovery",
         href: "/platform",
       },
       {
-        label: "Business profiles",
+        label: "Business Profiles",
         href: "/features",
       },
       {
-        label: "Verified badge",
+        label: "Verified Businesses",
         href: "/verification",
       },
       {
-        label: "Getvia for maps",
-        href: "/technology",
-      },
-    ],
-  },
-  {
-    title: "Solutions",
-    links: [
-      {
-        label: "For restaurants",
-        href: "/industries",
-      },
-      {
-        label: "For healthcare",
-        href: "/industries",
-      },
-      {
-        label: "For retail",
-        href: "/industries",
-      },
-      {
-        label: "For services",
-        href: "/industries",
+        label: "List Your Business",
+        href: "/list-your-business",
       },
     ],
   },
@@ -60,24 +38,20 @@ const COLUMNS = [
     title: "Resources",
     links: [
       {
-        label: "Resources",
-        href: "/resources",
-      },
-      {
-        label: "Help center",
+        label: "Help Center",
         href: "/help-center",
       },
       {
-        label: "Case studies",
-        href: "/case-studies",
+        label: "Support",
+        href: "/support",
       },
       {
         label: "Blog",
         href: "/blog",
       },
       {
-        label: "Support",
-        href: "/support",
+        label: "FAQ",
+        href: "/faq",
       },
     ],
   },
@@ -93,18 +67,28 @@ const COLUMNS = [
         href: "/careers",
       },
       {
-        label: "Partners",
-        href: "/partners",
-      },
-      {
-        label: "Press",
-        href: "/press",
-      },
-      {
         label: "Contact",
         href: "/contact",
       },
     ],
+  },
+];
+
+const SOCIAL_LINKS = [
+  {
+    label: "Getvia on Facebook",
+    href: "https://www.facebook.com/",
+    icon: Facebook,
+  },
+  {
+    label: "Getvia on Instagram",
+    href: "https://www.instagram.com/",
+    icon: Instagram,
+  },
+  {
+    label: "Getvia on LinkedIn",
+    href: "https://www.linkedin.com/",
+    icon: Linkedin,
   },
 ];
 
@@ -156,6 +140,17 @@ export default function Footer() {
     setEmail("");
   };
 
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+
+    if (
+      status !== "idle" &&
+      status !== "submitting"
+    ) {
+      setStatus("idle");
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -164,154 +159,144 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-[#DCE5DD] bg-[#F3FBF4] pt-20 text-[#141414]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-2 gap-10 border-b border-[#DDE5DE] pb-16 sm:grid-cols-3 lg:grid-cols-6">
-          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
+    <footer className="border-t border-[#DCE5DD] bg-[#F3FBF4] text-[#141414]">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-12 border-b border-[#DDE5DE] py-14 sm:py-16 lg:grid-cols-[1.4fr_2fr] lg:gap-20 lg:py-20">
+          {/* Brand and newsletter */}
+          <div>
             <Link
               to="/"
-              className={`inline-flex items-center gap-2.5 ${focusRing}`}
+              className={`inline-flex items-center gap-3 ${focusRing}`}
             >
               <img
                 src={logo}
                 alt="Getvia"
-                className="h-8 w-8 object-contain"
+                className="h-9 w-9 object-contain"
               />
 
-              <span className="font-display text-2xl font-semibold text-[#141414]">
+              <span className="font-display text-2xl font-semibold tracking-[-0.02em] text-[#141414]">
                 Getvia
               </span>
             </Link>
 
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#646464]">
-              The route to every trusted business near you.
-              Verified listings, honest search, and growth tools
-              for local business owners.
+            <p className="mt-5 max-w-sm text-sm leading-7 text-[#646464]">
+              Discover trusted local businesses and
+              professionals, while helping business
+              owners build a stronger digital presence.
             </p>
 
-            <form
-              className="mt-6 flex max-w-xs gap-2 rounded-full border border-[#DDE5DE] bg-white p-1"
-              onSubmit={handleSubscribe}
-              noValidate
-            >
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email address
-              </label>
-
-              <input
-                id="newsletter-email"
-                type="email"
-                value={email}
-                onChange={(event) => {
-                  setEmail(event.target.value);
-
-                  if (
-                    status !== "idle" &&
-                    status !== "submitting"
-                  ) {
-                    setStatus("idle");
-                  }
-                }}
-                placeholder="you@email.com"
-                className="w-full rounded-full bg-transparent px-3 py-2 font-body text-sm text-[#141414] placeholder:text-[#858585] outline-none"
-              />
-
-              <button
-                type="submit"
-                disabled={status === "submitting"}
-                className="shrink-0 rounded-full bg-[#007A1F] px-4 py-2 font-body text-sm font-medium text-white transition-colors hover:bg-[#006619] disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {status === "submitting" ? "Joining..." : "Join"}
-              </button>
-            </form>
-
-            {status === "success" && (
-              <p className="mt-2 flex items-center gap-1 text-xs text-[#007A1F]">
-                <Check size={13} />
-                You&apos;re subscribed. Welcome aboard.
+            <div className="mt-7">
+              <p className="text-sm font-semibold text-[#242C26]">
+                Stay updated with Getvia
               </p>
-            )}
 
-            {status === "duplicate" && (
-              <p className="mt-2 text-xs text-[#646464]">
-                That email is already subscribed.
+              <p className="mt-1 text-xs leading-6 text-[#737D75]">
+                Receive product updates, helpful guides,
+                and platform news.
               </p>
-            )}
 
-            {status === "error" && (
-              <p className="mt-2 flex items-center gap-1 text-xs text-red-600">
-                <X size={13} />
-                Please enter a valid email address.
-              </p>
-            )}
-
-            <div className="mt-6 flex gap-4">
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Getvia on Facebook"
-                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              <form
+                onSubmit={handleSubscribe}
+                noValidate
+                className="mt-4 flex max-w-md gap-2 rounded-2xl border border-[#D7E1D8] bg-white p-1.5 shadow-sm"
               >
-                <Facebook size={18} />
-              </a>
+                <label
+                  htmlFor="newsletter-email"
+                  className="sr-only"
+                >
+                  Email address
+                </label>
 
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Getvia on Instagram"
-                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
-              >
-                <Instagram size={18} />
-              </a>
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Enter your email"
+                  autoComplete="email"
+                  className="min-w-0 flex-1 rounded-xl bg-transparent px-3 py-2.5 font-body text-sm text-[#141414] outline-none placeholder:text-[#929A94]"
+                />
 
-              <a
-                href="https://twitter.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Getvia on Twitter"
-                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
-              >
-                <Twitter size={18} />
-              </a>
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="shrink-0 rounded-xl bg-[#007A1F] px-5 py-2.5 font-body text-sm font-semibold text-white transition hover:bg-[#006619] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {status === "submitting"
+                    ? "Subscribing..."
+                    : "Subscribe"}
+                </button>
+              </form>
 
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Getvia on LinkedIn"
-                className={`text-[#858585] transition-colors hover:text-[#007A1F] ${focusRing}`}
-              >
-                <Linkedin size={18} />
-              </a>
+              {status === "success" && (
+                <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#007A1F]">
+                  <Check size={14} />
+                  You&apos;re subscribed. Welcome to Getvia.
+                </p>
+              )}
+
+              {status === "duplicate" && (
+                <p className="mt-3 text-xs font-medium text-[#646464]">
+                  This email is already subscribed.
+                </p>
+              )}
+
+              {status === "error" && (
+                <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-red-600">
+                  <X size={14} />
+                  Please enter a valid email address.
+                </p>
+              )}
+            </div>
+
+            <div className="mt-7 flex items-center gap-4">
+              {SOCIAL_LINKS.map((social) => {
+                const Icon = social.icon;
+
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D7E1D8] bg-white text-[#747D76] transition hover:border-[#9CC6A4] hover:text-[#007A1F] ${focusRing}`}
+                  >
+                    <Icon size={17} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {COLUMNS.map((column) => (
-            <div key={column.title}>
-              <p className="font-mono text-xs uppercase tracking-wider text-[#858585]">
-                {column.title}
-              </p>
+          {/* Navigation */}
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
+            {FOOTER_COLUMNS.map((column) => (
+              <div key={column.title}>
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[#707A72]">
+                  {column.title}
+                </p>
 
-              <ul className="mt-4 space-y-3">
-                {column.links.map((item) => (
-                  <li key={`${column.title}-${item.label}`}>
-                    <Link
-                      to={item.href}
-                      className={`text-sm text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                <ul className="mt-5 space-y-3.5">
+                  {column.links.map((item) => (
+                    <li key={`${column.title}-${item.label}`}>
+                      <Link
+                        to={item.href}
+                        className={`text-sm text-[#59625B] transition hover:text-[#007A1F] ${focusRing}`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-center text-xs text-[#858585] sm:text-left">
+        {/* Footer bottom */}
+        <div className="flex flex-col gap-6 py-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-center text-xs text-[#7B847D] sm:text-left">
             © {new Date().getFullYear()} Getvia. All rights
             reserved.
           </p>
@@ -319,39 +304,32 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:justify-end">
             <Link
               to="/privacy-policy"
-              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              className={`text-xs font-medium text-[#646D66] transition hover:text-[#007A1F] ${focusRing}`}
             >
               Privacy Policy
             </Link>
 
             <Link
               to="/terms-of-service"
-              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              className={`text-xs font-medium text-[#646D66] transition hover:text-[#007A1F] ${focusRing}`}
             >
               Terms of Service
             </Link>
 
             <Link
               to="/cookie-policy"
-              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              className={`text-xs font-medium text-[#646D66] transition hover:text-[#007A1F] ${focusRing}`}
             >
               Cookie Policy
-            </Link>
-
-            <Link
-              to="/refund-policy"
-              className={`text-xs font-medium text-[#646464] transition-colors hover:text-[#007A1F] ${focusRing}`}
-            >
-              Refund Policy
             </Link>
 
             <button
               type="button"
               onClick={scrollToTop}
               aria-label="Back to top"
-              className={`flex h-8 w-8 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#646464] transition-colors hover:border-[#007A1F] hover:text-[#007A1F] ${focusRing}`}
+              className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D7E1D8] bg-white text-[#646D66] transition hover:border-[#007A1F] hover:text-[#007A1F] ${focusRing}`}
             >
-              <ArrowUp size={14} />
+              <ArrowUp size={15} />
             </button>
           </div>
         </div>
