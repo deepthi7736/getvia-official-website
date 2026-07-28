@@ -1,0 +1,395 @@
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BadgeCheck,
+  BarChart3,
+  BriefcaseBusiness,
+  Building2,
+  CheckCircle2,
+  Compass,
+  HeartPulse,
+  MapPin,
+  Search,
+  ShieldCheck,
+  ShoppingBag,
+  Sparkles,
+  Store,
+  Users,
+} from "lucide-react";
+
+const audienceSolutions = [
+  {
+    icon: Building2,
+    title: "Solutions for Businesses",
+    description:
+      "Build a trusted digital presence, reach more customers, and manage your business information from one place.",
+    features: [
+      "Professional business profile",
+      "Local discovery and visibility",
+      "Customer enquiries",
+      "Verification support",
+      "Performance insights",
+    ],
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: "Solutions for Professionals",
+    description:
+      "Showcase your skills, services, experience, and portfolio through a professional Getvia profile.",
+    features: [
+      "Personal professional profile",
+      "Portfolio and service showcase",
+      "Direct customer enquiries",
+      "Profile verification",
+      "Personal brand visibility",
+    ],
+  },
+  {
+    icon: Users,
+    title: "Solutions for Customers",
+    description:
+      "Discover trusted businesses and professionals, compare options, and connect with the right service provider.",
+    features: [
+      "Trusted business discovery",
+      "Verified profile information",
+      "Direct contact options",
+      "Location and direction support",
+      "Clear service information",
+    ],
+  },
+];
+
+const platformSolutions = [
+  {
+    icon: Search,
+    title: "Business Discovery",
+    description:
+      "Help customers find relevant businesses and professionals based on category, location, and service.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Verified Profiles",
+    description:
+      "Improve customer confidence through complete profiles and business verification.",
+  },
+  {
+    icon: MapPin,
+    title: "Location Visibility",
+    description:
+      "Make it easier for customers to discover your location and get directions.",
+  },
+  {
+    icon: BarChart3,
+    title: "Business Insights",
+    description:
+      "Understand profile activity, customer interest, enquiries, and business performance.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Trust and Transparency",
+    description:
+      "Present accurate business information and build stronger customer trust.",
+  },
+  {
+    icon: Compass,
+    title: "Customer Connections",
+    description:
+      "Allow customers to call, message, visit, or send enquiries directly from your profile.",
+  },
+];
+
+const industries = [
+  {
+    icon: Store,
+    title: "Retail",
+  },
+  {
+    icon: HeartPulse,
+    title: "Healthcare",
+  },
+  {
+    icon: Sparkles,
+    title: "Beauty & Wellness",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Shopping",
+  },
+  {
+    icon: Building2,
+    title: "Real Estate",
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: "Professional Services",
+  },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+export default function SolutionsPage({ onBookDemo }) {
+  return (
+    <main className="overflow-hidden bg-white text-[#141414]">
+      {/* Hero */}
+      <section className="relative border-b border-[#E3E9E4] bg-[#F5FBF6] pb-20 pt-32 md:pb-24 md:pt-40">
+        <div className="absolute right-[-140px] top-10 h-[360px] w-[360px] rounded-full bg-[#DFF4E3] blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            className="max-w-4xl"
+          >
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
+              Getvia Solutions
+            </p>
+
+            <h1 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-[#141414] sm:text-5xl lg:text-7xl">
+              Solutions built for businesses, professionals, and customers.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#626A64] sm:text-lg">
+              Getvia brings business discovery, trusted profiles,
+              verification, customer connections, and growth tools together
+              in one platform.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => onBookDemo?.()}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#006619]"
+              >
+                Book a Demo
+                <ArrowRight size={17} />
+              </button>
+
+              <a
+                href="#solutions"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-[#CAD8CC] bg-white px-6 py-3.5 text-sm font-semibold text-[#253026] transition hover:border-[#007A1F] hover:text-[#007A1F]"
+              >
+                Explore Solutions
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Audience solutions */}
+      <section
+        id="solutions"
+        className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-20 lg:px-12"
+      >
+        <div className="max-w-2xl">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
+            Who We Help
+          </p>
+
+          <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl">
+            One platform for every side of local business discovery.
+          </h2>
+
+          <p className="mt-5 text-base leading-7 text-[#646C66]">
+            Getvia provides dedicated solutions for businesses,
+            professionals, and customers.
+          </p>
+        </div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-12 grid gap-6 lg:grid-cols-3"
+        >
+          {audienceSolutions.map((solution) => {
+            const Icon = solution.icon;
+
+            return (
+              <motion.article
+                key={solution.title}
+                variants={itemVariants}
+                className="rounded-3xl border border-[#DFE7E0] bg-white p-7 shadow-[0_12px_35px_rgba(24,64,32,0.05)]"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF7EC] text-[#007A1F]">
+                  <Icon size={23} />
+                </div>
+
+                <h3 className="mt-6 font-display text-2xl font-semibold tracking-[-0.02em]">
+                  {solution.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-[#68716A]">
+                  {solution.description}
+                </p>
+
+                <ul className="mt-6 space-y-3">
+                  {solution.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-3 text-sm text-[#4F5851]"
+                    >
+                      <CheckCircle2
+                        size={17}
+                        className="mt-0.5 shrink-0 text-[#007A1F]"
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            );
+          })}
+        </motion.div>
+      </section>
+
+      {/* Platform capabilities */}
+      <section className="border-y border-[#E3E9E4] bg-[#F8FAF8]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-20 lg:px-12">
+          <div className="max-w-2xl">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
+              Platform Capabilities
+            </p>
+
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl">
+              Everything needed to build visibility and trust.
+            </h2>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {platformSolutions.map((solution) => {
+              const Icon = solution.icon;
+
+              return (
+                <motion.article
+                  key={solution.title}
+                  variants={itemVariants}
+                  className="rounded-2xl border border-[#DFE7E0] bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <Icon size={22} className="text-[#007A1F]" />
+
+                  <h3 className="mt-5 text-lg font-semibold text-[#222A24]">
+                    {solution.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-[#69716B]">
+                    {solution.description}
+                  </p>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Industries */}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-20 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div>
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
+              Industries
+            </p>
+
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl">
+              Designed for different industries and service categories.
+            </h2>
+
+            <p className="mt-5 max-w-xl text-base leading-8 text-[#68716A]">
+              From local retailers to healthcare providers and independent
+              professionals, Getvia helps different businesses improve their
+              digital presence and customer reach.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {industries.map((industry) => {
+              const Icon = industry.icon;
+
+              return (
+                <div
+                  key={industry.title}
+                  className="rounded-2xl border border-[#DFE7E0] bg-[#F8FBF8] p-5"
+                >
+                  <Icon size={21} className="text-[#007A1F]" />
+
+                  <p className="mt-4 text-sm font-semibold text-[#303832]">
+                    {industry.title}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="px-5 pb-16 sm:px-8 md:pb-20 lg:px-12">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[#073F18] px-6 py-12 text-white sm:px-10 md:py-16 lg:px-16">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#BDE6C5]">
+                Grow with Getvia
+              </p>
+
+              <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl">
+                Ready to build a stronger digital presence?
+              </h2>
+
+              <p className="mt-5 max-w-xl text-sm leading-7 text-[#D4E7D8] sm:text-base">
+                Discover how Getvia can help your business or professional
+                profile reach more customers and build greater trust.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <button
+                type="button"
+                onClick={() => onBookDemo?.()}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#073F18] transition hover:bg-[#EAF7EC]"
+              >
+                Book a Demo
+                <ArrowRight size={17} />
+              </button>
+
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                Contact Getvia
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
