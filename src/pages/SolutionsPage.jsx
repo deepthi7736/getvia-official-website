@@ -156,11 +156,9 @@ export default function SolutionsPage({ onBookDemo }) {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#E3E9E4] bg-gradient-to-br from-[#F8FCF8] via-[#F4FAF5] to-[#EAF7EC]">
         <div className="absolute -right-40 top-10 h-[420px] w-[420px] rounded-full bg-[#DFF4E3] blur-3xl" />
-
         <div className="absolute -left-32 bottom-0 h-[300px] w-[300px] rounded-full bg-white/70 blur-3xl" />
 
-        <div className="relative mx-auto grid min-h-[650px] max-w-7xl items-center gap-14 px-5 py-20 sm:px-8 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-12">
-          {/* Hero content */}
+        <div className="relative mx-auto grid min-h-[610px] max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 md:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-12">
           <motion.div
             initial={{
               opacity: 0,
@@ -180,17 +178,17 @@ export default function SolutionsPage({ onBookDemo }) {
               Getvia Solutions
             </p>
 
-            <h1 className="mt-5 max-w-3xl font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.045em] text-[#141414] sm:text-[52px] md:text-[60px] lg:text-[66px]">
+            <h1 className="mt-5 max-w-[760px] font-display text-[36px] font-semibold leading-[1.06] tracking-[-0.04em] text-[#141414] sm:text-[42px] md:text-[48px] lg:text-[54px]">
               Solutions built for businesses, professionals, and customers.
             </h1>
 
-            <p className="mt-7 max-w-2xl font-body text-base leading-8 text-[#626A64] sm:text-lg">
+            <p className="mt-6 max-w-xl font-body text-base leading-8 text-[#626A64] sm:text-lg">
               Getvia brings business discovery, trusted profiles,
               verification, customer connections, and growth tools together
               in one platform.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
                 onClick={() => onBookDemo?.()}
@@ -209,7 +207,6 @@ export default function SolutionsPage({ onBookDemo }) {
             </div>
           </motion.div>
 
-          {/* Hero visual */}
           <motion.div
             initial={{
               opacity: 0,
@@ -224,29 +221,29 @@ export default function SolutionsPage({ onBookDemo }) {
               duration: 0.7,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="relative hidden min-h-[470px] lg:block"
+            className="relative hidden min-h-[430px] lg:block"
           >
             <div className="absolute inset-0 rounded-[40px] bg-[#CDECD4]/60 blur-3xl" />
 
-            <div className="absolute right-0 top-1/2 w-full max-w-[470px] -translate-y-1/2 rounded-[32px] border border-white/80 bg-white/80 p-6 shadow-[0_30px_80px_rgba(18,70,30,0.14)] backdrop-blur-xl">
-              <div className="rounded-[24px] border border-[#E1EAE2] bg-white p-5">
+            <div className="absolute right-0 top-1/2 w-full max-w-[440px] -translate-y-1/2 rounded-[30px] border border-white/80 bg-white/80 p-5 shadow-[0_30px_80px_rgba(18,70,30,0.14)] backdrop-blur-xl">
+              <div className="rounded-[22px] border border-[#E1EAE2] bg-white p-5">
                 <div className="flex items-start justify-between gap-5">
                   <div>
                     <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#007A1F]">
                       Getvia Platform
                     </p>
 
-                    <h2 className="mt-2 max-w-[290px] font-display text-2xl font-semibold leading-tight tracking-[-0.03em] text-[#151815]">
+                    <h2 className="mt-2 max-w-[280px] font-display text-[22px] font-semibold leading-tight tracking-[-0.03em] text-[#151815]">
                       Better visibility. Stronger trust. More connections.
                     </h2>
                   </div>
 
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#007A1F] font-display text-xl font-bold text-white">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#007A1F] font-display text-lg font-bold text-white">
                     G
                   </div>
                 </div>
 
-                <div className="mt-6 grid gap-3">
+                <div className="mt-5 grid gap-3">
                   <div className="rounded-2xl border border-[#E7ECE7] bg-[#FAFCFA] p-4">
                     <div className="flex items-start gap-3">
                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EAF7EC] text-[#007A1F]">
@@ -385,7 +382,6 @@ export default function SolutionsPage({ onBookDemo }) {
                         size={17}
                         className="mt-0.5 shrink-0 text-[#007A1F]"
                       />
-
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -507,7 +503,6 @@ export default function SolutionsPage({ onBookDemo }) {
       <section className="px-5 pb-16 sm:px-8 md:pb-20 lg:px-12">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[#073F18] px-6 py-12 text-white sm:px-10 md:py-16 lg:px-16">
           <div className="absolute -right-20 -top-24 h-[280px] w-[280px] rounded-full bg-[#14943A]/30 blur-3xl" />
-
           <div className="absolute -bottom-24 left-1/3 h-[240px] w-[240px] rounded-full bg-[#0A6D2A]/40 blur-3xl" />
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
