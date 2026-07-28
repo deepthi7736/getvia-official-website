@@ -242,9 +242,11 @@ const fadeUp = {
 
 export default function TermsOfServicePage() {
   return (
-    <main className="overflow-hidden bg-white">
-      <section className="relative overflow-hidden border-b border-[#E5ECE6] bg-[#F7FAF7] pb-16 pt-32 sm:pt-36 lg:pb-20 lg:pt-44">
+    <main className="overflow-hidden bg-white font-body">
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-[#E5ECE6] bg-[#F7FAF7] pb-14 pt-28 sm:pt-32 lg:pb-16 lg:pt-36">
         <div className="absolute -right-24 top-12 h-80 w-80 rounded-full bg-[#DDF5E1] blur-3xl" />
+
         <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#F2F7D9] blur-3xl" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
@@ -267,13 +269,13 @@ export default function TermsOfServicePage() {
               Legal information
             </div>
 
-            <h1 className="mt-6 font-['Fraunces'] text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl">
+            <h1 className="mt-6 font-body text-[38px] font-semibold leading-[1.06] tracking-[-0.04em] text-[#172019] sm:text-[44px] md:text-[50px] lg:text-[56px]">
               Terms of Service
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#59635B] sm:text-lg">
-              These terms explain the rules and responsibilities that
-              apply when you access or use Getvia.
+              These terms explain the rules and responsibilities that apply
+              when you access or use Getvia.
             </p>
 
             <p className="mt-5 text-sm font-medium text-[#768078]">
@@ -283,6 +285,7 @@ export default function TermsOfServicePage() {
         </div>
       </section>
 
+      {/* Summary cards */}
       <section className="border-b border-[#E8EEE9] bg-white py-8">
         <div className="mx-auto grid w-full max-w-7xl gap-4 px-5 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:px-12">
           {[
@@ -312,7 +315,7 @@ export default function TermsOfServicePage() {
             return (
               <div
                 key={item.title}
-                className="rounded-2xl border border-[#E1E8E2] bg-[#FAFCFA] p-5"
+                className="rounded-2xl border border-[#E1E8E2] bg-[#FAFCFA] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#C9DDCC] hover:bg-white hover:shadow-md"
               >
                 <Icon size={20} className="text-[#007A1F]" />
 
@@ -329,8 +332,10 @@ export default function TermsOfServicePage() {
         </div>
       </section>
 
+      {/* Legal content */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[280px_1fr] lg:px-12">
+          {/* Table of contents */}
           <aside className="h-fit lg:sticky lg:top-28">
             <div className="rounded-[24px] border border-[#E1E8E2] bg-[#FAFCFA] p-5">
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
@@ -351,14 +356,14 @@ export default function TermsOfServicePage() {
             </div>
           </aside>
 
+          {/* Terms */}
           <article className="min-w-0">
             <div className="mb-8 rounded-[24px] border border-[#F0DFA7] bg-[#FFF9E8] p-5 text-sm leading-7 text-[#715A14]">
-              <strong>Important:</strong> This is a general website
-              template. Before official publication, replace all
-              placeholder details and have the document reviewed based
-              on Getvia&apos;s registered entity, actual services,
-              payment structure, refund process, jurisdiction, and
-              business operations.
+              <strong>Important:</strong> This is a general website template.
+              Before official publication, replace all placeholder details and
+              have the document reviewed based on Getvia&apos;s registered
+              entity, actual services, payment structure, refund process,
+              jurisdiction, and business operations.
             </div>
 
             <div className="space-y-12">
@@ -368,7 +373,7 @@ export default function TermsOfServicePage() {
                   id={section.id}
                   className="scroll-mt-32 border-b border-[#EBEFEC] pb-10 last:border-none"
                 >
-                  <h2 className="font-['Fraunces'] text-2xl font-semibold text-[#172019] sm:text-3xl">
+                  <h2 className="font-body text-2xl font-semibold tracking-[-0.025em] text-[#172019] sm:text-3xl">
                     {section.title}
                   </h2>
 
@@ -395,6 +400,7 @@ export default function TermsOfServicePage() {
                               className="flex gap-3 text-sm leading-7 text-[#626D64] sm:text-base"
                             >
                               <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#007A1F]" />
+
                               <span>{item}</span>
                             </li>
                           ))}
@@ -441,10 +447,9 @@ export default function TermsOfServicePage() {
                         </p>
 
                         <p className="mt-2 text-sm leading-7 text-[#667068]">
-                          Add Getvia&apos;s official registered legal
-                          entity name, registration details, postal
-                          address, state, country, and applicable
-                          jurisdiction.
+                          Add Getvia&apos;s official registered legal entity
+                          name, registration details, postal address, state,
+                          country, and applicable jurisdiction.
                         </p>
                       </div>
                     </div>
@@ -456,10 +461,11 @@ export default function TermsOfServicePage() {
         </div>
       </section>
 
+      {/* Bottom CTA */}
       <section className="bg-[#F7FAF7] py-14">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-6 px-5 text-center sm:px-8 md:flex-row md:text-left lg:px-12">
           <div>
-            <h2 className="font-['Fraunces'] text-2xl font-semibold text-[#172019]">
+            <h2 className="font-body text-2xl font-semibold tracking-[-0.025em] text-[#172019]">
               Have a question about these terms?
             </h2>
 
@@ -470,7 +476,7 @@ export default function TermsOfServicePage() {
 
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-xl bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#00661A]"
+            className="inline-flex items-center justify-center rounded-xl bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#00661A] hover:shadow-lg"
           >
             Contact Getvia
           </Link>
