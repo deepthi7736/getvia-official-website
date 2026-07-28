@@ -1,30 +1,69 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+
 import logo from "../assets/logo.png";
 
 const LINKS = [
-  { type: "route", href: "/platform", label: "Platform" },
-  { type: "anchor", href: "/#platform", label: "Solutions" },
-  { type: "route", href: "/about", label: "About" },
-  { type: "route", href: "/faq", label: "Resources" },
+  {
+    type: "route",
+    href: "/platform",
+    label: "Platform",
+  },
+  {
+    type: "route",
+    href: "/solutions",
+    label: "Solutions",
+  },
+  {
+    type: "route",
+    href: "/about",
+    label: "About",
+  },
+  {
+    type: "route",
+    href: "/resources",
+    label: "Resources",
+  },
 ];
 
 const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2 rounded";
+  "rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A1F] focus-visible:ring-offset-2";
 
-function NavLink({ item, onClick, className }) {
+function NavLink({
+  item,
+  onClick,
+  className = "",
+  activeClassName = "",
+}) {
+  const location = useLocation();
+
+  const isActive =
+    item.type === "route" &&
+    location.pathname === item.href;
+
   if (item.type === "route") {
     return (
-      <Link to={item.href} onClick={onClick} className={className}>
+      <Link
+        to={item.href}
+        onClick={onClick}
+        aria-current={isActive ? "page" : undefined}
+        className={`${className} ${
+          isActive ? activeClassName : ""
+        }`}
+      >
         {item.label}
       </Link>
     );
   }
 
   return (
-    <a href={item.href} onClick={onClick} className={className}>
+    <a
+      href={item.href}
+      onClick={onClick}
+      className={className}
+    >
       {item.label}
     </a>
   );
@@ -34,17 +73,61 @@ export default function Navbar({ onBookDemo }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+  const location = useLocation();
 
-    window.addEventListener("scroll", onScroll, {
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+
+    window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
-    onScroll();
+    handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!open) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener(
+      "keydown",
+      handleEscape
+    );
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleEscape
+      );
     };
   }, []);
 
@@ -53,43 +136,59 @@ export default function Navbar({ onBookDemo }) {
     onBookDemo?.();
   };
 
+  const closeMenu = () => {
+    setOpen(false);
+  };
+
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "border-[#E1E5E1] bg-white/80 shadow-sm backdrop-blur-xl"
-          : "border-transparent bg-white/50 backdrop-blur-xl"
+          ? "border-[#E1E5E1] bg-white/90 shadow-[0_8px_30px_rgba(15,45,20,0.06)] backdrop-blur-xl"
+          : "border-transparent bg-white/70 backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
+      <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        {/* Logo */}
         <Link
           to="/"
-          onClick={() => setOpen(false)}
-          className="flex items-center gap-2.5"
+          onClick={closeMenu}
+          aria-label="Go to Getvia homepage"
+          className={`flex items-center gap-2.5 ${focusRing}`}
         >
-          <img src={logo} alt="Getvia" className="h-8 w-8" />
+          <img
+            src={logo}
+            alt="Getvia"
+            className="h-8 w-8 object-contain"
+          />
 
-          <span className="font-display text-xl font-semibold text-[#141414]">
+          <span className="font-display text-xl font-semibold tracking-[-0.02em] text-[#141414]">
             Getvia
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Desktop navigation */}
+        <nav
+          aria-label="Primary navigation"
+          className="hidden items-center gap-7 md:flex"
+        >
           {LINKS.map((item) => (
             <NavLink
               key={item.href}
               item={item}
-              className={`font-body text-sm text-[#5F625F] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              className={`relative py-2 font-body text-sm font-medium text-[#5F625F] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              activeClassName="text-[#007A1F]"
             />
           ))}
         </nav>
 
+        {/* Desktop actions */}
         <div className="hidden items-center gap-3 md:flex">
           <a
             href="https://getvia.in"
             target="_blank"
             rel="noopener noreferrer"
-            className={`font-body text-sm text-[#5F625F] transition-colors hover:text-[#007A1F] ${focusRing}`}
+            className={`font-body text-sm font-medium text-[#5F625F] transition-colors hover:text-[#007A1F] ${focusRing}`}
           >
             Explore Getvia
           </a>
@@ -104,71 +203,111 @@ export default function Navbar({ onBookDemo }) {
             <motion.span
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              className={`relative flex items-center rounded-full border border-[#007A1F]/30 bg-white px-4 py-2 font-body text-sm font-medium text-[#007A1F] transition-colors group-hover:border-[#007A1F] ${focusRing}`}
+              className={`relative flex items-center rounded-full border border-[#007A1F]/30 bg-white px-4 py-2 font-body text-sm font-semibold text-[#007A1F] transition-colors group-hover:border-[#007A1F] group-hover:bg-[#F5FBF6] ${focusRing}`}
             >
-              Book a demo
+              Book a Demo
             </motion.span>
           </button>
 
           <Link
             to="/list-your-business"
-            className="rounded-full bg-[#007A1F] px-4 py-2 font-body text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-lg"
+            className={`rounded-full bg-[#007A1F] px-4 py-2 font-body text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#006619] hover:shadow-lg ${focusRing}`}
           >
-            List your business
+            List Your Business
           </Link>
         </div>
 
+        {/* Mobile menu button */}
         <button
           type="button"
-          className="text-[#141414] md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={
+            open ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={open}
-          onClick={() => setOpen((current) => !current)}
+          aria-controls="mobile-navigation"
+          onClick={() =>
+            setOpen((current) => !current)
+          }
+          className={`flex h-10 w-10 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#141414] transition hover:border-[#007A1F] hover:text-[#007A1F] md:hidden ${focusRing}`}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? (
+            <X size={22} />
+          ) : (
+            <Menu size={22} />
+          )}
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-[#E1E5E1] bg-white px-6 py-4 md:hidden">
-          <nav className="flex flex-col gap-4">
-            {LINKS.map((item) => (
-              <NavLink
-                key={item.href}
-                item={item}
-                onClick={() => setOpen(false)}
-                className="font-body text-[#5F625F]"
-              />
-            ))}
-
-            <a
-              href="https://getvia.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="font-body text-[#5F625F]"
+      {/* Mobile navigation */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-navigation"
+            initial={{
+              opacity: 0,
+              height: 0,
+            }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+            }}
+            transition={{
+              duration: 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="overflow-hidden border-t border-[#E1E5E1] bg-white md:hidden"
+          >
+            <nav
+              aria-label="Mobile navigation"
+              className="mx-auto flex max-w-7xl flex-col px-5 py-5 sm:px-8"
             >
-              Explore Getvia
-            </a>
+              <div className="flex flex-col">
+                {LINKS.map((item) => (
+                  <NavLink
+                    key={item.href}
+                    item={item}
+                    onClick={closeMenu}
+                    className={`border-b border-[#EEF2EE] py-4 font-body text-base font-medium text-[#4E554F] transition-colors hover:text-[#007A1F] ${focusRing}`}
+                    activeClassName="text-[#007A1F]"
+                  />
+                ))}
+              </div>
 
-            <button
-              type="button"
-              onClick={handleBookDemo}
-              className="rounded-full border border-[#007A1F] px-4 py-2 text-left font-body font-medium text-[#007A1F] transition hover:bg-[#F3FBF4]"
-            >
-              Book a demo
-            </button>
+              <a
+                href="https://getvia.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className={`mt-4 rounded-xl px-1 py-3 font-body text-sm font-medium text-[#5F625F] transition-colors hover:text-[#007A1F] ${focusRing}`}
+              >
+                Explore Getvia
+              </a>
 
-            <Link
-              to="/list-your-business"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-[#007A1F] px-4 py-2 text-center font-body text-sm font-medium text-white"
-            >
-              List your business
-            </Link>
-          </nav>
-        </div>
-      )}
+              <div className="mt-4 grid gap-3">
+                <button
+                  type="button"
+                  onClick={handleBookDemo}
+                  className={`rounded-full border border-[#007A1F] px-5 py-3 text-center font-body text-sm font-semibold text-[#007A1F] transition hover:bg-[#F3FBF4] ${focusRing}`}
+                >
+                  Book a Demo
+                </button>
+
+                <Link
+                  to="/list-your-business"
+                  onClick={closeMenu}
+                  className={`rounded-full bg-[#007A1F] px-5 py-3 text-center font-body text-sm font-semibold text-white transition hover:bg-[#006619] ${focusRing}`}
+                >
+                  List Your Business
+                </Link>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
