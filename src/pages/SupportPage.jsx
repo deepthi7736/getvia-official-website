@@ -44,6 +44,27 @@ const initialForm = {
   message: "",
 };
 
+const supportOptions = [
+  {
+    icon: MessageSquare,
+    title: "General support",
+    description:
+      "Questions about using Getvia, profiles, and platform features.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Verification assistance",
+    description:
+      "Help with pending, rejected, or incomplete verification.",
+  },
+  {
+    icon: Mail,
+    title: "Email support",
+    description:
+      "Use the form to send a detailed support request.",
+  },
+];
+
 export default function SupportPage() {
   const [formData, setFormData] = useState(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,8 +96,10 @@ export default function SupportPage() {
 
   return (
     <main className="overflow-hidden bg-white">
+      {/* Hero section */}
       <section className="relative overflow-hidden border-b border-[#E8EEE9] bg-[#F7FAF7] pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-44">
         <div className="absolute -right-20 top-12 h-80 w-80 rounded-full bg-[#DDF5E1] blur-3xl" />
+
         <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#F1F7D9] blur-3xl" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
@@ -91,12 +114,13 @@ export default function SupportPage() {
               className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-[#CFE4D3] bg-white px-4 py-2 text-sm font-semibold text-[#007A1F]"
             >
               <HelpCircle size={16} />
+
               Getvia Support
             </motion.div>
 
             <motion.h1
               variants={fadeUp}
-              className="font-['Fraunces'] text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
+              className="font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
             >
               We’re here to help
             </motion.h1>
@@ -105,19 +129,24 @@ export default function SupportPage() {
               variants={fadeUp}
               className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#59635B] sm:text-lg"
             >
-              Tell us what you need help with and the Getvia support
-              team will review your request.
+              Tell us what you need help with and the Getvia support team
+              will review your request.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
+      {/* Support content */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-12">
+          {/* Left column */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             variants={staggerContainer}
           >
             <motion.div variants={fadeUp}>
@@ -125,7 +154,7 @@ export default function SupportPage() {
                 Contact support
               </p>
 
-              <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+              <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
                 Get the right help for your issue
               </h2>
 
@@ -140,26 +169,7 @@ export default function SupportPage() {
               variants={staggerContainer}
               className="mt-10 grid gap-5"
             >
-              {[
-                {
-                  icon: MessageSquare,
-                  title: "General support",
-                  description:
-                    "Questions about using Getvia, profiles, and platform features.",
-                },
-                {
-                  icon: CheckCircle2,
-                  title: "Verification assistance",
-                  description:
-                    "Help with pending, rejected, or incomplete verification.",
-                },
-                {
-                  icon: Mail,
-                  title: "Email support",
-                  description:
-                    "Use the form to send a detailed support request.",
-                },
-              ].map((item) => {
+              {supportOptions.map((item) => {
                 const Icon = item.icon;
 
                 return (
@@ -188,7 +198,9 @@ export default function SupportPage() {
               variants={fadeUp}
               className="mt-8 rounded-[24px] bg-[#0D3418] p-6 text-white"
             >
-              <h3 className="text-lg font-bold">Before contacting us</h3>
+              <h3 className="text-lg font-bold">
+                Before contacting us
+              </h3>
 
               <p className="mt-3 text-sm leading-7 text-[#D4DFD6]">
                 Check the Help Center first. You may find an immediate
@@ -200,15 +212,20 @@ export default function SupportPage() {
                 className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:gap-3"
               >
                 Visit Help Center
+
                 <ArrowRight size={16} />
               </Link>
             </motion.div>
           </motion.div>
 
+          {/* Form card */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
             variants={fadeUp}
             className="rounded-[30px] border border-[#E0E8E1] bg-white p-6 shadow-[0_24px_70px_rgba(20,58,29,0.09)] sm:p-8"
           >
@@ -218,18 +235,18 @@ export default function SupportPage() {
                   <CheckCircle2 size={30} />
                 </div>
 
-                <h2 className="mt-6 font-['Fraunces'] text-3xl font-semibold text-[#172019]">
+                <h2 className="mt-6 font-display text-3xl font-semibold text-[#172019]">
                   Request received
                 </h2>
 
                 <p className="mt-4 max-w-md leading-7 text-[#667068]">
-                  Your support request has been recorded in this
-                  temporary form interface.
+                  Your support request has been recorded in this temporary
+                  form interface.
                 </p>
 
                 <p className="mt-3 max-w-md text-sm leading-7 text-[#7A847C]">
-                  Connect this form to Supabase, email, or another
-                  backend before using it for real customer requests.
+                  Connect this form to Supabase, email, or another backend
+                  before using it for real customer requests.
                 </p>
 
                 <button
@@ -247,7 +264,7 @@ export default function SupportPage() {
                     Support form
                   </p>
 
-                  <h2 className="mt-3 font-['Fraunces'] text-3xl font-semibold text-[#172019]">
+                  <h2 className="mt-3 font-display text-3xl font-semibold text-[#172019]">
                     Tell us about your issue
                   </h2>
 
@@ -257,7 +274,10 @@ export default function SupportPage() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label
@@ -275,6 +295,7 @@ export default function SupportPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Enter your name"
+                        autoComplete="name"
                         className="w-full rounded-xl border border-[#DCE5DD] px-4 py-3.5 text-sm text-[#172019] outline-none transition placeholder:text-[#9AA29C] focus:border-[#007A1F] focus:ring-2 focus:ring-[#DDF1E1]"
                       />
                     </div>
@@ -295,6 +316,7 @@ export default function SupportPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Enter your email"
+                        autoComplete="email"
                         className="w-full rounded-xl border border-[#DCE5DD] px-4 py-3.5 text-sm text-[#172019] outline-none transition placeholder:text-[#9AA29C] focus:border-[#007A1F] focus:ring-2 focus:ring-[#DDF1E1]"
                       />
                     </div>
@@ -322,6 +344,7 @@ export default function SupportPage() {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="Enter phone number"
+                          autoComplete="tel"
                           className="w-full rounded-xl border border-[#DCE5DD] py-3.5 pl-11 pr-4 text-sm text-[#172019] outline-none transition placeholder:text-[#9AA29C] focus:border-[#007A1F] focus:ring-2 focus:ring-[#DDF1E1]"
                         />
                       </div>
@@ -401,11 +424,13 @@ export default function SupportPage() {
                     {isSubmitting ? (
                       <>
                         <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+
                         Sending request
                       </>
                     ) : (
                       <>
                         Send support request
+
                         <Send size={17} />
                       </>
                     )}
