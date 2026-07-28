@@ -10,6 +10,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+
 import {
   careersNotice,
   companyValues,
@@ -60,8 +61,10 @@ const principleIcons = [
 export default function CareersPage() {
   return (
     <main className="overflow-hidden bg-white">
+      {/* Hero section */}
       <section className="relative overflow-hidden border-b border-[#E8EEE9] bg-[#F7FAF7] pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-44">
         <div className="absolute -right-20 top-12 h-80 w-80 rounded-full bg-[#DDF5E1] blur-3xl" />
+
         <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#F2F7D9] blur-3xl" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
@@ -76,12 +79,13 @@ export default function CareersPage() {
               className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-[#CFE4D3] bg-white px-4 py-2 text-sm font-semibold text-[#007A1F]"
             >
               <BriefcaseBusiness size={16} />
+
               Careers at Getvia
             </motion.div>
 
             <motion.h1
               variants={fadeUp}
-              className="font-['Fraunces'] text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
+              className="font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
             >
               Build meaningful digital experiences with us
             </motion.h1>
@@ -104,6 +108,7 @@ export default function CareersPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#00661A]"
               >
                 View opportunities
+
                 <ArrowRight size={17} />
               </a>
 
@@ -118,32 +123,39 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Culture section */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             variants={fadeUp}
           >
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#007A1F]">
               Our culture
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               A thoughtful team building for real people
             </h2>
 
             <p className="mt-5 max-w-xl text-base leading-8 text-[#626D64]">
-              We value clear thinking, useful work, honest
-              communication, and continuous improvement.
+              We value clear thinking, useful work, honest communication,
+              and continuous improvement.
             </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
             variants={staggerContainer}
             className="grid gap-5 sm:grid-cols-2"
           >
@@ -174,6 +186,7 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Working principles */}
       <section className="bg-[#F7FAF7] py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
@@ -181,7 +194,7 @@ export default function CareersPage() {
               How we work
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               Principles that guide our decisions
             </h2>
           </div>
@@ -189,7 +202,10 @@ export default function CareersPage() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
             variants={staggerContainer}
             className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4"
           >
@@ -220,6 +236,7 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Benefits section */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
           <div>
@@ -227,20 +244,23 @@ export default function CareersPage() {
               Why join Getvia
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               Grow while building something useful
             </h2>
 
             <p className="mt-5 max-w-xl text-base leading-8 text-[#626D64]">
-              Work on meaningful product challenges while learning
-              from a collaborative and improvement-focused team.
+              Work on meaningful product challenges while learning from a
+              collaborative and improvement-focused team.
             </p>
           </div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
             variants={staggerContainer}
             className="grid gap-4 sm:grid-cols-2"
           >
@@ -264,6 +284,7 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Hiring process */}
       <section className="bg-[#F7FAF7] py-20 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
@@ -271,20 +292,23 @@ export default function CareersPage() {
               Hiring process
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               A clear and respectful process
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#667068]">
-              Our hiring process is designed to understand your
-              experience, interests, and how you approach your work.
+              Our hiring process is designed to understand your experience,
+              interests, and how you approach your work.
             </p>
           </div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
             variants={staggerContainer}
             className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5"
           >
@@ -311,6 +335,7 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Open positions */}
       <section
         id="open-positions"
         className="scroll-mt-28 py-20 sm:py-24"
@@ -321,7 +346,7 @@ export default function CareersPage() {
               Open positions
             </p>
 
-            <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
               Explore current opportunities
             </h2>
           </div>
@@ -345,7 +370,7 @@ export default function CareersPage() {
                 <BriefcaseBusiness size={25} />
               </div>
 
-              <h3 className="mt-6 font-['Fraunces'] text-3xl font-semibold text-[#172019]">
+              <h3 className="mt-6 font-display text-3xl font-semibold text-[#172019]">
                 {careersNotice.title}
               </h3>
 
@@ -358,6 +383,7 @@ export default function CareersPage() {
                 className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#00661A]"
               >
                 Share your profile
+
                 <ArrowRight size={17} />
               </Link>
             </div>
@@ -365,6 +391,7 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* Final CTA */}
       <section className="pb-20 sm:pb-24">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="relative overflow-hidden rounded-[32px] bg-[#0D3418] px-6 py-14 text-center sm:px-12 sm:py-16">
@@ -375,13 +402,13 @@ export default function CareersPage() {
                 Stay connected
               </p>
 
-              <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold text-white sm:text-5xl">
+              <h2 className="mt-4 font-display text-3xl font-semibold text-white sm:text-5xl">
                 Interested in future opportunities?
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#D1DDD3]">
-                Share your details with our team and mention the kind
-                of work you are interested in.
+                Share your details with our team and mention the kind of
+                work you are interested in.
               </p>
 
               <Link
@@ -389,6 +416,7 @@ export default function CareersPage() {
                 className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#12341A] transition hover:bg-[#F1F6F2]"
               >
                 Contact Getvia
+
                 <ArrowRight size={17} />
               </Link>
             </div>
