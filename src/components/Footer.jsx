@@ -82,16 +82,8 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Getvia on Instagram",
-
-    <a
-  href="https://www.instagram.com/getviaofficial?igsh=MWowcnkzMWhpaHkyaA=="
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram"
-  className="transition-colors hover:text-[#007A1F]"
->
-  <Instagram size={18} />
-</a>
+    href: "https://www.instagram.com/getviaofficial?igsh=MWowcnkzMWhpaHkyaA==",
+    icon: Instagram,
   },
   {
     label: "Getvia on LinkedIn",
@@ -182,15 +174,14 @@ export default function Footer() {
                 className="h-9 w-9 object-contain"
               />
 
-              <span className="font-display text-2xl font-semibold tracking-[-0.02em] text-[#141414]">
+              <span className="font-body text-2xl font-semibold tracking-[-0.02em] text-[#141414]">
                 Getvia
               </span>
             </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-[#646464]">
-              Discover trusted local businesses and
-              professionals, while helping business
-              owners build a stronger digital presence.
+              Discover trusted local businesses and professionals, while
+              helping business owners build a stronger digital presence.
             </p>
 
             <div className="mt-7">
@@ -199,8 +190,7 @@ export default function Footer() {
               </p>
 
               <p className="mt-1 text-xs leading-6 text-[#737D75]">
-                Receive product updates, helpful guides,
-                and platform news.
+                Receive product updates, helpful guides, and platform news.
               </p>
 
               <form
@@ -257,6 +247,7 @@ export default function Footer() {
               )}
             </div>
 
+            {/* Social links */}
             <div className="mt-7 flex items-center gap-4">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = social.icon;
@@ -268,7 +259,8 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D7E1D8] bg-white text-[#747D76] transition hover:border-[#9CC6A4] hover:text-[#007A1F] ${focusRing}`}
+                    title={social.label}
+                    className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D7E1D8] bg-white text-[#747D76] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#9CC6A4] hover:bg-[#F8FCF8] hover:text-[#007A1F] ${focusRing}`}
                   >
                     <Icon size={17} />
                   </a>
@@ -305,8 +297,7 @@ export default function Footer() {
         {/* Footer bottom */}
         <div className="flex flex-col gap-6 py-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-center text-xs text-[#7B847D] sm:text-left">
-            © {new Date().getFullYear()} Getvia. All rights
-            reserved.
+            © {new Date().getFullYear()} Getvia. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:justify-end">
