@@ -1,14 +1,13 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  CalendarDays,
-} from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import {
   motion,
   useMotionValue,
   useSpring,
 } from "framer-motion";
+
+import heroImage from "../assets/getviaheroimage.png";
 
 const STATS = [
   ["18,000+", "Verified businesses"],
@@ -59,7 +58,12 @@ function RevealHeadline({ text, highlight, className }) {
   );
 }
 
-function MagneticLink({ to, href, className, children }) {
+function MagneticLink({
+  to,
+  href,
+  className,
+  children,
+}) {
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -75,7 +79,9 @@ function MagneticLink({ to, href, className, children }) {
   });
 
   const handleMouseMove = (event) => {
-    if (!ref.current) return;
+    if (!ref.current) {
+      return;
+    }
 
     const rect = ref.current.getBoundingClientRect();
 
@@ -107,7 +113,10 @@ function MagneticLink({ to, href, className, children }) {
       onMouseLeave={resetPosition}
       className="inline-block"
     >
-      <Component {...linkProps} className={className}>
+      <Component
+        {...linkProps}
+        className={className}
+      >
         {children}
       </Component>
     </motion.div>
@@ -134,7 +143,9 @@ function MagneticButton({
   });
 
   const handleMouseMove = (event) => {
-    if (!ref.current) return;
+    if (!ref.current) {
+      return;
+    }
 
     const rect = ref.current.getBoundingClientRect();
 
@@ -174,7 +185,11 @@ function MagneticButton({
   );
 }
 
-function CountUpStat({ value, label, delay }) {
+function CountUpStat({
+  value,
+  label,
+  delay,
+}) {
   const isNumeric = /^[\d,]+(\+)?$/.test(value);
 
   const target = isNumeric
@@ -186,7 +201,9 @@ function CountUpStat({ value, label, delay }) {
   );
 
   const startCounting = () => {
-    if (target === null) return;
+    if (target === null) {
+      return;
+    }
 
     const duration = 1200;
     const start = performance.now();
@@ -218,9 +235,18 @@ function CountUpStat({ value, label, delay }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
+      initial={{
+        opacity: 0,
+        y: 12,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.5,
+        delay,
+      }}
       onViewportEnter={startCounting}
     >
       <dt className="font-mono text-2xl font-medium text-[#141414]">
@@ -258,8 +284,9 @@ export default function Hero({ onBookDemo }) {
     <section
       id="hero"
       onMouseMove={handleMove}
-      className="relative overflow-hidden bg-gradient-to-br from-white via-[#FAFCFA] to-[#E8F7EA] pb-20 pt-24 lg:pb-24 lg:pt-28"
+      className="relative overflow-hidden bg-gradient-to-br from-white via-[#FAFCFA] to-[#E8F7EA] pb-16 pt-20 sm:pt-24 lg:pb-20 lg:pt-24"
     >
+      {/* Mouse-follow glow */}
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute -z-10 h-[600px] w-[600px] rounded-full bg-[#7CE629]/20 blur-[100px]"
@@ -278,6 +305,7 @@ export default function Hero({ onBookDemo }) {
         }}
       />
 
+      {/* Decorative routes */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.15]"
@@ -301,12 +329,21 @@ export default function Hero({ onBookDemo }) {
         />
       </svg>
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2 lg:px-12">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-12">
+        {/* Left content */}
         <div>
           <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{
+              opacity: 0,
+              y: 8,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.5,
+            }}
             className="inline-flex items-center gap-2 rounded-full border border-[#DDE5DE] bg-white/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[#646464] backdrop-blur-md"
           >
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#007A1F]" />
@@ -317,28 +354,40 @@ export default function Hero({ onBookDemo }) {
           <RevealHeadline
             text="The route to every trusted business"
             highlight="near you."
-            className="mt-6 font-display text-5xl font-semibold leading-[1.05] text-[#141414] lg:text-6xl"
+            className="mt-6 max-w-2xl font-body text-[42px] font-semibold leading-[1.04] tracking-[-0.045em] text-[#141414] sm:text-[50px] lg:text-[58px]"
           />
 
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 12,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.6,
               delay: 0.5,
             }}
-            className="mt-6 max-w-lg text-lg leading-8 text-[#646464]"
+            className="mt-6 max-w-lg text-base leading-8 text-[#646464] sm:text-lg"
           >
             Getvia connects people with verified local
-            businesses, and helps those businesses get
-            found, get chosen, and get growing. One
-            platform, built for both sides of every local
-            decision.
+            businesses and helps those businesses get found,
+            get chosen, and grow. One platform built for both
+            sides of every local decision.
           </motion.p>
 
+          {/* CTA buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 12,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.6,
               delay: 0.6,
@@ -346,8 +395,8 @@ export default function Hero({ onBookDemo }) {
             className="mt-8 flex flex-wrap items-center gap-3"
           >
             <MagneticButton
-              onClick={onBookDemo}
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#007A1F] px-7 py-3.5 font-body text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#006619] hover:shadow-lg hover:shadow-[#007A1F]/20"
+              onClick={() => onBookDemo?.()}
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3.5 font-body text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#006619] hover:shadow-lg hover:shadow-[#007A1F]/20"
             >
               <CalendarDays
                 size={18}
@@ -365,20 +414,21 @@ export default function Hero({ onBookDemo }) {
 
             <MagneticLink
               to="/list-your-business"
-              className="inline-flex items-center justify-center rounded-xl border border-[#007A1F] bg-white px-7 py-3.5 font-body text-sm font-semibold text-[#007A1F] transition-all duration-300 hover:bg-[#F3FBF4]"
+              className="inline-flex items-center justify-center rounded-xl border border-[#007A1F] bg-white px-6 py-3.5 font-body text-sm font-semibold text-[#007A1F] transition-all duration-300 hover:bg-[#F3FBF4]"
             >
               List your business
             </MagneticLink>
 
             <MagneticLink
               href="#what-we-do"
-              className="inline-flex items-center justify-center rounded-xl border border-[#CDD5CE] bg-white px-7 py-3.5 font-body text-sm font-semibold text-[#141414] transition-all duration-300 hover:border-[#007A1F] hover:text-[#007A1F]"
+              className="inline-flex items-center justify-center rounded-xl border border-[#CDD5CE] bg-white px-6 py-3.5 font-body text-sm font-semibold text-[#141414] transition-all duration-300 hover:border-[#007A1F] hover:text-[#007A1F]"
             >
               See how it works
             </MagneticLink>
           </motion.div>
 
-          <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-[#E1E5E1] pt-7">
+          {/* Statistics */}
+          <dl className="mt-10 grid max-w-md grid-cols-3 gap-5 border-t border-[#E1E5E1] pt-7 sm:gap-6">
             {STATS.map(
               ([value, label], index) => (
                 <CountUpStat
@@ -392,58 +442,46 @@ export default function Hero({ onBookDemo }) {
           </dl>
         </div>
 
+        {/* New hero image */}
         <motion.div
           initial={{
             opacity: 0,
-            scale: 0.96,
+            x: 30,
+            scale: 0.97,
           }}
           animate={{
             opacity: 1,
+            x: 0,
             scale: 1,
           }}
           transition={{
             duration: 0.8,
-            delay: 0.3,
+            delay: 0.25,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="relative"
+          className="relative mx-auto w-full max-w-[680px] lg:mx-0 lg:max-w-none"
         >
-          <div className="absolute -inset-10 -z-10 rounded-full bg-[#B7F27D]/20 blur-3xl" />
-
-          <div className="overflow-hidden rounded-[30px] border border-[#DDE4DE] bg-white shadow-[0_30px_90px_rgba(0,122,31,0.12)]">
-            <img
-              src="https://images.unsplash.com/photo-1687422808248-f807f4ea2a2e?auto=format&fit=crop&w=900&h=1024&q=80"
-              alt="A small business owner checking their phone at their storefront"
-              width={900}
-              height={1024}
-              decoding="async"
-              className="h-[560px] w-full object-cover"
-            />
-          </div>
+          <div className="absolute -inset-8 -z-10 rounded-[44px] bg-[#B7F27D]/20 blur-3xl" />
 
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 16,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
+            whileHover={{
+              y: -4,
             }}
             transition={{
-              duration: 0.6,
-              delay: 1,
+              duration: 0.3,
             }}
-            whileHover={{ y: -4 }}
-            className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-white/40 bg-white/70 p-4 shadow-xl backdrop-blur-xl sm:block"
+            className="relative overflow-hidden rounded-[30px] border border-white/80 bg-white shadow-[0_30px_90px_rgba(0,122,31,0.15)]"
           >
-            <p className="font-mono text-xs uppercase tracking-wide text-[#858585]">
-              Verified this week
-            </p>
-
-            <p className="mt-1 font-display text-lg text-[#141414]">
-              212 new businesses
-            </p>
+            <img
+              src={heroImage}
+              alt="Getvia connecting customers with trusted local businesses and professionals"
+              width={1372}
+              height={1088}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="block h-auto w-full object-contain"
+            />
           </motion.div>
         </motion.div>
       </div>
