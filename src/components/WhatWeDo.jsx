@@ -1,12 +1,14 @@
 import { ArrowRight } from "lucide-react";
 
+import discoverImage from "../assets/discover.png";
+
 const STEPS = [
   {
     number: "01",
     title: "Discover",
     body: "Search by what you need. Every result is a verified business near you.",
-    img: "https://images.unsplash.com/photo-1520333789090-1afc82db536a?auto=format&fit=crop&w=600&h=400&q=80",
-    alt: "A customer searching for a local business on their phone",
+    img: discoverImage,
+    alt: "Customer discovering trusted local businesses through Getvia",
   },
   {
     number: "02",
@@ -36,24 +38,25 @@ export default function WhatWeDo() {
             How it works
           </span>
 
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-[#141414] lg:text-5xl">
+          <h2 className="mt-4 font-body text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] lg:text-5xl">
             Three steps. No guesswork.
           </h2>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {STEPS.map((step, i) => (
+          {STEPS.map((step, index) => (
             <div key={step.title} className="relative">
-              <div className="rounded-3xl border border-[#DDE5DE] bg-white p-6 shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,122,31,0.10)] md:p-8">
-                <div className="overflow-hidden rounded-2xl">
+              <div className="group h-full rounded-3xl border border-[#DDE5DE] bg-white p-6 shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#C5DCC9] hover:shadow-[0_22px_60px_rgba(0,122,31,0.1)] md:p-8">
+                <div className="overflow-hidden rounded-2xl bg-[#F7FAF7]">
                   <img
                     src={step.img}
                     alt={step.alt}
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
                     decoding="async"
                     width={600}
                     height={400}
-                    className="h-40 w-full object-cover"
+                    className="h-48 w-full object-cover object-center transition duration-700 group-hover:scale-105"
                   />
                 </div>
 
@@ -61,16 +64,16 @@ export default function WhatWeDo() {
                   STEP {step.number}
                 </span>
 
-                <h3 className="mt-2 font-display text-2xl text-[#141414]">
+                <h3 className="mt-2 font-body text-2xl font-semibold tracking-[-0.02em] text-[#141414]">
                   {step.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-relaxed text-[#646464]">
+                <p className="mt-3 text-sm leading-7 text-[#646464]">
                   {step.body}
                 </p>
               </div>
 
-              {i < STEPS.length - 1 && (
+              {index < STEPS.length - 1 && (
                 <div className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 translate-x-1/2 lg:block">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#DDE5DE] bg-white text-[#007A1F] shadow-sm">
                     <ArrowRight size={16} />
