@@ -82,8 +82,16 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Getvia on Instagram",
-    href: "https://www.instagram.com/",
-    icon: Instagram,
+
+    <a
+  href="https://www.instagram.com/getviaofficial?igsh=MWowcnkzMWhpaHkyaA=="
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram"
+  className="transition-colors hover:text-[#007A1F]"
+>
+  <Instagram size={18} />
+</a>
   },
   {
     label: "Getvia on LinkedIn",
