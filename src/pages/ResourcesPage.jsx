@@ -11,6 +11,7 @@ import {
   Search,
   Sparkles,
 } from "lucide-react";
+
 import {
   resourceCategories,
   resourcesData,
@@ -87,10 +88,11 @@ export default function ResourcesPage() {
   };
 
   return (
-    <main className="overflow-hidden bg-white">
+    <main className="overflow-hidden bg-white font-body text-[#172019]">
       {/* Hero section */}
-      <section className="relative overflow-hidden border-b border-[#E8EEE9] bg-[#F7FAF7] pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-44">
+      <section className="relative overflow-hidden border-b border-[#E8EEE9] bg-[#F7FAF7] pb-16 pt-28 sm:pt-32 lg:pb-20 lg:pt-36">
         <div className="absolute -right-32 top-16 h-80 w-80 rounded-full bg-[#DDF5E1] blur-3xl" />
+
         <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-[#F0F7D8] blur-3xl" />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
@@ -110,7 +112,7 @@ export default function ResourcesPage() {
 
             <motion.h1
               variants={fadeUp}
-              className="font-['Fraunces'] text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#172019] sm:text-5xl lg:text-7xl"
+              className="mx-auto max-w-4xl font-body text-[38px] font-semibold leading-[1.06] tracking-[-0.04em] text-[#172019] sm:text-[44px] md:text-[50px] lg:text-[56px]"
             >
               Practical resources for better business discovery
             </motion.h1>
@@ -119,14 +121,14 @@ export default function ResourcesPage() {
               variants={fadeUp}
               className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#59635B] sm:text-lg"
             >
-              Explore guides, checklists, templates, and practical
-              resources created for businesses, professionals, and
-              customers using Getvia.
+              Explore guides, checklists, templates, and practical resources
+              created for businesses, professionals, and customers using
+              Getvia.
             </motion.p>
 
             <motion.div
               variants={fadeUp}
-              className="mx-auto mt-10 max-w-2xl"
+              className="mx-auto mt-9 max-w-2xl"
             >
               <label htmlFor="resource-search" className="sr-only">
                 Search resources
@@ -153,7 +155,7 @@ export default function ResourcesPage() {
 
                 <button
                   type="button"
-                  className="hidden rounded-xl bg-[#007A1F] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#00661A] sm:block"
+                  className="hidden rounded-xl bg-[#007A1F] px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#00661A] hover:shadow-md sm:block"
                 >
                   Search
                 </button>
@@ -175,9 +177,9 @@ export default function ResourcesPage() {
                   key={category}
                   type="button"
                   onClick={() => setSelectedCategory(category)}
-                  className={`shrink-0 rounded-full border px-5 py-2.5 text-sm font-semibold transition ${
+                  className={`shrink-0 rounded-full border px-5 py-2.5 text-sm font-semibold transition duration-300 ${
                     isActive
-                      ? "border-[#007A1F] bg-[#007A1F] text-white"
+                      ? "border-[#007A1F] bg-[#007A1F] text-white shadow-sm"
                       : "border-[#DCE5DD] bg-white text-[#566159] hover:border-[#9FC9A8] hover:text-[#007A1F]"
                   }`}
                 >
@@ -190,7 +192,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Resources */}
-      <section className="bg-white py-20 sm:py-24">
+      <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
@@ -198,14 +200,13 @@ export default function ResourcesPage() {
                 Browse resources
               </p>
 
-              <h2 className="font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-4xl">
+              <h2 className="font-body text-3xl font-semibold tracking-[-0.03em] text-[#172019] sm:text-4xl">
                 Learn at your own pace
               </h2>
 
               <p className="mt-3 max-w-2xl leading-7 text-[#667068]">
-                Find practical information for setting up stronger
-                profiles, improving visibility, and using Getvia more
-                effectively.
+                Find practical information for setting up stronger profiles,
+                improving visibility, and using Getvia more effectively.
               </p>
             </div>
 
@@ -228,6 +229,7 @@ export default function ResourcesPage() {
             >
               {filteredResources.map((resource) => {
                 const ResourceIcon = getResourceIcon(resource.format);
+
                 const isComingSoon =
                   resource.status === "coming-soon";
 
@@ -252,6 +254,7 @@ export default function ResourcesPage() {
                           size={15}
                           className="text-[#007A1F]"
                         />
+
                         {resource.format}
                       </div>
 
@@ -274,7 +277,7 @@ export default function ResourcesPage() {
                         </span>
                       </div>
 
-                      <h3 className="font-['Fraunces'] text-2xl font-semibold leading-snug text-[#172019]">
+                      <h3 className="font-body text-xl font-semibold leading-snug tracking-[-0.02em] text-[#172019] sm:text-2xl">
                         {resource.title}
                       </h3>
 
@@ -313,19 +316,19 @@ export default function ResourcesPage() {
                 <Search size={24} />
               </div>
 
-              <h3 className="mt-6 font-['Fraunces'] text-2xl font-semibold text-[#172019]">
+              <h3 className="mt-6 font-body text-2xl font-semibold tracking-[-0.025em] text-[#172019]">
                 No resources found
               </h3>
 
               <p className="mx-auto mt-3 max-w-md leading-7 text-[#69736B]">
-                Try another search term or reset the selected category
-                to view all available resources.
+                Try another search term or reset the selected category to view
+                all available resources.
               </p>
 
               <button
                 type="button"
                 onClick={clearFilters}
-                className="mt-7 rounded-xl bg-[#007A1F] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#00661A]"
+                className="mt-7 rounded-xl bg-[#007A1F] px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#00661A] hover:shadow-md"
               >
                 Clear filters
               </button>
@@ -335,32 +338,34 @@ export default function ResourcesPage() {
       </section>
 
       {/* Resource types */}
-      <section className="bg-[#F7FAF7] py-20 sm:py-24">
+      <section className="bg-[#F7FAF7] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+              viewport={{
+                once: true,
+                amount: 0.25,
+              }}
               variants={fadeUp}
             >
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#007A1F]">
                 Designed to be useful
               </p>
 
-              <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-[#172019] sm:text-5xl">
+              <h2 className="mt-4 font-body text-3xl font-semibold tracking-[-0.03em] text-[#172019] sm:text-4xl lg:text-5xl">
                 Information you can put into action
               </h2>
 
               <p className="mt-5 max-w-xl text-base leading-8 text-[#626D64]">
-                Our resources are designed to simplify profile
-                preparation, verification, platform use, and customer
-                discovery.
+                Our resources are designed to simplify profile preparation,
+                verification, platform use, and customer discovery.
               </p>
 
               <Link
                 to="/help-center"
-                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#00661A]"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#007A1F] px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#00661A] hover:shadow-lg"
               >
                 Visit Help Center
                 <ArrowRight size={17} />
@@ -370,7 +375,10 @@ export default function ResourcesPage() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
               variants={staggerContainer}
               className="grid gap-5 sm:grid-cols-2"
             >
@@ -406,9 +414,9 @@ export default function ResourcesPage() {
                   <motion.div
                     key={item.title}
                     variants={fadeUp}
-                    className="rounded-3xl border border-[#DFE7E0] bg-white p-6 shadow-[0_12px_35px_rgba(25,55,31,0.05)]"
+                    className="group rounded-3xl border border-[#DFE7E0] bg-white p-6 shadow-[0_12px_35px_rgba(25,55,31,0.05)] transition duration-300 hover:-translate-y-1 hover:border-[#C5DCC9] hover:shadow-lg"
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E7F5E9] text-[#007A1F]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E7F5E9] text-[#007A1F] transition duration-300 group-hover:bg-[#007A1F] group-hover:text-white">
                       <Icon size={22} />
                     </div>
 
@@ -428,16 +436,20 @@ export default function ResourcesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-white py-20 sm:py-24">
+      <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{
+              once: true,
+              amount: 0.25,
+            }}
             variants={fadeUp}
             className="relative overflow-hidden rounded-[32px] bg-[#0D3418] px-6 py-14 text-center sm:px-12 sm:py-16 lg:px-20"
           >
             <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#2E9C48]/30 blur-3xl" />
+
             <div className="absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-[#BEDF66]/20 blur-3xl" />
 
             <div className="relative mx-auto max-w-3xl">
@@ -445,19 +457,19 @@ export default function ResourcesPage() {
                 Need more support?
               </p>
 
-              <h2 className="mt-4 font-['Fraunces'] text-3xl font-semibold tracking-[-0.02em] text-white sm:text-5xl">
+              <h2 className="mt-4 font-body text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl lg:text-5xl">
                 Find answers or speak with the Getvia team
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#D1DDD3]">
-                Explore help articles for common questions or contact
-                our support team when you need more assistance.
+                Explore help articles for common questions or contact our
+                support team when you need more assistance.
               </p>
 
               <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
                 <Link
                   to="/help-center"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#12341A] transition hover:bg-[#F1F6F2]"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-[#12341A] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F1F6F2]"
                 >
                   Browse Help Center
                   <ArrowRight size={17} />
@@ -465,7 +477,7 @@ export default function ResourcesPage() {
 
                 <Link
                   to="/support"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/15"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/15"
                 >
                   Contact Support
                 </Link>
