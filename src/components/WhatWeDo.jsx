@@ -11,7 +11,7 @@ const STEPS = [
     img: discoverImage,
     alt: "Customer discovering trusted local businesses through Getvia",
   },
-  {
+  
 {
   title: "Explore",
   description:
