@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 
 import discoverImage from "../assets/discover.png";
+import exploreImage from "../assets/explore.png";
 
 const STEPS = [
   {
@@ -11,12 +12,12 @@ const STEPS = [
     alt: "Customer discovering trusted local businesses through Getvia",
   },
   {
-    number: "02",
-    title: "Present",
-    body: "See real details in one place — hours, services, reviews, and photos.",
-    img: "https://images.unsplash.com/photo-1543269664-56d93c1b41a6?auto=format&fit=crop&w=600&h=400&q=80",
-    alt: "A business owner reviewing their profile on a tablet",
-  },
+{
+  title: "Explore",
+  description:
+    "Explore detailed business profiles, services, galleries, ratings, reviews, and verified information before making your decision.",
+  img: exploreImage,
+},
   {
     number: "03",
     title: "Connect",
