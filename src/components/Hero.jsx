@@ -352,7 +352,7 @@ export default function Hero({ onBookDemo }) {
           </motion.span>
 
           <RevealHeadline
-            text="The route to every trusted business"
+            text="Find trusted businesses"
             highlight="near you."
             className="mt-6 max-w-2xl font-body text-[42px] font-semibold leading-[1.04] tracking-[-0.045em] text-[#141414] sm:text-[50px] lg:text-[58px]"
           />
@@ -372,10 +372,10 @@ export default function Hero({ onBookDemo }) {
             }}
             className="mt-6 max-w-lg text-base leading-8 text-[#646464] sm:text-lg"
           >
-            Getvia connects people with verified local
-            businesses and helps those businesses get found,
-            get chosen, and grow. One platform built for both
-            sides of every local decision.
+            Discover verified local businesses, trusted
+            professionals, and essential services with confidence.
+            Explore complete profiles, compare your options, and
+            connect directly through one reliable platform.
           </motion.p>
 
           {/* CTA buttons */}
@@ -442,7 +442,7 @@ export default function Hero({ onBookDemo }) {
           </dl>
         </div>
 
-        {/* New hero image */}
+        {/* Hero image */}
         <motion.div
           initial={{
             opacity: 0,
@@ -474,7 +474,7 @@ export default function Hero({ onBookDemo }) {
           >
             <img
               src={heroImage}
-              alt="Getvia connecting customers with trusted local businesses and professionals"
+              alt="Getvia helping customers find trusted local businesses and professionals"
               width={1372}
               height={1088}
               loading="eager"
