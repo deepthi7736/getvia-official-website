@@ -59,9 +59,6 @@ const FEATURES = [
       "Manage your profile, receive customer enquiries, showcase services, and build a stronger digital presence.",
     variant: "warm",
   },
-];
-
-const PROFILE_FEATURES = [
   {
     icon: PackageSearch,
     title: "Products & popular services",
@@ -130,42 +127,6 @@ const cardVariants = {
   },
 };
 
-function FeatureGrid({ features }) {
-  return (
-    <motion.div
-      variants={gridVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
-      className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-    >
-      {features.map(({ icon: Icon, title, body, variant }) => (
-        <motion.article
-          key={title}
-          variants={cardVariants}
-          className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#E1E5E1] bg-white shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#B9DDBF] hover:shadow-[0_22px_60px_rgba(0,122,31,0.10)]"
-        >
-          <ArtTile
-            icon={Icon}
-            variant={variant}
-            className="h-28 w-full transition-transform duration-500 group-hover:scale-105"
-          />
-
-          <div className="flex flex-1 flex-col p-6">
-            <h3 className="font-body text-lg font-semibold tracking-[-0.01em] text-[#141414]">
-              {title}
-            </h3>
-
-            <p className="mt-3 text-sm leading-7 text-[#646464]">
-              {body}
-            </p>
-          </div>
-        </motion.article>
-      ))}
-    </motion.div>
-  );
-}
-
 export default function Features() {
   return (
     <section
@@ -173,7 +134,6 @@ export default function Features() {
       className="bg-white py-12 md:py-14 lg:py-16"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Main features */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -191,37 +151,42 @@ export default function Features() {
 
           <p className="mt-5 max-w-2xl text-base leading-8 text-[#646464] sm:text-lg">
             Discover verified businesses, explore complete profiles, connect
-            directly, and navigate with confidence—all through one trusted
-            platform.
+            directly, and access everything customers and business owners need
+            through one trusted platform.
           </p>
         </motion.div>
 
-        <FeatureGrid features={FEATURES} />
-
-        {/* Business profile features */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="mt-20 max-w-3xl"
+          className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <span className="inline-flex rounded-full bg-[#E8F7EA] px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
-            Build your presence
-          </span>
+          {FEATURES.map(({ icon: Icon, title, body, variant }) => (
+            <motion.article
+              key={title}
+              variants={cardVariants}
+              className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#E1E5E1] bg-white shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#B9DDBF] hover:shadow-[0_22px_60px_rgba(0,122,31,0.10)]"
+            >
+              <ArtTile
+                icon={Icon}
+                variant={variant}
+                className="h-28 w-full transition-transform duration-500 group-hover:scale-105"
+              />
 
-          <h2 className="mt-4 font-body text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] lg:text-5xl">
-            Everything your business needs to stand out.
-          </h2>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="font-body text-lg font-semibold tracking-[-0.01em] text-[#141414]">
+                  {title}
+                </h3>
 
-          <p className="mt-5 max-w-2xl text-base leading-8 text-[#646464] sm:text-lg">
-            Create a complete and trustworthy business profile with branding,
-            products, services, offers, galleries, reviews, and everything
-            customers need to know before contacting you.
-          </p>
+                <p className="mt-3 text-sm leading-7 text-[#646464]">
+                  {body}
+                </p>
+              </div>
+            </motion.article>
+          ))}
         </motion.div>
-
-        <FeatureGrid features={PROFILE_FEATURES} />
       </div>
     </section>
   );
