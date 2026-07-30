@@ -214,9 +214,7 @@ function CountUpStat({
         (currentTime - start) / duration,
       );
 
-      const eased =
-        1 - Math.pow(1 - progress, 3);
-
+      const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(target * eased);
 
       setDisplay(
@@ -347,7 +345,6 @@ export default function Hero({ onBookDemo }) {
             className="inline-flex items-center gap-2 rounded-full border border-[#DDE5DE] bg-white/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-[#646464] backdrop-blur-md"
           >
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#007A1F]" />
-
             Now live in 40+ cities
           </motion.span>
 
@@ -372,10 +369,9 @@ export default function Hero({ onBookDemo }) {
             }}
             className="mt-6 max-w-lg text-base leading-8 text-[#646464] sm:text-lg"
           >
-            Discover verified local businesses, trusted
-            professionals, and essential services with confidence.
-            Explore complete profiles, compare your options, and
-            connect directly through one reliable platform.
+            Getvia helps people discover trusted local businesses while
+            helping those businesses get discovered, earn trust, and grow.
+            One platform built for both sides of every local decision.
           </motion.p>
 
           {/* CTA buttons */}
