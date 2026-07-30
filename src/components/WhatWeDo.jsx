@@ -8,25 +8,27 @@ const STEPS = [
   {
     number: "01",
     title: "Discover",
-    body: "Search by what you need. Every result is a verified business near you.",
+    body:
+      "Search by what you need and find verified local businesses and professionals near you.",
     img: discoverImage,
     alt: "Customer discovering trusted local businesses through Getvia",
   },
-  
-{
-  title: "Explore",
-  description:
-    "Explore detailed business profiles, services, galleries, ratings, reviews, and verified information before making your decision.",
-  img: exploreImage,
-},
-  
-    
-{
-  title: "Connect",
-  description:
-    "Connect instantly with trusted businesses and professionals through calls, WhatsApp, directions, or enquiry forms.",
-  img: connectImage,
-},
+  {
+    number: "02",
+    title: "Explore",
+    body:
+      "Compare services, photos, reviews, ratings, locations, and verified business details in one place.",
+    img: exploreImage,
+    alt: "Customer exploring business profiles, services, reviews, and verified information on Getvia",
+  },
+  {
+    number: "03",
+    title: "Connect",
+    body:
+      "Call, message, get directions, or send an enquiry directly to the right business or professional.",
+    img: connectImage,
+    alt: "Customer connecting directly with a trusted local business through Getvia",
+  },
 ];
 
 export default function WhatWeDo() {
@@ -44,12 +46,17 @@ export default function WhatWeDo() {
           <h2 className="mt-4 font-body text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] lg:text-5xl">
             Three steps. No guesswork.
           </h2>
+
+          <p className="mt-4 max-w-xl text-base leading-8 text-[#646464]">
+            Discover the right business, explore everything you need to know,
+            and connect directly without unnecessary steps.
+          </p>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {STEPS.map((step, index) => (
             <div key={step.title} className="relative">
-              <div className="group h-full rounded-3xl border border-[#DDE5DE] bg-white p-6 shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#C5DCC9] hover:shadow-[0_22px_60px_rgba(0,122,31,0.1)] md:p-8">
+              <div className="group flex h-full flex-col rounded-3xl border border-[#DDE5DE] bg-white p-6 shadow-[0_16px_50px_rgba(20,60,30,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#C5DCC9] hover:shadow-[0_22px_60px_rgba(0,122,31,0.1)] md:p-8">
                 <div className="overflow-hidden rounded-2xl bg-[#F7FAF7]">
                   <img
                     src={step.img}
@@ -63,17 +70,19 @@ export default function WhatWeDo() {
                   />
                 </div>
 
-                <span className="mt-5 block font-mono text-xs tracking-wider text-[#858585]">
-                  STEP {step.number}
-                </span>
+                <div className="flex flex-1 flex-col">
+                  <span className="mt-5 block font-mono text-xs tracking-wider text-[#858585]">
+                    STEP {step.number}
+                  </span>
 
-                <h3 className="mt-2 font-body text-2xl font-semibold tracking-[-0.02em] text-[#141414]">
-                  {step.title}
-                </h3>
+                  <h3 className="mt-2 font-body text-2xl font-semibold tracking-[-0.02em] text-[#141414]">
+                    {step.title}
+                  </h3>
 
-                <p className="mt-3 text-sm leading-7 text-[#646464]">
-                  {step.body}
-                </p>
+                  <p className="mt-3 text-sm leading-7 text-[#646464]">
+                    {step.body}
+                  </p>
+                </div>
               </div>
 
               {index < STEPS.length - 1 && (
