@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 import discoverImage from "../assets/discover.png";
 import exploreImage from "../assets/explore.png";
+import connectImage from "../assets/connect.png";
 
 const STEPS = [
   {
@@ -18,13 +19,14 @@ const STEPS = [
     "Explore detailed business profiles, services, galleries, ratings, reviews, and verified information before making your decision.",
   img: exploreImage,
 },
-  {
-    number: "03",
-    title: "Connect",
-    body: "Call, message, or get directions. No extra steps, no guessing.",
-    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&h=400&q=80",
-    alt: "A customer connecting directly with a business owner at the counter",
-  },
+  
+    
+{
+  title: "Connect",
+  description:
+    "Connect instantly with trusted businesses and professionals through calls, WhatsApp, directions, or enquiry forms.",
+  img: connectImage,
+},
 ];
 
 export default function WhatWeDo() {
