@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 import ArtTile from "./ArtTile";
-import fashionAccessoriesImage from "../assets/fashion-accessories.png";
+import fashionAccessoriesImage from "../assets/fashion1.png";
 
 const INDUSTRIES = [
   {
