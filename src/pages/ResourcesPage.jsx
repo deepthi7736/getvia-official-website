@@ -17,6 +17,8 @@ import {
   resourcesData,
 } from "../data/resourcesData";
 
+import businessProfileChecklistImage from "../assets/business profile checklist.png";
+
 const fadeUp = {
   hidden: {
     opacity: 0,
@@ -57,6 +59,19 @@ function getResourceIcon(format) {
   }
 
   return FileText;
+}
+
+function getResourceImage(resource) {
+  const normalizedTitle = resource.title?.trim().toLowerCase();
+
+  if (
+    normalizedTitle === "business profile checklist" ||
+    normalizedTitle?.includes("business profile checklist")
+  ) {
+    return businessProfileChecklistImage;
+  }
+
+  return resource.image;
 }
 
 export default function ResourcesPage() {
@@ -233,6 +248,8 @@ export default function ResourcesPage() {
                 const isComingSoon =
                   resource.status === "coming-soon";
 
+                const resourceImage = getResourceImage(resource);
+
                 return (
                   <motion.article
                     key={resource.id}
@@ -241,10 +258,11 @@ export default function ResourcesPage() {
                   >
                     <div className="relative h-56 overflow-hidden bg-[#EFF5EF]">
                       <img
-                        src={resource.image}
+                        src={resourceImage}
                         alt={resource.title}
-                        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
                       />
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
