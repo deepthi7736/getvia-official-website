@@ -1,4 +1,5 @@
 import { Zap, Lock, RefreshCw } from "lucide-react";
+import searchMadeSimpleImage from "../assets/search made simple.png";
 
 const PILLARS = [
   {
@@ -26,14 +27,14 @@ export default function Technology() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left Content */}
+          {/* Left content */}
           <div className="lg:col-span-5">
             <span className="inline-flex rounded-full bg-white px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#007A1F]">
               Built to be fast and safe
             </span>
 
-            <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-[#141414] lg:text-5xl">
-              No spinners. No guessing.
+            <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-[-0.03em] text-[#141414] lg:text-5xl">
+              Every search, made simple.
             </h2>
 
             <p className="mt-5 max-w-md text-lg leading-8 text-[#646464]">
@@ -62,17 +63,17 @@ export default function Technology() {
             </div>
           </div>
 
-          {/* Right Image */}
+          {/* Right image */}
           <div className="lg:col-span-6 lg:col-start-7">
             <div className="overflow-hidden rounded-3xl border border-[#DDE5DE] bg-white shadow-[0_30px_90px_rgba(0,122,31,0.12)]">
               <img
-                src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&w=900&h=768&q=80"
-                alt="A person working at a laptop, representing Getvia's fast, secure platform"
+                src={searchMadeSimpleImage}
+                alt="Every search made simple with Getvia"
                 loading="lazy"
                 decoding="async"
                 width={900}
                 height={768}
-                className="h-80 md:h-96 w-full object-cover"
+                className="h-80 w-full object-cover object-center md:h-96"
               />
             </div>
           </div>
