@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import PageHero from "../components/layout/PageHero";
+import professionalProfileImage from "../assets/images/getvia-professional-profile.png";
 
 const CAPABILITIES = [
   {
@@ -169,7 +170,7 @@ function SearchResultMockup() {
   );
 }
 
-function ProfessionalProfileMockup() {
+function ProfessionalProfileImage() {
   return (
     <motion.div
       initial={{
@@ -188,95 +189,17 @@ function ProfessionalProfileMockup() {
         duration: 0.55,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="w-full max-w-sm overflow-hidden rounded-[28px] border border-[#DDE6DE] bg-white shadow-[0_30px_90px_rgba(0,122,31,0.13)]"
+      className="relative w-full max-w-xl"
     >
-      <div className="relative h-28 bg-gradient-to-r from-[#007A1F] via-[#16A239] to-[#7CE629]">
-        <div className="absolute -bottom-9 left-6 flex h-[76px] w-[76px] items-center justify-center rounded-2xl border-4 border-white bg-[#F1FAF2] text-xl font-semibold text-[#007A1F] shadow-md">
-          SP
-        </div>
+      <div className="absolute inset-6 rounded-[40px] bg-[#7CE629]/20 blur-3xl" />
 
-        <div className="absolute right-5 top-5 rounded-full border border-white/40 bg-white/20 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
-          Available
-        </div>
-      </div>
-
-      <div className="px-6 pb-6 pt-14">
-        <div className="flex items-center gap-2">
-          <h3 className="text-lg font-semibold text-[#141414]">
-            Studio Pixel
-          </h3>
-
-          <BadgeCheck size={18} className="text-[#007A1F]" />
-        </div>
-
-        <p className="mt-1 text-sm text-[#687169]">
-          Brand Identity and Graphic Designer
-        </p>
-
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
-          <span className="flex items-center gap-1.5 font-medium text-[#222722]">
-            <Star
-              size={13}
-              className="fill-[#7CE629] text-[#7CE629]"
-            />
-            5.0
-            <span className="font-normal text-[#7C857E]">
-              (148 reviews)
-            </span>
-          </span>
-
-          <span className="flex items-center gap-1.5 text-[#007A1F]">
-            <ShieldCheck size={14} />
-            Verified
-          </span>
-        </div>
-
-        <div className="mt-4 flex items-start gap-2 text-xs leading-5 text-[#737C75]">
-          <MapPin size={14} className="mt-0.5 shrink-0" />
-
-          <span>
-            Kochi, Kerala · Remote projects available
-          </span>
-        </div>
-
-        <div className="mt-5 rounded-2xl border border-[#E5EBE6] bg-[#FAFCFA] p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#007A1F]">
-            Services
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-2">
-            {[
-              "Logo Design",
-              "Brand Identity",
-              "Social Media",
-            ].map((service) => (
-              <span
-                key={service}
-                className="rounded-full border border-[#DCE7DE] bg-white px-3 py-1.5 text-[11px] font-medium text-[#4F5951]"
-              >
-                {service}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#007A1F] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#006619]"
-          >
-            <MessageCircle size={16} />
-            Contact
-          </button>
-
-          <button
-            type="button"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#D4DED5] bg-white px-4 py-3 text-sm font-semibold text-[#263027] transition hover:border-[#007A1F] hover:text-[#007A1F]"
-          >
-            <ImageIcon size={16} />
-            Portfolio
-          </button>
-        </div>
+      <div className="relative overflow-hidden rounded-[28px] border border-[#D9E5DA] bg-white p-2 shadow-[0_30px_90px_rgba(0,122,31,0.14)]">
+        <img
+          src={professionalProfileImage}
+          alt="Getvia professional profile and trust features"
+          loading="lazy"
+          className="aspect-[4/3] h-full w-full rounded-[22px] object-cover"
+        />
       </div>
     </motion.div>
   );
@@ -348,7 +271,7 @@ export default function PlatformPage() {
       <section className="bg-[#F3FBF4] py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12">
           <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
-            <ProfessionalProfileMockup />
+            <ProfessionalProfileImage />
           </div>
 
           <motion.div
