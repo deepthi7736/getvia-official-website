@@ -19,6 +19,7 @@ import {
 
 import businessProfileChecklistImage from "../assets/business profile checklist.png";
 import gettingStartedWithGetviaImage from "../assets/getting started with getvia.png";
+import verificationPreparationGuideImage from "../assets/verification preparation guide.png";
 
 const fadeUp = {
   hidden: {
@@ -71,6 +72,10 @@ function getResourceImage(resource) {
 
   if (normalizedTitle?.includes("getting started with getvia")) {
     return gettingStartedWithGetviaImage;
+  }
+
+  if (normalizedTitle?.includes("verification preparation guide")) {
+    return verificationPreparationGuideImage;
   }
 
   return resource.image;
