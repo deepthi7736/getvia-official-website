@@ -173,23 +173,19 @@ export default function App() {
           {/* Home */}
           <Route
             path="/"
-            element={
-              <Home onBookDemo={openDemoModal} />
-            }
+            element={<Home onBookDemo={openDemoModal} />}
           />
 
           {/* Main platform pages */}
           <Route
             path="/platform"
-            element={<PlatformPage />}
+            element={<PlatformPage onBookDemo={openDemoModal} />}
           />
 
           <Route
             path="/solutions"
             element={
-              <SolutionsPage
-                onBookDemo={openDemoModal}
-              />
+              <SolutionsPage onBookDemo={openDemoModal} />
             }
           />
 
@@ -216,7 +212,9 @@ export default function App() {
           {/* Audience pages */}
           <Route
             path="/for-businesses"
-            element={<ForBusinessesPage />}
+            element={
+              <ForBusinessesPage onBookDemo={openDemoModal} />
+            }
           />
 
           <Route
