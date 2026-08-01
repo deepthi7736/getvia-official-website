@@ -20,6 +20,7 @@ import {
 import businessProfileChecklistImage from "../assets/business profile checklist.png";
 import gettingStartedWithGetviaImage from "../assets/getting started with getvia.png";
 import verificationPreparationGuideImage from "../assets/Verification preparation guide.png";
+import professionalProfileWorkbookImage from "../assets/workbook.png";
 
 const fadeUp = {
   hidden: {
@@ -46,7 +47,7 @@ const staggerContainer = {
 };
 
 function getResourceIcon(format) {
-  const normalizedFormat = format?.toLowerCase();
+  const normalizedFormat = format?.trim().toLowerCase();
 
   if (normalizedFormat === "checklist") {
     return CheckCircle2;
@@ -64,18 +65,22 @@ function getResourceIcon(format) {
 }
 
 function getResourceImage(resource) {
-  const normalizedTitle = resource.title?.trim().toLowerCase();
+  const normalizedTitle = resource.title?.trim().toLowerCase() ?? "";
 
-  if (normalizedTitle?.includes("business profile checklist")) {
+  if (normalizedTitle.includes("business profile checklist")) {
     return businessProfileChecklistImage;
   }
 
-  if (normalizedTitle?.includes("getting started with getvia")) {
+  if (normalizedTitle.includes("getting started with getvia")) {
     return gettingStartedWithGetviaImage;
   }
 
-  if (normalizedTitle?.includes("verification preparation guide")) {
+  if (normalizedTitle.includes("verification preparation guide")) {
     return verificationPreparationGuideImage;
+  }
+
+  if (normalizedTitle.includes("professional profile workbook")) {
+    return professionalProfileWorkbookImage;
   }
 
   return resource.image;
@@ -89,16 +94,21 @@ export default function ResourcesPage() {
     const normalizedQuery = searchQuery.trim().toLowerCase();
 
     return resourcesData.filter((resource) => {
+      const title = resource.title?.toLowerCase() ?? "";
+      const description = resource.description?.toLowerCase() ?? "";
+      const category = resource.category?.toLowerCase() ?? "";
+      const format = resource.format?.toLowerCase() ?? "";
+
       const matchesCategory =
         selectedCategory === "All" ||
         resource.category === selectedCategory;
 
       const matchesSearch =
         normalizedQuery.length === 0 ||
-        resource.title?.toLowerCase().includes(normalizedQuery) ||
-        resource.description?.toLowerCase().includes(normalizedQuery) ||
-        resource.category?.toLowerCase().includes(normalizedQuery) ||
-        resource.format?.toLowerCase().includes(normalizedQuery);
+        title.includes(normalizedQuery) ||
+        description.includes(normalizedQuery) ||
+        category.includes(normalizedQuery) ||
+        format.includes(normalizedQuery);
 
       return matchesCategory && matchesSearch;
     });
@@ -213,7 +223,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Resources */}
+      {/* Resources section */}
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
@@ -296,7 +306,10 @@ export default function ResourcesPage() {
 
                         <span className="flex items-center gap-1.5 text-xs font-medium text-[#7A847C]">
                           <Clock3 size={14} />
-                          {resource.readingTime}
+
+                          {isComingSoon
+                            ? "Coming soon"
+                            : resource.readingTime}
                         </span>
                       </div>
 
@@ -360,7 +373,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Resource types */}
+      {/* Resource types section */}
       <section className="bg-[#F7FAF7] py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
@@ -430,35 +443,31 @@ export default function ResourcesPage() {
                   description:
                     "Downloadable materials will be introduced as the library grows.",
                 },
-              ].map((item) => {
-                const Icon = item.icon;
+              ].map(({ icon: Icon, title, description }) => (
+                <motion.div
+                  key={title}
+                  variants={fadeUp}
+                  className="group rounded-3xl border border-[#DFE7E0] bg-white p-6 shadow-[0_12px_35px_rgba(25,55,31,0.05)] transition duration-300 hover:-translate-y-1 hover:border-[#C5DCC9] hover:shadow-lg"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E7F5E9] text-[#007A1F] transition duration-300 group-hover:bg-[#007A1F] group-hover:text-white">
+                    <Icon size={22} />
+                  </div>
 
-                return (
-                  <motion.div
-                    key={item.title}
-                    variants={fadeUp}
-                    className="group rounded-3xl border border-[#DFE7E0] bg-white p-6 shadow-[0_12px_35px_rgba(25,55,31,0.05)] transition duration-300 hover:-translate-y-1 hover:border-[#C5DCC9] hover:shadow-lg"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E7F5E9] text-[#007A1F] transition duration-300 group-hover:bg-[#007A1F] group-hover:text-white">
-                      <Icon size={22} />
-                    </div>
+                  <h3 className="mt-5 text-lg font-bold text-[#172019]">
+                    {title}
+                  </h3>
 
-                    <h3 className="mt-5 text-lg font-bold text-[#172019]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-7 text-[#667168]">
-                      {item.description}
-                    </p>
-                  </motion.div>
-                );
-              })}
+                  <p className="mt-3 text-sm leading-7 text-[#667168]">
+                    {description}
+                  </p>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA section */}
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <motion.div
