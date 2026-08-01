@@ -21,6 +21,7 @@ import businessProfileChecklistImage from "../assets/business profile checklist.
 import gettingStartedWithGetviaImage from "../assets/getting started with getvia.png";
 import verificationPreparationGuideImage from "../assets/Verification preparation guide.png";
 import professionalProfileWorkbookImage from "../assets/workbook.png";
+import customerDiscoveryGuideImage from "../assets/discovery.png";
 
 const fadeUp = {
   hidden: {
@@ -65,7 +66,8 @@ function getResourceIcon(format) {
 }
 
 function getResourceImage(resource) {
-  const normalizedTitle = resource.title?.trim().toLowerCase() ?? "";
+  const normalizedTitle =
+    resource.title?.trim().toLowerCase() ?? "";
 
   if (normalizedTitle.includes("business profile checklist")) {
     return businessProfileChecklistImage;
@@ -83,6 +85,10 @@ function getResourceImage(resource) {
     return professionalProfileWorkbookImage;
   }
 
+  if (normalizedTitle.includes("customer discovery guide")) {
+    return customerDiscoveryGuideImage;
+  }
+
   return resource.image;
 }
 
@@ -95,7 +101,8 @@ export default function ResourcesPage() {
 
     return resourcesData.filter((resource) => {
       const title = resource.title?.toLowerCase() ?? "";
-      const description = resource.description?.toLowerCase() ?? "";
+      const description =
+        resource.description?.toLowerCase() ?? "";
       const category = resource.category?.toLowerCase() ?? "";
       const format = resource.format?.toLowerCase() ?? "";
 
@@ -261,8 +268,10 @@ export default function ResourcesPage() {
             >
               {filteredResources.map((resource) => {
                 const ResourceIcon = getResourceIcon(resource.format);
+
                 const isComingSoon =
                   resource.status === "coming-soon";
+
                 const resourceImage = getResourceImage(resource);
 
                 return (
