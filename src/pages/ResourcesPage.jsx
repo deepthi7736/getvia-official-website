@@ -19,7 +19,7 @@ import {
 
 import businessProfileChecklistImage from "../assets/business profile checklist.png";
 import gettingStartedWithGetviaImage from "../assets/getting started with getvia.png";
-import verificationPreparationGuideImage from "../assets/verification preparation guide.png";
+import verificationPreparationGuideImage from "../assets/Verification preparation guide.png";
 
 const fadeUp = {
   hidden: {
@@ -265,9 +265,9 @@ export default function ResourcesPage() {
                       <img
                         src={resourceImage}
                         alt={resource.title}
-                        className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
                         loading="lazy"
                         decoding="async"
+                        className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-105"
                       />
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
