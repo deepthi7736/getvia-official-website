@@ -18,6 +18,7 @@ import {
 } from "../data/resourcesData";
 
 import businessProfileChecklistImage from "../assets/business profile checklist.png";
+import gettingStartedWithGetviaImage from "../assets/getting started with getvia.png";
 
 const fadeUp = {
   hidden: {
@@ -64,11 +65,12 @@ function getResourceIcon(format) {
 function getResourceImage(resource) {
   const normalizedTitle = resource.title?.trim().toLowerCase();
 
-  if (
-    normalizedTitle === "business profile checklist" ||
-    normalizedTitle?.includes("business profile checklist")
-  ) {
+  if (normalizedTitle?.includes("business profile checklist")) {
     return businessProfileChecklistImage;
+  }
+
+  if (normalizedTitle?.includes("getting started with getvia")) {
+    return gettingStartedWithGetviaImage;
   }
 
   return resource.image;
@@ -88,10 +90,10 @@ export default function ResourcesPage() {
 
       const matchesSearch =
         normalizedQuery.length === 0 ||
-        resource.title.toLowerCase().includes(normalizedQuery) ||
-        resource.description.toLowerCase().includes(normalizedQuery) ||
-        resource.category.toLowerCase().includes(normalizedQuery) ||
-        resource.format.toLowerCase().includes(normalizedQuery);
+        resource.title?.toLowerCase().includes(normalizedQuery) ||
+        resource.description?.toLowerCase().includes(normalizedQuery) ||
+        resource.category?.toLowerCase().includes(normalizedQuery) ||
+        resource.format?.toLowerCase().includes(normalizedQuery);
 
       return matchesCategory && matchesSearch;
     });
@@ -244,10 +246,8 @@ export default function ResourcesPage() {
             >
               {filteredResources.map((resource) => {
                 const ResourceIcon = getResourceIcon(resource.format);
-
                 const isComingSoon =
                   resource.status === "coming-soon";
-
                 const resourceImage = getResourceImage(resource);
 
                 return (
