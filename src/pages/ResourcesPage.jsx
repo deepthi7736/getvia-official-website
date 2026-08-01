@@ -22,6 +22,7 @@ import gettingStartedWithGetviaImage from "../assets/getting started with getvia
 import verificationPreparationGuideImage from "../assets/Verification preparation guide.png";
 import professionalProfileWorkbookImage from "../assets/workbook.png";
 import customerDiscoveryGuideImage from "../assets/discovery.png";
+import localMarketingTemplateImage from "../assets/marketing.png";
 
 const fadeUp = {
   hidden: {
@@ -87,6 +88,10 @@ function getResourceImage(resource) {
 
   if (normalizedTitle.includes("customer discovery guide")) {
     return customerDiscoveryGuideImage;
+  }
+
+  if (normalizedTitle.includes("local marketing starter template")) {
+    return localMarketingTemplateImage;
   }
 
   return resource.image;
@@ -268,10 +273,8 @@ export default function ResourcesPage() {
             >
               {filteredResources.map((resource) => {
                 const ResourceIcon = getResourceIcon(resource.format);
-
                 const isComingSoon =
                   resource.status === "coming-soon";
-
                 const resourceImage = getResourceImage(resource);
 
                 return (
