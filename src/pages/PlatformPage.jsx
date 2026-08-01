@@ -49,7 +49,7 @@ const benefits = [
   },
 ];
 
-export default function ForBusinessesPage() {
+export default function ForBusinessesPage({ onBookDemo }) {
   return (
     <main className="min-h-screen overflow-hidden bg-white">
       {/* Hero section */}
@@ -82,16 +82,17 @@ export default function ForBusinessesPage() {
                 List your business
               </Link>
 
-              <Link
-                to="/book-demo"
+              <button
+                type="button"
+                onClick={onBookDemo}
                 className="inline-flex items-center justify-center rounded-full border border-[#007A1F] bg-white px-6 py-3.5 text-sm font-semibold text-[#007A1F] transition duration-300 hover:-translate-y-0.5 hover:bg-[#EAF7EC]"
               >
                 Book a demo
-              </Link>
+              </button>
             </div>
           </div>
 
-          {/* Corrected image section */}
+          {/* Image section */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="absolute inset-6 rounded-[36px] bg-[#7CE629]/15 blur-3xl" />
 
@@ -180,12 +181,13 @@ export default function ForBusinessesPage() {
                   List your business
                 </Link>
 
-                <Link
-                  to="/book-demo"
+                <button
+                  type="button"
+                  onClick={onBookDemo}
                   className="rounded-full border border-white/40 px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/10"
                 >
                   Book a demo
-                </Link>
+                </button>
               </div>
             </div>
           </div>
