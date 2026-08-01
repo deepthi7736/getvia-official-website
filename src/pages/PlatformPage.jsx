@@ -53,12 +53,12 @@ export default function ForBusinessesPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-white pt-28">
       {/* Hero section */}
-      <section className="relative bg-[#F7FBF7] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+      <section className="relative overflow-hidden bg-[#F7FBF7] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-[#7CE629]/10 blur-3xl" />
 
         <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#007A1F]/10 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <div>
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
               For Businesses
@@ -91,15 +91,17 @@ export default function ForBusinessesPage() {
             </div>
           </div>
 
-          <div className="relative">
+          {/* Corrected image section */}
+          <div className="relative w-full">
             <div className="absolute inset-8 rounded-[40px] bg-[#7CE629]/20 blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-[32px] border border-[#DDE6DE] bg-white p-2 shadow-[0_30px_90px_rgba(0,122,31,0.14)]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[32px] shadow-[0_30px_90px_rgba(0,122,31,0.14)]">
               <img
                 src={professionalProfileImage}
                 alt="Getvia business profile and dashboard"
                 loading="eager"
-                className="aspect-[4/3] h-full w-full rounded-[26px] object-cover"
+                decoding="async"
+                className="h-full w-full object-cover object-center"
               />
             </div>
           </div>
