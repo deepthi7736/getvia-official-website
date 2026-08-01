@@ -51,14 +51,14 @@ const benefits = [
 
 export default function ForBusinessesPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-white pt-28">
+    <main className="min-h-screen overflow-hidden bg-white">
       {/* Hero section */}
-      <section className="relative overflow-hidden bg-[#F7FBF7] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+      <section className="relative overflow-hidden bg-[#F7FBF7] px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-20 lg:px-12 lg:pb-24 lg:pt-24">
         <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-[#7CE629]/10 blur-3xl" />
 
         <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#007A1F]/10 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
             <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#007A1F]">
               For Businesses
@@ -92,16 +92,16 @@ export default function ForBusinessesPage() {
           </div>
 
           {/* Corrected image section */}
-          <div className="relative w-full">
-            <div className="absolute inset-8 rounded-[40px] bg-[#7CE629]/20 blur-3xl" />
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="absolute inset-6 rounded-[36px] bg-[#7CE629]/15 blur-3xl" />
 
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[32px] shadow-[0_30px_90px_rgba(0,122,31,0.14)]">
+            <div className="relative w-full max-w-[720px] overflow-hidden rounded-[32px] shadow-[0_30px_90px_rgba(0,122,31,0.14)]">
               <img
                 src={professionalProfileImage}
-                alt="Getvia business profile and dashboard"
+                alt="Getvia business profile dashboard"
                 loading="eager"
                 decoding="async"
-                className="h-full w-full object-cover object-center"
+                className="block h-auto w-full"
               />
             </div>
           </div>
