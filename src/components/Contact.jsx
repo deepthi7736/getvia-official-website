@@ -11,18 +11,37 @@ import {
 import { supabase } from "../lib/supabase";
 
 const CONTACT_ITEMS = [
-  { icon: Mail, label: "Email", value: "hello@getvia.com" },
-  { icon: Phone, label: "Phone", value: "+1 (555) 019-2044" },
-  { icon: MessageCircle, label: "WhatsApp", value: "+1 (555) 019-2044" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "getviaofficial@gmail.com",
+    href: "mailto:getviaofficial@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+91 99953 33560",
+    href: "tel:+919995333560",
+  },
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: "+91 99953 33560",
+    href: "https://wa.me/919995333560",
+    external: true,
+  },
   {
     icon: MapPin,
     label: "Office",
-    value: "148 Market Street, Suite 400, San Francisco, CA",
+    value:
+      "15/972, Nedumkulangara Rd, Athani, Kakkanad, Kerala 682030",
+    href: "https://www.google.com/maps/search/?api=1&query=15%2F972%2C%20Nedumkulangara%20Rd%2C%20Athani%2C%20Kakkanad%2C%20Kerala%20682030",
+    external: true,
   },
   {
     icon: Clock,
     label: "Hours",
-    value: "Mon–Fri, 9:00 AM – 6:00 PM PT",
+    value: "Open 24/7",
   },
 ];
 
@@ -43,12 +62,19 @@ export default function Contact() {
 
   const update = (field) => (event) => {
     const value =
-      field === "consent" ? event.target.checked : event.target.value;
+      field === "consent"
+        ? event.target.checked
+        : event.target.value;
 
     setForm((currentForm) => ({
       ...currentForm,
       [field]: value,
     }));
+
+    if (status === "error") {
+      setStatus("idle");
+      setErrorMessage("");
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -70,7 +96,7 @@ export default function Contact() {
     ) {
       setStatus("error");
       setErrorMessage(
-        "Please fill in your name, subject, email, and message."
+        "Please fill in your name, subject, email, and message.",
       );
       return;
     }
@@ -78,7 +104,7 @@ export default function Contact() {
     if (!form.consent) {
       setStatus("error");
       setErrorMessage(
-        "Please confirm you agree to be contacted before sending."
+        "Please confirm you agree to be contacted before sending.",
       );
       return;
     }
@@ -86,21 +112,26 @@ export default function Contact() {
     setStatus("submitting");
     setErrorMessage("");
 
-    const { error } = await supabase.from("contact_messages").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim() || null,
-      subject: form.subject.trim(),
-      message: form.message.trim(),
-      source_page:
-        typeof window !== "undefined" ? window.location.pathname : null,
-    });
+    const { error } = await supabase
+      .from("contact_messages")
+      .insert({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim() || null,
+        subject: form.subject.trim(),
+        message: form.message.trim(),
+        source_page:
+          typeof window !== "undefined"
+            ? window.location.pathname
+            : null,
+      });
 
     if (error) {
       console.error("Contact submission failed:", error);
+
       setStatus("error");
       setErrorMessage(
-        "Something went wrong on our end. Please try again in a moment."
+        "Something went wrong on our end. Please try again in a moment.",
       );
       return;
     }
@@ -116,6 +147,7 @@ export default function Contact() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
+          {/* Left content */}
           <div className="lg:col-span-5">
             <span className="font-mono text-xs uppercase tracking-widest text-[#007A1F]">
               Get in touch
@@ -127,47 +159,89 @@ export default function Contact() {
 
             <p className="mt-5 max-w-lg font-body text-base leading-relaxed text-[#646464]">
               Whether you&apos;re a business ready to get verified or a
-              partner exploring what Getvia can do for your city, we&apos;d
-              like to hear from you.
+              partner exploring what Getvia can do for your city,
+              we&apos;d like to hear from you.
             </p>
 
             <ul className="mt-7 space-y-4">
-              {CONTACT_ITEMS.map(({ icon: Icon, label, value }) => (
-                <li key={label} className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E8F7EA] text-[#007A1F]">
-                    <Icon size={18} strokeWidth={1.75} />
-                  </div>
+              {CONTACT_ITEMS.map(
+                ({
+                  icon: Icon,
+                  label,
+                  value,
+                  href,
+                  external,
+                }) => (
+                  <li
+                    key={label}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E8F7EA] text-[#007A1F]">
+                      <Icon size={18} strokeWidth={1.75} />
+                    </div>
 
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-wider text-[#646464]">
-                      {label}
-                    </p>
+                    <div className="min-w-0">
+                      <p className="font-mono text-[11px] uppercase tracking-wider text-[#646464]">
+                        {label}
+                      </p>
 
-                    <p className="mt-0.5 font-body text-sm leading-relaxed text-[#141414]">
-                      {value}
-                    </p>
-                  </div>
-                </li>
-              ))}
+                      {href ? (
+                        <a
+                          href={href}
+                          target={
+                            external ? "_blank" : undefined
+                          }
+                          rel={
+                            external
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
+                          className="mt-0.5 block max-w-md font-body text-sm leading-relaxed text-[#141414] transition hover:text-[#007A1F]"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="mt-0.5 max-w-md font-body text-sm leading-relaxed text-[#141414]">
+                          {value}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                ),
+              )}
             </ul>
 
-            <div className="mt-7 overflow-hidden rounded-2xl border border-[#E1E5E1]">
+            {/* Google Map */}
+            <div className="mt-7 overflow-hidden rounded-2xl border border-[#E1E5E1] bg-[#F3FBF4]">
               <iframe
                 title="Getvia office location"
-                src="https://maps.google.com/maps?q=148+Market+Street,+San+Francisco,+CA&output=embed"
+                src="https://maps.google.com/maps?q=15%2F972%2C%20Nedumkulangara%20Rd%2C%20Athani%2C%20Kakkanad%2C%20Kerala%20682030&z=16&output=embed"
                 className="h-48 w-full md:h-52"
                 style={{ border: 0 }}
                 loading="lazy"
+                allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=15%2F972%2C%20Nedumkulangara%20Rd%2C%20Athani%2C%20Kakkanad%2C%20Kerala%20682030"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#007A1F] transition hover:text-[#006619]"
+            >
+              <MapPin size={16} />
+              Open location in Google Maps
+            </a>
           </div>
 
+          {/* Contact form */}
           <form
             onSubmit={handleSubmit}
             noValidate
             className="space-y-4 rounded-3xl border border-[#E1E5E1] bg-[#F3FBF4] p-6 shadow-[0_16px_50px_rgba(20,60,30,0.05)] md:p-8 lg:col-span-6 lg:col-start-7"
           >
+            {/* Honeypot */}
             <div className="hidden" aria-hidden="true">
               <label htmlFor="company_website">
                 Leave this field empty
@@ -197,10 +271,11 @@ export default function Contact() {
                   id="contact-name"
                   type="text"
                   required
+                  autoComplete="name"
                   value={form.name}
                   onChange={update("name")}
-                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
-                  placeholder="Jane Cooper"
+                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition placeholder:text-[#A0A6A1] focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
+                  placeholder="Your full name"
                 />
               </div>
 
@@ -218,7 +293,7 @@ export default function Contact() {
                   required
                   value={form.subject}
                   onChange={update("subject")}
-                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
+                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition placeholder:text-[#A0A6A1] focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
                   placeholder="What&apos;s this about?"
                 />
               </div>
@@ -237,10 +312,11 @@ export default function Contact() {
                   id="contact-email"
                   type="email"
                   required
+                  autoComplete="email"
                   value={form.email}
                   onChange={update("email")}
-                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
-                  placeholder="jane@company.com"
+                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition placeholder:text-[#A0A6A1] focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
+                  placeholder="name@company.com"
                 />
               </div>
 
@@ -258,10 +334,11 @@ export default function Contact() {
                 <input
                   id="contact-phone"
                   type="tel"
+                  autoComplete="tel"
                   value={form.phone}
                   onChange={update("phone")}
-                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
-                  placeholder="+1 (555) 000-0000"
+                  className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition placeholder:text-[#A0A6A1] focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
+                  placeholder="+91 99953 33560"
                 />
               </div>
             </div>
@@ -280,12 +357,12 @@ export default function Contact() {
                 required
                 value={form.message}
                 onChange={update("message")}
-                className="mt-2 w-full resize-none rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
+                className="mt-2 w-full resize-none rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition placeholder:text-[#A0A6A1] focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
                 placeholder="Tell us what you&apos;re looking for"
               />
             </div>
 
-            <label className="flex items-start gap-3 font-body text-xs leading-relaxed text-[#646464]">
+            <label className="flex cursor-pointer items-start gap-3 font-body text-xs leading-relaxed text-[#646464]">
               <input
                 type="checkbox"
                 checked={form.consent}
@@ -299,23 +376,33 @@ export default function Contact() {
             </label>
 
             {status === "error" && (
-              <div className="flex items-start gap-2 rounded-lg bg-red-50 p-3 font-body text-sm text-red-700">
+              <div
+                role="alert"
+                className="flex items-start gap-2 rounded-lg border border-red-100 bg-red-50 p-3 font-body text-sm text-red-700"
+              >
                 <AlertCircle
                   size={18}
                   className="mt-0.5 shrink-0"
                 />
-                {errorMessage}
+
+                <span>{errorMessage}</span>
               </div>
             )}
 
             {status === "success" && (
-              <div className="flex items-start gap-2 rounded-lg bg-[#E8F7EA] p-3 font-body text-sm text-[#006619]">
+              <div
+                role="status"
+                className="flex items-start gap-2 rounded-lg border border-[#CFE8D3] bg-[#E8F7EA] p-3 font-body text-sm text-[#006619]"
+              >
                 <CheckCircle2
                   size={18}
                   className="mt-0.5 shrink-0"
                 />
-                Thank you. Your message has been submitted successfully —
-                we&apos;ll be in touch soon.
+
+                <span>
+                  Thank you. Your message has been submitted
+                  successfully — we&apos;ll be in touch soon.
+                </span>
               </div>
             )}
 
