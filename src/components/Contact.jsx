@@ -20,14 +20,14 @@ const CONTACT_ITEMS = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+91 7994466421",
+    value: "+91 79944 66421",
     href: "tel:+917994466421",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+91 7994466421",
-    href: "https://wa.me/7994466421",
+    value: "+91 79944 66421",
+    href: "https://wa.me/917994466421",
     external: true,
   },
   {
@@ -35,8 +35,6 @@ const CONTACT_ITEMS = [
     label: "Office",
     value:
       "15/972, Nedumkulangara Rd, Athani, Kakkanad, Kerala 682030",
-    href: "https://www.google.com/maps/search/?api=1&query=15%2F972%2C%20Nedumkulangara%20Rd%2C%20Athani%2C%20Kakkanad%2C%20Kerala%20682030",
-    external: true,
   },
   {
     icon: Clock,
@@ -188,9 +186,7 @@ export default function Contact() {
                       {href ? (
                         <a
                           href={href}
-                          target={
-                            external ? "_blank" : undefined
-                          }
+                          target={external ? "_blank" : undefined}
                           rel={
                             external
                               ? "noopener noreferrer"
@@ -210,29 +206,6 @@ export default function Contact() {
                 ),
               )}
             </ul>
-
-            {/* Google Map */}
-            <div className="mt-7 overflow-hidden rounded-2xl border border-[#E1E5E1] bg-[#F3FBF4]">
-              <iframe
-                title="Getvia office location"
-                src="https://maps.google.com/maps?q=15%2F972%2C%20Nedumkulangara%20Rd%2C%20Athani%2C%20Kakkanad%2C%20Kerala%20682030&z=16&output=embed"
-                className="h-48 w-full md:h-52"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=15%2F972%2C%20Nedumkulangara%20Rd%2C%20Athani%2C%20Kakkanad%2C%20Kerala%20682030"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 font-body text-sm font-semibold text-[#007A1F] transition hover:text-[#006619]"
-            >
-              <MapPin size={16} />
-              Open location in Google Maps
-            </a>
           </div>
 
           {/* Contact form */}
@@ -241,7 +214,6 @@ export default function Contact() {
             noValidate
             className="space-y-4 rounded-3xl border border-[#E1E5E1] bg-[#F3FBF4] p-6 shadow-[0_16px_50px_rgba(20,60,30,0.05)] md:p-8 lg:col-span-6 lg:col-start-7"
           >
-            {/* Honeypot */}
             <div className="hidden" aria-hidden="true">
               <label htmlFor="company_website">
                 Leave this field empty
@@ -338,7 +310,7 @@ export default function Contact() {
                   value={form.phone}
                   onChange={update("phone")}
                   className="mt-2 w-full rounded-lg border border-[#DDE5DE] bg-white px-4 py-3 font-body text-sm text-[#141414] outline-none transition placeholder:text-[#A0A6A1] focus:border-[#007A1F] focus:ring-4 focus:ring-[#007A1F]/10"
-                  placeholder="+91 99953 33560"
+                  placeholder="+91 79944 66421"
                 />
               </div>
             </div>
