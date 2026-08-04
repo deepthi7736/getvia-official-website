@@ -26,8 +26,8 @@ const CONTACT_ITEMS = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+91 99953 33560",
-    href: "https://wa.me/919995333560",
+    value: "+91 7994466421",
+    href: "https://wa.me/7994466421",
     external: true,
   },
   {
