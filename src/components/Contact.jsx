@@ -20,8 +20,8 @@ const CONTACT_ITEMS = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+91 99953 33560",
-    href: "tel:+919995333560",
+    value: "+91 7994466421",
+    href: "tel:+917994466421",
   },
   {
     icon: MessageCircle,
