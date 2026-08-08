@@ -98,6 +98,11 @@ const focusRing =
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const isValidEmail = (value) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  };
 
   const handleSubscribe = async (event) => {
     event.preventDefault();
@@ -106,48 +111,69 @@ export default function Footer() {
       return;
     }
 
-    const trimmedEmail = email.trim();
+    const trimmedEmail = email.trim().toLowerCase();
 
-    const isValidEmail =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
-
-    if (!isValidEmail) {
+    if (!trimmedEmail) {
       setStatus("error");
+      setErrorMessage("Please enter your email address.");
+      return;
+    }
+
+    if (!isValidEmail(trimmedEmail)) {
+      setStatus("error");
+      setErrorMessage("Please enter a valid email address.");
       return;
     }
 
     setStatus("submitting");
+    setErrorMessage("");
 
-    const { error } = await supabase
-      .from("newsletter_subscribers")
-      .insert({
-        email: trimmedEmail,
-        status: "active",
-      });
+    try {
+      const { error } = await supabase
+        .from("newsletter_subscribers")
+        .insert({
+          email: trimmedEmail,
+          status: "active",
+        });
 
-    if (error) {
-      if (error.code === "23505") {
-        setStatus("duplicate");
-      } else {
+      if (error) {
+        if (error.code === "23505") {
+          setStatus("duplicate");
+          return;
+        }
+
         console.error("Newsletter signup failed:", error);
+
         setStatus("error");
+        setErrorMessage(
+          "We couldn't subscribe you right now. Please try again.",
+        );
+
+        return;
       }
 
-      return;
-    }
+      setStatus("success");
+      setEmail("");
+    } catch (error) {
+      console.error("Newsletter signup failed:", error);
 
-    setStatus("success");
-    setEmail("");
+      setStatus("error");
+      setErrorMessage(
+        "We couldn't subscribe you right now. Please try again.",
+      );
+    }
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
 
     if (
-      status !== "idle" &&
-      status !== "submitting"
+      status === "error" ||
+      status === "duplicate" ||
+      status === "success"
     ) {
       setStatus("idle");
+      setErrorMessage("");
     }
   };
 
@@ -162,7 +188,8 @@ export default function Footer() {
     <footer className="border-t border-[#DCE5DD] bg-[#F3FBF4] text-[#141414]">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid gap-12 border-b border-[#DDE5DE] py-14 sm:py-16 lg:grid-cols-[1.4fr_2fr] lg:gap-20 lg:py-20">
-          {/* Brand and newsletter */}
+          
+          {/* Brand + Newsletter */}
           <div>
             <Link
               to="/"
@@ -180,17 +207,20 @@ export default function Footer() {
             </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-[#646464]">
-              Discover trusted local businesses and professionals, while
-              helping business owners build a stronger digital presence.
+              Discover trusted local businesses and professionals,
+              while helping business owners build a stronger digital
+              presence.
             </p>
 
+            {/* Newsletter */}
             <div className="mt-7">
               <p className="text-sm font-semibold text-[#242C26]">
                 Stay updated with Getvia
               </p>
 
               <p className="mt-1 text-xs leading-6 text-[#737D75]">
-                Receive product updates, helpful guides, and platform news.
+                Receive product updates, helpful guides, and platform
+                news.
               </p>
 
               <form
@@ -207,12 +237,14 @@ export default function Footer() {
 
                 <input
                   id="newsletter-email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="Enter your email"
                   autoComplete="email"
-                  className="min-w-0 flex-1 rounded-xl bg-transparent px-3 py-2.5 font-body text-sm text-[#141414] outline-none placeholder:text-[#929A94]"
+                  aria-label="Email address"
+                  className="min-w-0 flex-1 rounded-xl bg-transparent px-3 py-2.5 font-body text-sm text-[#141414] outline-none placeholder:text-[#929A94] focus:ring-2 focus:ring-[#007A1F]/20"
                 />
 
                 <button
@@ -226,28 +258,32 @@ export default function Footer() {
                 </button>
               </form>
 
+              {/* Success */}
               {status === "success" && (
                 <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#007A1F]">
                   <Check size={14} />
-                  You&apos;re subscribed. Welcome to Getvia.
+                  You're subscribed. Welcome to Getvia.
                 </p>
               )}
 
+              {/* Already subscribed */}
               {status === "duplicate" && (
-                <p className="mt-3 text-xs font-medium text-[#646464]">
-                  This email is already subscribed.
+                <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#646464]">
+                  <Check size={14} />
+                  This email is already subscribed to Getvia.
                 </p>
               )}
 
+              {/* Error */}
               {status === "error" && (
                 <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-red-600">
                   <X size={14} />
-                  Please enter a valid email address.
+                  {errorMessage}
                 </p>
               )}
             </div>
 
-            {/* Social links */}
+            {/* Social Links */}
             <div className="mt-7 flex items-center gap-4">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = social.icon;
@@ -294,7 +330,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Footer bottom */}
+        {/* Bottom Footer */}
         <div className="flex flex-col gap-6 py-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-center text-xs text-[#7B847D] sm:text-left">
             © {new Date().getFullYear()} Getvia. All rights reserved.
@@ -326,6 +362,7 @@ export default function Footer() {
               type="button"
               onClick={scrollToTop}
               aria-label="Back to top"
+              title="Back to top"
               className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D7E1D8] bg-white text-[#646D66] transition hover:border-[#007A1F] hover:text-[#007A1F] ${focusRing}`}
             >
               <ArrowUp size={15} />
