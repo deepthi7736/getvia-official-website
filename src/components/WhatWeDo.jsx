@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
-import discoverImage from "../assets/discover.png";
-import exploreImage from "../assets/explore.png";
-import connectImage from "../assets/connect.png";
+import discoverImage from "../assets/discover.webp";
+import exploreImage from "../assets/explore.webp";
+import connectImage from "../assets/connect.webp";
 
 const STEPS = [
   {

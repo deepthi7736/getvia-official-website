@@ -17,12 +17,12 @@ import {
   resourcesData,
 } from "../data/resourcesData";
 
-import businessProfileChecklistImage from "../assets/business profile checklist.png";
-import gettingStartedWithGetviaImage from "../assets/getting started with getvia.png";
-import verificationPreparationGuideImage from "../assets/Verification preparation guide.png";
-import professionalProfileWorkbookImage from "../assets/workbook.png";
-import customerDiscoveryGuideImage from "../assets/discovery.png";
-import localMarketingTemplateImage from "../assets/marketing.png";
+import businessProfileChecklistImage from "../assets/business profile checklist.webp";
+import gettingStartedWithGetviaImage from "../assets/getting started with getvia.webp";
+import verificationPreparationGuideImage from "../assets/Verification preparation guide.webp";
+import professionalProfileWorkbookImage from "../assets/workbook.webp";
+import customerDiscoveryGuideImage from "../assets/discovery.webp";
+import localMarketingTemplateImage from "../assets/marketing.webp";
 
 const fadeUp = {
   hidden: {

@@ -9,7 +9,7 @@ import {
   X,
 } from "lucide-react";
 
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 import { supabase } from "../lib/supabase";
 
 const FOOTER_COLUMNS = [

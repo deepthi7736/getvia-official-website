@@ -1,5 +1,5 @@
 import { Zap, Lock, RefreshCw } from "lucide-react";
-import searchMadeSimpleImage from "../assets/search made simple.png";
+import searchMadeSimpleImage from "../assets/search made simple.webp";
 
 const PILLARS = [
   {

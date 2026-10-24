@@ -7,7 +7,7 @@ import {
   useSpring,
 } from "framer-motion";
 
-import heroImage from "../assets/getviaheroimage.png";
+import heroImage from "../assets/getviaheroimage.webp";
 
 const STATS = [
   ["18,000+", "Verified businesses"],

@@ -8,7 +8,7 @@ import {
   BarChart3,
 } from "lucide-react";
 
-import professionalProfileImage from "../assets/professional-profile.png";
+import professionalProfileImage from "../assets/professional-profile.webp";
 
 const benefits = [
   {

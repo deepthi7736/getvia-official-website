@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-import bakeryImage from "../assets/bakery.png";
+import bakeryImage from "../assets/bakery.webp";
 
 export default function BusinessProfileMockup() {
   return (

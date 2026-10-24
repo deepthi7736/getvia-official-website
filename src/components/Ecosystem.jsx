@@ -15,16 +15,16 @@ import {
 import ArtTile from "./ArtTile";
 
 // Images
-import fashionImage from "../assets/fashion1.png";
-import gymImage from "../assets/gym.png";
-import foodImage from "../assets/food.png";
-import petImage from "../assets/pet.png";
-import shoppingImage from "../assets/shopping.png";
-import clinicImage from "../assets/clinic.png";
-import beautyImage from "../assets/beauty.png";
-import servicesImage from "../assets/services.png";
-import professionalsImage from "../assets/professionals.png";
-import travelImage from "../assets/travel.png";
+import fashionImage from "../assets/fashion1.webp";
+import gymImage from "../assets/gym.webp";
+import foodImage from "../assets/food.webp";
+import petImage from "../assets/pet.webp";
+import shoppingImage from "../assets/shopping.webp";
+import clinicImage from "../assets/clinic.webp";
+import beautyImage from "../assets/beauty.webp";
+import servicesImage from "../assets/services.webp";
+import professionalsImage from "../assets/professionals.webp";
+import travelImage from "../assets/travel.webp";
 
 const INDUSTRIES = [
   {
